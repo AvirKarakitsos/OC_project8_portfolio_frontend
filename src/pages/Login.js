@@ -4,19 +4,42 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleConnect= function(e){
+    // const handleConnect= function(e){
+	// 	e.preventDefault()
+    //     const newUser = {
+    //         email: email,
+    //         password: password
+    //     }
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(newUser)
+    //     }
+
+    //     fetch('http://localhost:4000/api/auth/signup', requestOptions)
+    //         .then(response => {
+    //             if(response.ok) {
+    //                 setEmail('')
+    //                 setPassword('')
+    //             } 
+    //             return response.json()
+    //         })
+    //         .then(data=> console.log(data.message))
+    //         .catch(err => console.log(err.message))
+    // }
+    const handleLogin= function(e){
 		e.preventDefault()
-        const newUser = {
+        let newUser = {
             email: email,
             password: password
         }
-        const requestOptions = {
+        let requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUser)
         }
 
-        fetch('http://localhost:4000/api/auth/signup', requestOptions)
+        fetch('http://localhost:4000/api/auth/login', requestOptions)
             .then(response => {
                 if(response.ok) {
                     setEmail('')
@@ -24,13 +47,15 @@ function Login() {
                 } 
                 return response.json()
             })
-            .then(data=> console.log(data.message))
+            .then(data => {
+                if(data.token !== undefined) localStorage.setItem("token", data.token)
+            })
             .catch(err => console.log(err.message))
     }
 
     return (
         <div className="container-100 flex justify-center align-center">
-            <form onSubmit={handleConnect} className="form-container flex justify-center align-center border-black">
+            <form onSubmit={handleLogin} className="form-container flex justify-center align-center border-black">
                 <label htmlFor={email}>
                     <p>Adresse email</p>
                     <input

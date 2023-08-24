@@ -12,6 +12,7 @@ function Admin() {
     const [language, setLanguage] = useState('fr')
 
     const classBtn = "flex align-center justify-center btn btn-delete no-border"
+
     useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
 			 .then((response) => response.json())
@@ -49,7 +50,16 @@ function Admin() {
                     method: "DELETE",
                     headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if(response.ok) {
+                        setTitle('')
+                        setTags('')
+                        setContent('')
+                        setLink('')
+                        setImage(null)
+                    } 
+                    return response.json()
+                })
                 .then(data => console.log(data.message))
                 .catch(err => console.log(err.message))
         }
@@ -58,7 +68,6 @@ function Admin() {
     const handleAddProject = function(e) {
         e.preventDefault()
         let newProject = {
-            id_project: select,
             title: title,
             tags: tags,
             content: content,

@@ -6,6 +6,7 @@ function Admin() {
     const [content, setContent] = useState('')
     const [link, setLink] = useState('')
     const [image, setImage] = useState(null)
+    const [language, setLanguage] = useState('fr')
 
     const handleAddProject = function(e) {
         e.preventDefault()
@@ -13,7 +14,8 @@ function Admin() {
             title: title,
             tags: tags,
             content: image,
-            link: link
+            link: link,
+            language: language
         }
         if(!image) console.log("Ajouter une image")
         else {
@@ -34,7 +36,7 @@ function Admin() {
     return (
         <div className="container-100 flex justify-center align-center">
             <form onSubmit={handleAddProject} className="form-container flex justify-center align-center border-black">
-                <label className="flex align-center column-gap-15" htmlFor={title}>
+                <label className="flex align-center label-style column-gap-15" htmlFor={title}>
                     Titre
                     <input
                         className="input-style input-size"
@@ -46,7 +48,7 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center column-gap-15" htmlFor="tags">
+                <label className="flex align-center label-style column-gap-15" htmlFor="tags">
                     <p>Liste de tags</p>
                     <input
                         className="input-style input-size"
@@ -58,7 +60,7 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center column-gap-15" htmlFor="content">
+                <label className="flex align-center label-style column-gap-15" htmlFor="content">
                     <p>Contenu</p>
                     <textarea
                         className="input-style area-size"
@@ -70,7 +72,7 @@ function Admin() {
                     >
                     </textarea>
                 </label>
-                <label className="flex align-center column-gap-15" htmlFor="link">
+                <label className="flex align-center label-style column-gap-15" htmlFor="link">
                     <p>Lien github</p>
                     <input
                         className="input-style input-size"
@@ -82,7 +84,7 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center column-gap-15" htmlFor="image">
+                <label className="flex align-center label-style column-gap-15" htmlFor="image">
                     <p>Ajouter une image</p>   
                     <input
                         className="input-style input-size"
@@ -91,6 +93,17 @@ function Admin() {
                         accept="image/*"
                         onChange={(e) => { setImage(e.target.files[0]); }}
                     />
+                </label>
+                <label className="flex align-center label-style column-gap-15" htmlFor="language">Langue
+                    <select 
+                        name="language" 
+                        id="language" 
+                        className="input-style input-size"
+                        onChange={(e) => { setLanguage(e.target.value); }}
+                    >
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
                 </label>
                 <button type="submit" className="btn-dark no-border">
                     Valider

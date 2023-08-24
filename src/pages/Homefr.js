@@ -6,8 +6,18 @@ import gmail from '../assets/images/gmail.png'
 
 import Layout from "../Components/layouts/Layout"
 import Card from '../Components/Card'
+import { useState, useEffect } from 'react'
 
 function Homefr() {
+	const [projects, setProjects] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:4000/api/projects')
+			 .then((response) => response.json())
+			 .then((response) => setProjects(response))
+			 .catch((error) => console.log(error))
+		 
+	 }, [])
 
     return (
         <Layout>
@@ -64,7 +74,8 @@ function Homefr() {
 				</dialog>
 
 				<div className="box-container cursor-default">
-					<Card/>
+					{projects.map(project => <Card key={project._id} project={project}/>)}
+					
 				</div>
 
             </main>

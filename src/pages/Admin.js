@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Admin() {
+    const [projects, setProjects] = useState([]);
+    const [select, setSelect] = useState("")
+    
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
     const [content, setContent] = useState('')
@@ -8,45 +11,113 @@ function Admin() {
     const [image, setImage] = useState(null)
     const [language, setLanguage] = useState('fr')
 
+    useEffect(() => {
+		fetch('http://localhost:4000/api/projects')
+			 .then((response) => response.json())
+			 .then((response) => setProjects(response))
+			 .catch((error) => console.log(error))
+	 }, [])
+
+    useEffect(() => {
+        if(select !== "") {
+            fetch(`http://localhost:4000/api/projects/${select}`,
+            {
+                method: "GET",
+                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    setTitle(response.title)
+                    setTags(response.tags)
+                    setContent(response.content)
+                    setLink(response.link)
+                 })
+                 .catch((error) => console.log(error))
+        } else {
+            setTitle('')
+            setTags('')
+            setContent('')
+            setLink('')
+        }
+	 }, [select])
+   
     const handleAddProject = function(e) {
         e.preventDefault()
-        const newProject = {
+        let newProject = {
             title: title,
             tags: tags,
             content: content,
             link: link,
             language: language
         }
-        if(!image) console.log("Ajouter une image")
-        else {
-            let formData = new FormData()
-            
-            formData.append("project",JSON.stringify( newProject))
-            formData.append("image",image)
-            
-            fetch(`http://localhost:4000/api/projects`,
-                {
-                    method: "POST",
-                    headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`},
-                    body: formData
-                })
-                .then(response => {
-                    if(response.ok) {
-                        setTitle('')
-                        setTags('')
-                        setContent('')
-                        setLink('')
-                        setImage(null)
-                    } 
-                    return response.json()
-                })
-                .then(data => console.log(data.message))
-                .catch(err => console.log(err.message))
+
+        if(select !== "") {
+            fetch(`http://localhost:4000/api/projects/${select}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`},
+                        body: JSON.stringify(newProject)
+                    })
+                    .then(response => {
+                        if(response.ok) {
+                            setTitle('')
+                            setTags('')
+                            setContent('')
+                            setLink('')
+                            setImage(null)
+                        } 
+                        return response.json()
+                    })
+                    .then(data => console.log(data.message))
+                    .catch(err => console.log(err.message))
+
+        } else {
+            if(!image) console.log("Ajouter une image")
+            else {
+                let formData = new FormData()
+                
+                formData.append("project",JSON.stringify( newProject))
+                formData.append("image",image)
+                
+                fetch(`http://localhost:4000/api/projects`,
+                    {
+                        method: "POST",
+                        headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`},
+                        body: formData
+                    })
+                    .then(response => {
+                        if(response.ok) {
+                            setTitle('')
+                            setTags('')
+                            setContent('')
+                            setLink('')
+                            setImage(null)
+                        } 
+                        return response.json()
+                    })
+                    .then(data => console.log(data.message))
+                    .catch(err => console.log(err.message))
+            }
         }
     }
     
     return (
-        <div className="container-100 flex justify-center align-center">
+        <div className="container-100 flex direction-column justify-center align-center">
+            <div>
+            <label className="flex align-center label-style column-gap-15" htmlFor="select">Projet
+                    <select 
+                        name="select" 
+                        id="select" 
+                        className="input-style input-size"
+                        onChange={(e) => { setSelect(e.target.value); }}
+                    >
+                        <option value=""></option>
+                        {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
+                    </select>
+                </label>
+            </div>
             <form onSubmit={handleAddProject} className="form-container flex justify-center align-center border-black">
                 <label className="flex align-center label-style column-gap-15" htmlFor={title}>
                     Titre

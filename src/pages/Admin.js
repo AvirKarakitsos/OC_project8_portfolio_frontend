@@ -13,7 +13,7 @@ function Admin() {
         const newProject = {
             title: title,
             tags: tags,
-            content: image,
+            content: content,
             link: link,
             language: language
         }
@@ -21,7 +21,7 @@ function Admin() {
         else {
             let formData = new FormData()
             
-            formData.append("project",newProject)
+            formData.append("project",JSON.stringify( newProject))
             formData.append("image",image)
             
             fetch(`http://localhost:4000/api/projects`,
@@ -30,6 +30,18 @@ function Admin() {
                     headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`},
                     body: formData
                 })
+                .then(response => {
+                    if(response.ok) {
+                        setTitle('')
+                        setTags('')
+                        setContent('')
+                        setLink('')
+                        setImage(null)
+                    } 
+                    return response.json()
+                })
+                .then(data => console.log(data.message))
+                .catch(err => console.log(err.message))
         }
     }
     

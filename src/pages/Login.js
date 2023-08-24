@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -27,7 +28,9 @@ function Login() {
     //         .then(data=> console.log(data.message))
     //         .catch(err => console.log(err.message))
     // }
-    const handleLogin= function(e){
+    let navigate = useNavigate()
+
+    const handleLogin = function(e){
 		e.preventDefault()
         let newUser = {
             email: email,
@@ -48,7 +51,10 @@ function Login() {
                 return response.json()
             })
             .then(data => {
-                if(data.token !== undefined) localStorage.setItem("token", data.token)
+                if(data.token !== undefined) {
+                    localStorage.setItem("token", data.token)
+                    navigate('/')
+                }
             })
             .catch(err => console.log(err.message))
     }
@@ -59,7 +65,7 @@ function Login() {
                 <label htmlFor={email}>
                     <p>Adresse email</p>
                     <input
-                        className="input-style"
+                        className="input-style input-size"
                         type="email"
                         name="email"
                         id="email"
@@ -70,7 +76,7 @@ function Login() {
                 <label htmlFor="password">
                     <p>Mot de passe</p>
                     <input
-                        className="input-style"
+                        className="input-style input-size"
                         type="password"
                         name="password"
                         id="password"

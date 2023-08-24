@@ -108,9 +108,14 @@ img {
 }
 
 .input-style {
-    height: 35px;
     width: 250px;
     margin: 15px 0;
+}
+.input-size {
+    height: 35px;
+}
+.area-size {
+    height: 100px;
 }
 
 /*Colors*/

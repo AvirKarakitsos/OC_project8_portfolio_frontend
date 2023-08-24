@@ -84,7 +84,7 @@ function Login() {
                         onChange={(e) => { setPassword(e.target.value); }}
                     />
                 </label>
-                <button type="submit" className="btn-dark no-border">
+                <button type="submit" className="btn dark no-border">
                     Se connecter
                 </button>
             </form>

@@ -11,6 +11,7 @@ function Admin() {
     const [image, setImage] = useState(null)
     const [language, setLanguage] = useState('fr')
 
+    const classBtn = "flex align-center justify-center btn btn-delete no-border"
     useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
 			 .then((response) => response.json())
@@ -40,10 +41,24 @@ function Admin() {
             setLink('')
         }
 	 }, [select])
-   
+    
+    const handleDelete = function() {
+        if(select !== "") {
+            fetch(`http://localhost:4000/api/projects/${select}`,
+                {
+                    method: "DELETE",
+                    headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
+                })
+                .then(response => response.json())
+                .then(data => console.log(data.message))
+                .catch(err => console.log(err.message))
+        }
+    }
+
     const handleAddProject = function(e) {
         e.preventDefault()
         let newProject = {
+            id_project: select,
             title: title,
             tags: tags,
             content: content,
@@ -105,8 +120,8 @@ function Admin() {
     
     return (
         <div className="container-100 flex direction-column justify-center align-center">
-            <div>
-            <label className="flex align-center label-style column-gap-15" htmlFor="select">Projet
+            <div className="flex align-center justify-center column-gap-15">
+                <label className="flex align-center label-style column-gap-15" htmlFor="select">Projet
                     <select 
                         name="select" 
                         id="select" 
@@ -117,6 +132,12 @@ function Admin() {
                         {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
                     </select>
                 </label>
+                <button 
+                    className={select !== "" ? classBtn+" red" : classBtn+" dark"}
+                    onClick={handleDelete}
+                    >
+                        Supprimer
+                    </button>
             </div>
             <form onSubmit={handleAddProject} className="form-container flex justify-center align-center border-black">
                 <label className="flex align-center label-style column-gap-15" htmlFor={title}>
@@ -188,9 +209,10 @@ function Admin() {
                         <option value="en">EN</option>
                     </select>
                 </label>
-                <button type="submit" className="btn-dark no-border">
-                    Valider
-                </button>
+                {select !== "" ?
+                <button type="submit" className= "btn green no-border">Modifier</button>
+                : <button type="submit" className= "btn blue no-border">Ajouter</button>
+                }
             </form>
         </div>
     )

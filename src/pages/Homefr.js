@@ -61,9 +61,9 @@ function Homefr() {
 				<section id="project" className="filter flex">
 					<h2 className="subtitle">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
-						<li className='btn-dark'>Tous</li>
-						<li className='btn-dark'>Projets Openclassroom</li>
-						<li className='btn-dark'>Projets personnels</li>
+						<li className='btn dark'>Tous</li>
+						<li className='btn dark'>Projets Openclassroom</li>
+						<li className='btn dark'>Projets personnels</li>
 					</ul>
 				</section>
 

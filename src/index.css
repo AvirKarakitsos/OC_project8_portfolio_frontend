@@ -10,6 +10,8 @@
     --background-dark-secondary: #282828;
     --button-dark: #8899A6;
     --border-blue: #0096FF;
+    --color-green: #28BE35;
+    --color-red: #E80000;
     --border-grey: rgba(60,60,60,0.8);
     --white: #FFF;
     --black: #000;
@@ -109,10 +111,9 @@ img {
     background-color: var(--background-light);
 }
 
-.btn-dark{
+.btn {
     padding: 10px 15px;
     border-radius: 30px;
-    background-color: var(--button-dark);
 }
 
 .input-style {
@@ -139,8 +140,12 @@ img {
     border: 2px solid var(--black);
 }
 
-.link-black {
+.color-black {
     color: var(--black);
+}
+
+.color-white {
+    color: var(--white);
 }
 
 .light {
@@ -149,6 +154,18 @@ img {
 
 .dark {
     background-color: var(--button-dark);
+}
+
+.blue {
+    background-color: var(--border-blue);
+}
+
+.green {
+    background-color: var(--color-green);
+}
+
+.red {
+    background-color: var(--color-red);
 }
 
 .cursor-default {
@@ -337,6 +354,11 @@ main {
     flex-direction: column;
     row-gap: 25px;
     border-top: 1px solid var(--border-grey);
+ }
+
+ /*Admin Page*/
+ .btn-delete {
+    height: 35px;
  }
 
  /**********Media Query*/

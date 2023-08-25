@@ -109,6 +109,8 @@ function Admin() {
                             setTags('')
                             setContent('')
                             setLink('')
+                            setLanguage('')
+                            setType('')
                             setImage(null)
                         } 
                         return response.json()

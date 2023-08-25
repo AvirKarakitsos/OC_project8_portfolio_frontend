@@ -8,7 +8,7 @@ function Card({project, setModal}) {
         <article className="box">
             <h3 className="subtitle">{project.title}</h3>
             <div className='box-picture'>
-                <picture className="picture" data-id={name} onClick={() => setModal(name)}>
+                <picture className="picture" onClick={() => setModal(name)}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>
                     <img src={project.imageUrl} alt="projet react"/>
                 </picture>

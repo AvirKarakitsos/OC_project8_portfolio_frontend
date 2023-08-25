@@ -59,7 +59,7 @@ img {
     justify-content: center;
 }
 
-.column-gap-15 {
+.small-column-gap- {
 	column-gap: 15px;
 }
 
@@ -153,6 +153,10 @@ img {
 
 .border-black {
     border: 2px solid var(--black);
+}
+
+.border-grey {
+    border: 1px solid var(--button-dark);
 }
 
 .color-black {
@@ -478,5 +482,9 @@ main {
     .medium-font-size {
         font-size: 20px;
         text-align: center;
+    }
+
+    .small-column-gap {
+        column-gap: 10px;
     }
 }

@@ -150,8 +150,8 @@ function Admin() {
     
     return (
         <div className="container-100 flex direction-column justify-center align-center">
-            <div className="flex align-center justify-center column-gap-15">
-                <label className="flex align-center label-style column-gap-15" htmlFor="select">Projet
+            <div className="flex align-center justify-center small-column-gap">
+                <label className="flex align-center label-style small-column-gap" htmlFor="select">Projet
                     <select 
                         name="select" 
                         id="select" 
@@ -170,7 +170,7 @@ function Admin() {
                     </button>
             </div>
             <form onSubmit={handleAddProject} className="form-container flex justify-center align-center border-black">
-                <label className="flex align-center label-style column-gap-15" htmlFor={title}>
+                <label className="flex align-center label-style small-column-gap" htmlFor={title}>
                     Titre
                     <input
                         className="input-style input-size"
@@ -182,7 +182,7 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center label-style column-gap-15" htmlFor="tags">
+                <label className="flex align-center label-style small-column-gap" htmlFor="tags">
                     <p>Liste de tags</p>
                     <input
                         className="input-style input-size"
@@ -194,8 +194,8 @@ function Admin() {
                         required
                     />
                 </label>
-                <div className="flex align-center column-gap-15">
-                    <label className="flex align-center label-style column-gap-15" htmlFor="content">
+                <div className="flex align-center small-column-gap">
+                    <label className="flex align-center label-style small-column-gap" htmlFor="content">
                         <p>Contenu</p>
                         <textarea
                             className="input-style area-size"
@@ -226,7 +226,7 @@ function Admin() {
                 
                     </select>
                 </div>
-                <label className="flex align-center label-style column-gap-15" htmlFor="link">
+                <label className="flex align-center label-style small-column-gap" htmlFor="link">
                     <p>Lien github</p>
                     <input
                         className="input-style input-size"
@@ -238,7 +238,7 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center label-style column-gap-15" htmlFor="image">
+                <label className="flex align-center label-style small-column-gap" htmlFor="image">
                     <p>Ajouter une image</p>   
                     <input
                         className="input-style input-size"
@@ -248,7 +248,7 @@ function Admin() {
                         onChange={(e) => { setImage(e.target.files[0]); }}
                     />
                 </label>
-                <label className="flex align-center label-style column-gap-15" htmlFor="image">
+                <label className="flex align-center label-style small-column-gap" htmlFor="image">
                     <p>Projet</p>
                     <select 
                         name="type" 

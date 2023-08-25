@@ -13,6 +13,16 @@ import { useState, useEffect } from 'react'
 function Homefr() {
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState("")
+	const [filter, setFilter] = useState(false)
+	const [table, setTable] = useState(false)
+
+	const handleFilter = function(tag) {
+		if(tag === "all") setTable(projects)
+		else {
+			setTable(projects.filter(element => element.type === tag))
+			setFilter(true)
+		}
+	}
 
 	useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
@@ -60,21 +70,23 @@ function Homefr() {
 						<p>Connaissance en <strong>Vue</strong>, <strong>PHP</strong>, <strong>Laravel</strong></p>
 					</div>
 				</section>
+				
+				<Modal modal={modal} setModal={setModal}/>
 
 				<section id="project" className="filter flex">
 					<h2 className="subtitle">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
-						<li className='btn dark'>Tous</li>
-						<li className='btn dark'>Projets Openclassroom</li>
-						<li className='btn dark'>Projets personnels</li>
+						<li className='btn dark' onClick={() => handleFilter("all")}>Tous</li>
+						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>Projets Openclassroom</li>
+						<li className='btn dark' onClick={() => handleFilter("perso")}>Projets personnels</li>
 					</ul>
 				</section>
 
-				<Modal modal={modal} setModal={setModal}/>
-
 				<div className="box-container cursor-default">
-					{projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)}
-					
+					{ filter ?
+					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
+					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
+					}
 				</div>
 
             </main>

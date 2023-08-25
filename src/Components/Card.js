@@ -6,7 +6,10 @@ function Card({project, setModal}) {
   
     return (
         <article className="box">
-            <h3 className="subtitle">{project.title}</h3>
+            <div className="relative">
+                <h3 className="subtitle">{project.title}</h3>
+                <i class="fa-solid fa-bookmark"></i>
+            </div>
             <div className='box-picture'>
                 <picture className="picture" onClick={() => setModal(name)}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>

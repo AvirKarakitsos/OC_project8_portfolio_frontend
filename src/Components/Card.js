@@ -1,12 +1,14 @@
 
 function Card({project}) {
-    const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1]
-
+    const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
+    const date = project.createdAt.split(".")[0]
+    const name = date.split(":").join("")
     return (
         <article className="box">
+           
             <h3 className="subtitle">{project.title}</h3>
             <div className='box-picture'>
-                <picture className="picture">
+                <picture className="picture" data-id={name}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>
                     <img src={project.imageUrl} alt="projet react"/>
                 </picture>

@@ -1,14 +1,27 @@
 
+import styles from '../assets/styles/Card.module.css'
+
 function Card({project, setModal}) {
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
+    let bookmarkColor
+    switch (project.type) {
+        case "openclassrooms":
+            bookmarkColor = "color-purple"
+            break
+        case "perso":
+            bookmarkColor = "color-green"
+            break
+        default:
+            bookmarkColor = "color-blue"
+      }
   
     return (
         <article className="box">
             <div className="relative">
                 <h3 className="subtitle">{project.title}</h3>
-                <i class="fa-solid fa-bookmark"></i>
+                <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
             </div>
             <div className='box-picture'>
                 <picture className="picture" onClick={() => setModal(name)}>

@@ -178,6 +178,17 @@ img {
 .green {
     background-color: var(--color-green);
 }
+.color-green {
+    color: var(--color-green);
+}
+
+.color-purple {
+    color: purple;
+}
+
+.color-blue {
+    color: var(--border-blue);
+}
 
 .red {
     background-color: var(--color-red);

@@ -6,10 +6,13 @@ import gmail from '../assets/images/gmail.png'
 
 import Layout from "../Components/layouts/Layout"
 import Card from '../Components/Card'
+import Modal from '../Components/Modal'
+
 import { useState, useEffect } from 'react'
 
 function Homefr() {
-	const [projects, setProjects] = useState([]);
+	const [projects, setProjects] = useState([])
+	const [modal, setModal] = useState("")
 
 	useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
@@ -67,14 +70,10 @@ function Homefr() {
 					</ul>
 				</section>
 
-				<dialog id="modal">
-					<div className="modal-container flex">
-						<video src="./videos/Kasa.mp4" controls></video>
-					</div>
-				</dialog>
+				<Modal modal={modal} setModal={setModal}/>
 
 				<div className="box-container cursor-default">
-					{projects.map(project => <Card key={project._id} project={project}/>)}
+					{projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)}
 					
 				</div>
 

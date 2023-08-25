@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function Admin() {
     const [projects, setProjects] = useState([]);
+    const [project, setProject] = useState({});
     const [select, setSelect] = useState("")
     
     const [title, setTitle] = useState('')
@@ -9,8 +10,11 @@ function Admin() {
     const [content, setContent] = useState('')
     const [link, setLink] = useState('')
     const [image, setImage] = useState(null)
-    const [language, setLanguage] = useState('fr')
+    const [language, setLanguage] = useState('')
+    const [type, setType] = useState('')
 
+    const allLanguages = ["fr","en"]
+    const allTypes = ["perso",'openclassrooms']
     const classBtn = "flex align-center justify-center btn btn-delete no-border"
 
     useEffect(() => {
@@ -31,8 +35,12 @@ function Admin() {
                 .then((response) => {
                     setTitle(response.title)
                     setTags(response.tags)
-                    setContent(response.content)
+                    setContent(response.content[0].text)
+                    setLanguage(response.content[0].language)
                     setLink(response.link)
+                    setType(response.type)
+
+                    setProject(response)
                  })
                  .catch((error) => console.log(error))
         } else {
@@ -40,8 +48,19 @@ function Admin() {
             setTags('')
             setContent('')
             setLink('')
+            setLanguage('')
+            setType('')
+
+            setProject({})
         }
 	 }, [select])
+
+     useEffect(() => {
+        if(Object.keys(project).length !== 0) {
+            let newText = project.content.filter(lang => lang.language === language)
+            setContent(newText[0]?.text)
+        }
+     },[language, project])
     
     const handleDelete = function() {
         if(select !== "") {
@@ -70,9 +89,9 @@ function Admin() {
         let newProject = {
             title: title,
             tags: tags,
-            content: content,
+            content: [{language:language,text:content}],
             link: link,
-            language: language
+            type: type
         }
 
         if(select !== "") {
@@ -173,18 +192,38 @@ function Admin() {
                         required
                     />
                 </label>
-                <label className="flex align-center label-style column-gap-15" htmlFor="content">
-                    <p>Contenu</p>
-                    <textarea
-                        className="input-style area-size"
-                        name="content"
-                        id="content"
-                        value={content}
-                        onChange={(e) => { setContent(e.target.value); }}
+                <div className="flex align-center column-gap-15">
+                    <label className="flex align-center label-style column-gap-15" htmlFor="content">
+                        <p>Contenu</p>
+                        <textarea
+                            className="input-style area-size"
+                            name="content"
+                            id="content"
+                            value={content}
+                            onChange={(e) => { setContent(e.target.value); }}
+                            required
+                        >
+                        </textarea>
+                    </label>
+                    <select 
+                        name="language" 
+                        id="language" 
+                        className="input-size"
+                        onChange={(e) => { setLanguage(e.target.value); }}
                         required
                     >
-                    </textarea>
-                </label>
+                        <option value={language}>{language.toLocaleUpperCase()}</option>
+                
+                        {allLanguages.map((element,index) => {
+                            if (element !== language) {
+                                return <option key={index} value={element}>{element.toLocaleUpperCase()}</option>
+                            }
+                            return ''
+                        } 
+                        )}
+                
+                    </select>
+                </div>
                 <label className="flex align-center label-style column-gap-15" htmlFor="link">
                     <p>Lien github</p>
                     <input
@@ -207,15 +246,24 @@ function Admin() {
                         onChange={(e) => { setImage(e.target.files[0]); }}
                     />
                 </label>
-                <label className="flex align-center label-style column-gap-15" htmlFor="language">Langue
+                <label className="flex align-center label-style column-gap-15" htmlFor="image">
+                    <p>Projet</p>
                     <select 
-                        name="language" 
-                        id="language" 
+                        name="type" 
+                        id="type" 
                         className="input-style input-size"
-                        onChange={(e) => { setLanguage(e.target.value); }}
+                        onChange={(e) => { setType(e.target.value); }}
                     >
-                        <option value="fr">FR</option>
-                        <option value="en">EN</option>
+
+                        <option value={type}>{type}</option>
+                
+                        {allTypes.map((element,index) => {
+                            if (element !== type) {
+                                return <option key={index} value={element}>{element}</option>
+                            }
+                            return ''
+                        } 
+                        )}
                     </select>
                 </label>
                 {select !== "" ?

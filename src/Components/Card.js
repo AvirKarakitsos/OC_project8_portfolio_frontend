@@ -5,7 +5,6 @@ function Card({project}) {
     const name = date.split(":").join("")
     return (
         <article className="box">
-           
             <h3 className="subtitle">{project.title}</h3>
             <div className='box-picture'>
                 <picture className="picture" data-id={name}>
@@ -15,7 +14,7 @@ function Card({project}) {
             </div>
             <section className="box-section">
                 <p><b>Tags: </b><span>{project.tags}</span></p>
-                <p className="box-description">{project.content}</p>
+                <p className="box-description">{project.content[0].text}</p>
                 <p><a href={project.link} target="_blank" rel="noreferrer">En savoir plus...</a></p>
             </section>
         </article>    

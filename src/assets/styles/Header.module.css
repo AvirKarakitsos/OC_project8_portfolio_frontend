@@ -1,0 +1,25 @@
+@media screen and (max-width: 750px) {
+
+    .anchor {
+        position: absolute;
+        top: 54px;
+        right: -10px;
+        transform: translateX(100%);
+        transition: transform 1000ms;
+    }
+
+    .slide {
+        transform: translateX(0);
+    }
+
+    .anchor li {
+        width: 100px;
+        padding: 10px 0;
+        text-align: center;
+        border: 1px solid grey;
+        border-top: 0;
+        background-color: white;
+        z-index: 50;
+    }
+
+}

@@ -20,7 +20,7 @@ function Card({project, setModal}) {
     return (
         <article className="box">
             <div className="relative">
-                <h3 className="subtitle">{project.title}</h3>
+                <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
             </div>
             <div className='box-picture'>

@@ -9,6 +9,7 @@ import Card from '../Components/Card'
 import Modal from '../Components/Modal'
 
 import { useState, useEffect } from 'react'
+import Skills from '../Components/Skills'
 
 function Homefr() {
 	const [projects, setProjects] = useState([])
@@ -56,28 +57,22 @@ function Homefr() {
 			    </section>
 
 				<section id='about-me' className='section-1'>
-					<h2 className="subtitle">A Propos</h2>
+					<h2 className="text-center">A Propos</h2>
 					<div className="section-size">
 						<p>En reconversion développeur web. Après m'être autoformé en apprenant les bases de HTML, CSS et Javascript, j'ai pu tester côté client Vue js et côté serveur php avec le framework Laravel. J'ai suivi en 2023 la formation Openclassrooms déveleppeur web afin de professionnalisé ma démarche et ainsi devenir développeur full stack Javascript.</p>
 						<p>En scrollant sur cette page vous découvrirez mes projets personnels ainsi que mes projets chez <strong><a href="https://openclassrooms.com/fr/" target="_blank" rel="noreferrer">Openclassrooms</a></strong>. Vous pouvez cliquez sur l'image afin de visionner une démonstration du site. L'ensemble du code est disponible sur mon github.</p>
 					</div>
 				</section>
 
-				<section className='section-1'>
-					<h2 className="subtitle">Mes comptétences</h2>
-					<div className="section-size">
-						<p>Mes comptétences : <strong>Javascript</strong>, <strong>React</strong>, <strong>Node JS</strong></p>
-						<p>Connaissance en <strong>Vue</strong>, <strong>PHP</strong>, <strong>Laravel</strong></p>
-					</div>
-				</section>
+				<Skills/>
 				
 				<Modal modal={modal} setModal={setModal}/>
 
 				<section id="project" className="section-1 flex">
-					<h2 className="subtitle">Mes projets</h2>
+					<h2 className="text-center">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
 						<li className='btn dark' onClick={() => handleFilter("all")}>Tous</li>
-						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>Projets Openclassroom</li>
+						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>Projets Openclassrooms</li>
 						<li className='btn dark' onClick={() => handleFilter("perso")}>Projets personnels</li>
 					</ul>
 				</section>

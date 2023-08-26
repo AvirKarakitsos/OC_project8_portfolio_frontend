@@ -76,7 +76,7 @@ img {
     position: absolute;
 }
 
-.subtitle {
+.text-center {
     text-align: center;
 }
 
@@ -87,6 +87,7 @@ img {
 .flex-row-to-column {
     display: flex;
 }
+
 /*Box size*/
 .size-32 {
     height: 32px;
@@ -149,6 +150,11 @@ img {
     height: 100px;
 }
 
+/*Font-size*/
+.font-size-medium {
+    font-size: 32px;
+}
+
 /*Colors*/
 .no-border {
     border: 0;
@@ -199,6 +205,10 @@ img {
 
 .color-blue {
     color: var(--border-blue);
+}
+
+.color-grey {
+    color: var(--button-dark);
 }
 
 .red {
@@ -317,6 +327,16 @@ main {
 
 .border-cercle {
     border-radius: 50%;
+}
+
+/*Skills*/
+.section-grid {
+    margin-top: 50px;
+    padding: 35px 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    background-color: var(--background-light);
 }
 
 /*Filter*/

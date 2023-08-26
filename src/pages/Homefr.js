@@ -55,7 +55,7 @@ function Homefr() {
 			    	</div>
 			    </section>
 
-				<section id='about-me'>
+				<section id='about-me' className='section-1'>
 					<h2 className="subtitle">A Propos</h2>
 					<div className="section-size">
 						<p>En reconversion développeur web. Après m'être autoformé en apprenant les bases de HTML, CSS et Javascript, j'ai pu tester côté client Vue js et côté serveur php avec le framework Laravel. J'ai suivi en 2023 la formation Openclassrooms déveleppeur web afin de professionnalisé ma démarche et ainsi devenir développeur full stack Javascript.</p>
@@ -63,7 +63,7 @@ function Homefr() {
 					</div>
 				</section>
 
-				<section>
+				<section className='section-1'>
 					<h2 className="subtitle">Mes comptétences</h2>
 					<div className="section-size">
 						<p>Mes comptétences : <strong>Javascript</strong>, <strong>React</strong>, <strong>Node JS</strong></p>
@@ -73,7 +73,7 @@ function Homefr() {
 				
 				<Modal modal={modal} setModal={setModal}/>
 
-				<section id="project" className="filter flex">
+				<section id="project" className="section-1 flex">
 					<h2 className="subtitle">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
 						<li className='btn dark' onClick={() => handleFilter("all")}>Tous</li>

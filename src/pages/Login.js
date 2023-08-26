@@ -28,6 +28,7 @@ function Login() {
     //         .then(data=> console.log(data.message))
     //         .catch(err => console.log(err.message))
     // }
+
     let navigate = useNavigate()
 
     const handleLogin = function(e){
@@ -51,9 +52,12 @@ function Login() {
                 return response.json()
             })
             .then(data => {
-                if(data.token !== undefined) {
+                if (!data?.token) {
+                    console.log("error connection")
+                } else {
                     localStorage.setItem("token", data.token)
-                    navigate('/')
+                    localStorage.setItem("userId", data.userId)
+                    navigate('/admin')
                 }
             })
             .catch(err => console.log(err.message))

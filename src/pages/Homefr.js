@@ -36,7 +36,6 @@ function Homefr() {
     return (
         <Layout>
             <main>
-
                 <section className="main-top flex justify-space align-center">
 			    	<div className="div-left relative">
 			    		<div className="frame-left absolute border-black"></div>
@@ -83,7 +82,6 @@ function Homefr() {
 					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
 					}
 				</div>
-
             </main>
         </Layout>
     )

@@ -165,9 +165,9 @@ function Admin() {
                 <button 
                     className={select !== "" ? classBtn+" red" : classBtn+" dark"}
                     onClick={handleDelete}
-                    >
-                        Supprimer
-                    </button>
+                >
+                    Supprimer
+                </button>
             </div>
             <form onSubmit={handleAddProject} className="form-container flex justify-center align-center border-black">
                 <label className="flex align-center label-style small-column-gap" htmlFor={title}>

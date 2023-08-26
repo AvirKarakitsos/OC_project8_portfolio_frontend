@@ -6,7 +6,10 @@ import Login from './pages/Login'
 import Admin from './pages/Admin'
 import Error from './pages/Error';
 
+import RequireAuth from './config/RequireAuth';
+
 function Router() {
+
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -14,7 +17,9 @@ function Router() {
 				<Route path="/fr" element={<Homefr/>} />
 				<Route path="/en" element={<Homeen/>} />
 				<Route path="/login" element={<Login/>} />
-				<Route path="/admin" element={<Admin/>} />
+				<Route element={<RequireAuth/>}>
+					<Route path="/admin" element={<Admin/>} />
+				</Route>
 				<Route path="/*" element={<Error/>} />
 			</Routes>
 		</BrowserRouter>

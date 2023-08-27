@@ -13,19 +13,19 @@ function Footer() {
     },[])
 
     return(
-        <footer id="footer" className="footer flex align-center justify-center cursor-default">
+        <footer id="footer" className={`footer flex align-center justify-center cursor-default  ${theme === "light" ? "" : "darker-2 color-white"}`}>
 			<p className="footer-contact">Me contacter: arnocotso8@gmail.com</p>
 			<ul className="flex small-column-gap no-bullet">
-				<li><a className="color-black" href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">github</a></li>
-				<li><a className="color-black" href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">twitter</a></li>
-				<li><a className="color-black" href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer">instagram</a></li>
+				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">github</a></li>
+				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">twitter</a></li>
+				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer">instagram</a></li>
 			</ul>
 			{windowWidth <= 750 ?
 			<>
 				<p>Arno Cotsoyannis</p>
 				<p>Site réalisé avec React et Node JS</p>
 			</>
-			: <p>Arno Cotsoyannis | Site réalisé avec React et Node JS {" "+theme}</p>
+			: <p>Arno Cotsoyannis | Site réalisé avec React et Node JS</p>
 			}
 		</footer>
     )

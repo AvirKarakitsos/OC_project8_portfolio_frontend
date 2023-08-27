@@ -184,6 +184,12 @@ img {
     background-color: var(--white);
 }
 
+.darker-1 {
+    background-color: var(--background-dark-primary);
+}
+.darker-2 {
+    background-color: var(--background-dark-secondary);
+}
 .dark {
     background-color: var(--button-dark);
 }
@@ -195,6 +201,7 @@ img {
 .green {
     background-color: var(--color-green);
 }
+
 .color-green {
     color: var(--color-green);
 }

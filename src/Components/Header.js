@@ -28,14 +28,14 @@ function Header() {
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#footer'>Contact</a></li>
 				</ul>
 				
-				<ul className={`flex align-center justify-center no-bullet ${theme === "light" ? "" : "color-white"}`}>
+				<ul className={`flex align-center justify-center no-bullet`}>
 					<li className="flex btn-lang size-32 border-blue">FR</li>
 					<li className="flex btn-lang size-32">EN</li>
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"
 						? <li className="btn dark" onClick={() => toggleTheme()}>Dark Mode</li>
-						: <li className="btn light" onClick={() => toggleTheme()}>Light Mode</li>
+						: <li className="btn bg-light-1 color-black" onClick={() => toggleTheme()}>Light Mode</li>
 					}
 				
 					<li 

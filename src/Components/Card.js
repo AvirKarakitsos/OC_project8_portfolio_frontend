@@ -21,7 +21,7 @@ function Card({project, setModal}) {
       }
   
     return (
-        <article className={`box ${theme === "light" ? "" : "darker-2 color-white"}`}>
+        <article className={`box ${theme === "light" ? "" : "darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
@@ -35,7 +35,7 @@ function Card({project, setModal}) {
             <section className="box-section">
                 <p><b>Tags: </b><span>{project.tags}</span></p>
                 <p className="box-description">{project.content[0].text}</p>
-                <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-black" : "color-white"}>Voir le code</a>...</p>
+                <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>Voir le code...</a></p>
             </section>
         </article>    
     )

@@ -116,7 +116,6 @@ img {
     row-gap: 35px;
     padding: 35px 50px;
     font-size: 20px;
-    background-color: var(--background-light);
 }
 
 .error-container {
@@ -180,9 +179,13 @@ img {
     color: var(--white);
 }
 
-.light {
+.bg-light-1 {
     background-color: var(--white);
 }
+.bg-light-2 {
+    background-color: var(--background-light);
+}
+
 
 .darker-1 {
     background-color: var(--background-dark-primary);
@@ -342,7 +345,6 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
-    background-color: var(--background-light);
 }
 
 /*Filter*/

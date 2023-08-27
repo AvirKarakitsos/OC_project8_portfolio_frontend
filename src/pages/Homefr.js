@@ -58,9 +58,9 @@ function Homefr() {
 			    	</div>
 			    </section>
 
-				<section id='about-me' className='section-1'>
+				<section id='about-me' className="section-1">
 					<h2 className="text-center">A Propos</h2>
-					<div className="section-size">
+					<div className={`section-size ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
 						<p>En reconversion développeur web. Après m'être autoformé en apprenant les bases de HTML, CSS et Javascript, j'ai pu tester côté client Vue js et côté serveur php avec le framework Laravel. J'ai suivi en 2023 la formation Openclassrooms déveleppeur web afin de professionnalisé ma démarche et ainsi devenir développeur full stack Javascript.</p>
 						<p>En scrollant sur cette page vous découvrirez mes projets personnels ainsi que mes projets chez <strong><a href="https://openclassrooms.com/fr/" target="_blank" rel="noreferrer">Openclassrooms</a></strong>. Vous pouvez cliquez sur l'image afin de visionner une démonstration du site. L'ensemble du code est disponible sur mon github.</p>
 					</div>

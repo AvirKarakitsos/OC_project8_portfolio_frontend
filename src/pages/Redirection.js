@@ -1,14 +1,9 @@
-import { useContext } from "react"
-import { ThemeContext } from "../utils/context/ThemeContext"
+import { Navigate } from "react-router-dom"
 
 function Redirection() {
-    const { theme } = useContext(ThemeContext)
-    return (
-        <>
-            <h1>Redirection</h1>
-            <h3>{ theme }</h3>
-        </>
-    )
+    let lang = localStorage.getItem("lang") ?? "fr"
+    
+    return (<Navigate to={`/${lang}`}/>)
 }
 
 export default Redirection

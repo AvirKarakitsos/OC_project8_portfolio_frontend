@@ -47,7 +47,6 @@ function Homefr() {
 			    		<section className="cursor-default">
 			    			<h1 className="title">Arno Cotsoyannis</h1>
 			    			<h2>Développeur web full stack Javascript</h2>
-							<h3>{theme}</h3>
 			    		</section>
 			    		<ul className="flex justify-center align-center no-bullet relative">
 			    			<li className="link-1 absolute"><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>

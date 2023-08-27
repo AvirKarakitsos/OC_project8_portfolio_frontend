@@ -1,10 +1,14 @@
+import { useContext } from 'react'
 import styles from '../assets/styles/Skills.module.css'
+import { ThemeContext } from '../utils/context/ThemeContext'
 
 function Skills() {
+    const {theme} = useContext(ThemeContext)
+
     return (
         <section className='section-1'>
             <h2 className="text-center">Mes comptétences</h2>
-            <div className="section-grid">
+            <div className={`section-grid ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
                 <div className="text-center">
                     <div>
                         <i className="fa-solid fa-laptop font-size-medium color-grey"></i>

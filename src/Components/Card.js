@@ -1,14 +1,18 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from '../assets/styles/Card.module.css'
 import { ThemeContext } from '../utils/context/ThemeContext';
+import { LanguageContext } from '../utils/context/LanguageContext'
 
 function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
+    const { lang } = useContext(LanguageContext)
+    const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
     let bookmarkColor
+
     switch (project.type) {
         case "openclassrooms":
             bookmarkColor = "color-purple"
@@ -18,7 +22,10 @@ function Card({project, setModal}) {
             break
         default:
             bookmarkColor = "color-blue"
-      }
+    }
+    useEffect(() => {
+       setContent(project.content.filter(input => input.language === lang))
+    },[lang,project])
   
     return (
         <article className={`box ${theme === "light" ? "" : "darker-2"}`}>
@@ -34,7 +41,7 @@ function Card({project, setModal}) {
             </div>
             <section className="box-section">
                 <p><b>Tags: </b><span>{project.tags}</span></p>
-                <p className="box-description">{project.content[0].text}</p>
+                <p className="box-description">{content[0]?.text}</p>
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>Voir le code...</a></p>
             </section>
         </article>    

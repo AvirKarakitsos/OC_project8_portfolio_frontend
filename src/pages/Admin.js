@@ -58,7 +58,7 @@ function Admin() {
      useEffect(() => {
         if(Object.keys(project).length !== 0) {
             let newText = project.content.filter(lang => lang.language === language)
-            setContent(newText[0]?.text)
+            setContent(newText.length !== 0 ? newText[0].text : "")
         }
      },[language, project])
     
@@ -112,6 +112,7 @@ function Admin() {
                             setLanguage('')
                             setType('')
                             setImage(null)
+                            setSelect('')
                         } 
                         return response.json()
                     })
@@ -138,6 +139,8 @@ function Admin() {
                             setTags('')
                             setContent('')
                             setLink('')
+                            setLanguage('')
+                            setType('')
                             setImage(null)
                         } 
                         return response.json()
@@ -255,6 +258,7 @@ function Admin() {
                         id="type" 
                         className="input-style input-size"
                         onChange={(e) => { setType(e.target.value); }}
+                        required
                     >
 
                         <option value={type}>{type}</option>

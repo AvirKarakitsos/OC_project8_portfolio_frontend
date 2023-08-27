@@ -379,6 +379,7 @@ main {
 }
 
 .box {
+    width: 100%;
     max-width: 530px;
     padding: 1em .5em .5em .5em;
     display: flex;

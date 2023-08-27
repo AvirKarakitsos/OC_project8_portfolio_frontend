@@ -44,8 +44,8 @@ function Header() {
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"
-						? <li className="btn dark" onClick={() => toggleTheme()}>{translate(lang).header.darkMode}</li>
-						: <li className="btn bg-light-1 color-black" onClick={() => toggleTheme()}>{translate(lang).header.lightMode}</li>
+						? <li className="btn dark" onClick={() => toggleTheme("dark")}>{translate(lang).header.darkMode}</li>
+						: <li className="btn bg-light-1 color-black" onClick={() => toggleTheme("light")}>{translate(lang).header.lightMode}</li>
 					}
 				
 					<li 

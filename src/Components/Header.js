@@ -2,9 +2,13 @@ import { useContext } from 'react'
 import logo from '../assets/images/logo-light.png'
 import styles from '../assets/styles/Header.module.css'
 import { ThemeContext } from '../utils/context/ThemeContext'
+import { useNavigate } from 'react-router-dom'
+import { LanguageContext } from '../utils/context/LanguageContext'
 
 function Header() {
 	const {theme, toggleTheme} = useContext(ThemeContext)
+	const {lang, toggleLanguage} = useContext(LanguageContext)
+	const navigate = useNavigate()
 	let isOpen = false
 
 	const handleSidebar = function () {
@@ -18,8 +22,13 @@ function Header() {
 		}
 	}
 
+	const handleLanguage = function(input) {
+		toggleLanguage(input)
+		navigate(`/${input}`)
+	}
+
     return (
-        <header className={`header flex justify-space align-center ${theme === "light" ? "light" : "darker-2"}`}>
+        <header className={`header flex justify-space align-center ${theme === "light" ? "bg-light-1" : "darker-2"}`}>
             <img className="size-32" src={logo} alt="logo"/>
 			<nav className="relative flex justify-space small-column-gap cursor-default">
 				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet`}>
@@ -29,8 +38,8 @@ function Header() {
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>
-					<li className="flex btn-lang size-32 border-blue">FR</li>
-					<li className="flex btn-lang size-32">EN</li>
+					<li className={`flex btn-lang size-32 ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}>FR</li>
+					<li className={`flex btn-lang size-32 ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}>EN</li>
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"

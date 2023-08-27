@@ -12,10 +12,13 @@ import { useState, useEffect, useContext } from 'react'
 import Skills from '../Components/Skills'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
+import dataFr from '../assets/lang/fr.json'
+import dataEn from '../assets/lang/en.json'
 
 function Homefr() {
 	const {theme} = useContext(ThemeContext)
 	const {lang, toggleLanguage} = useContext(LanguageContext)
+
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState("")
 	const [filter, setFilter] = useState(false)
@@ -40,8 +43,14 @@ function Homefr() {
 	useEffect(() => {
 		toggleLanguage(window.location.pathname.substring(1))
 	 }, [toggleLanguage])
-	
 
+	 const translate = function(input) {
+		let data = null
+		if(input === "fr") data = dataFr
+		else data = dataEn
+		return data
+	 }
+	
     return (
         <Layout>
             <main>
@@ -53,8 +62,7 @@ function Homefr() {
 			    	<div className="div-right flex justify-space align-center">
 			    		<section className="cursor-default">
 			    			<h1 className="title">Arno Cotsoyannis</h1>
-			    			<h2>Développeur web full stack Javascript</h2>
-							<h3>{lang}</h3>
+			    			<h2>{translate(lang).main.part1.subTitle}</h2>
 			    		</section>
 			    		<ul className="flex justify-center align-center no-bullet relative">
 			    			<li className="link-1 absolute"><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>

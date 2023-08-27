@@ -12,8 +12,7 @@ import { useState, useEffect, useContext } from 'react'
 import Skills from '../Components/Skills'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
-import dataFr from '../assets/lang/fr.json'
-import dataEn from '../assets/lang/en.json'
+import { translate } from '../utils/common'
 
 function Homefr() {
 	const {theme} = useContext(ThemeContext)
@@ -43,13 +42,6 @@ function Homefr() {
 	useEffect(() => {
 		toggleLanguage(window.location.pathname.substring(1))
 	 }, [toggleLanguage])
-
-	 const translate = function(input) {
-		let data = null
-		if(input === "fr") data = dataFr
-		else data = dataEn
-		return data
-	 }
 	
     return (
         <Layout>
@@ -74,10 +66,10 @@ function Homefr() {
 			    </section>
 
 				<section id='about-me' className="section-1">
-					<h2 className="text-center">A Propos</h2>
+					<h2 className="text-center">{translate(lang).main.about.subTitle}</h2>
 					<div className={`section-size ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
-						<p>En reconversion développeur web. Après m'être autoformé en apprenant les bases de HTML, CSS et Javascript, j'ai pu tester côté client Vue js et côté serveur php avec le framework Laravel. J'ai suivi en 2023 la formation Openclassrooms déveleppeur web afin de professionnalisé ma démarche et ainsi devenir développeur full stack Javascript.</p>
-						<p>En scrollant sur cette page vous découvrirez mes projets personnels ainsi que mes projets chez <strong><a href="https://openclassrooms.com/fr/" target="_blank" rel="noreferrer">Openclassrooms</a></strong>. Vous pouvez cliquez sur l'image afin de visionner une démonstration du site. L'ensemble du code est disponible sur mon github.</p>
+						<p>{translate(lang).main.about.content1}</p>
+						<p>{translate(lang).main.about.content2}</p>
 					</div>
 				</section>
 
@@ -88,9 +80,9 @@ function Homefr() {
 				<section id="project" className="section-1 flex">
 					<h2 className="text-center">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
-						<li className='btn dark' onClick={() => handleFilter("all")}>Tous</li>
-						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>Projets Openclassrooms</li>
-						<li className='btn dark' onClick={() => handleFilter("perso")}>Projets personnels</li>
+						<li className='btn dark' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
+						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
+						<li className='btn dark' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
 					</ul>
 				</section>
 

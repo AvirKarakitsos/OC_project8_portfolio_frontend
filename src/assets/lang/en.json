@@ -1,27 +1,33 @@
 {
     "header": {
-        "about": "A propos",
-        "projects": "Mes projets",
+        "about": "About",
+        "projects": "My projects",
         "contact": "Contact",
-        "darkMode": "Mode sombre",
-        "lightMode": "Mode clair"
+        "darkMode": "Dark",
+        "lightMode": "Light"
     },
     "main": {
         "part1": {
             "subTitle": "Web developer full stack Javascript"
         },
         "about": {
-            "subTitle": "A propos",
-            "content": ""
+            "subTitle": "About",
+            "content1": "test1",
+            "content2": "test2"
         },
         "skills": {
-            "subTitle": "Mes compétences",
-            "server": "serveur",
-            "tools": "outils"
+            "subTitle": "My skills",
+            "server": "server",
+            "tools": "tools"
+        },
+        "projects": {
+            "all": "All",
+            "openclassrooms": "Openclassrooms",
+            "personal": "Personal"
         }
     },
     "footer" : {
-        "contact": "Me contacter",
-        "subTitle": "Site rélalisé avec React et Node JS"
+        "contact": "Contact",
+        "subTitle": "Web site coding with React and Node JS"
     }
 }

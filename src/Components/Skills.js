@@ -1,13 +1,16 @@
-import { useContext } from 'react'
 import styles from '../assets/styles/Skills.module.css'
+import { useContext } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
+import { LanguageContext } from '../utils/context/LanguageContext'
+import { translate } from '../utils/common'
 
 function Skills() {
     const {theme} = useContext(ThemeContext)
+    const {lang} = useContext(LanguageContext)
 
     return (
         <section className='section-1'>
-            <h2 className="text-center">Mes comptétences</h2>
+            <h2 className="text-center">{translate(lang).main.skills.subTitle}</h2>
             <div className={`section-grid ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
                 <div className="text-center">
                     <div>
@@ -23,7 +26,7 @@ function Skills() {
                 <div className="text-center">
                     <div>
                         <i className="fa-solid fa-server font-size-medium color-grey"></i>
-                        <p>serveur</p>
+                        <p>{translate(lang).main.skills.server}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
                         <li>Node JS</li>
@@ -34,7 +37,7 @@ function Skills() {
                 <div className="text-center">
                     <div>
                         <i className="fa-solid fa-gear font-size-medium color-grey"></i>
-                        <p>outils</p>
+                        <p>{translate(lang).main.skills.tools}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
                         <li>MongoDB</li>

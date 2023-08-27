@@ -1,7 +1,10 @@
 
+import { useContext } from 'react';
 import styles from '../assets/styles/Card.module.css'
+import { ThemeContext } from '../utils/context/ThemeContext';
 
 function Card({project, setModal}) {
+    const { theme } = useContext(ThemeContext)
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
@@ -30,7 +33,7 @@ function Card({project, setModal}) {
                 </picture>
             </div>
             <section className="box-section">
-                <p><b>Tags: </b><span>{project.tags}</span></p>
+                <p><b>Tags: </b><span>{project.tags}</span>{theme}</p>
                 <p className="box-description">{project.content[0].text}</p>
                 <p><a href={project.link} target="_blank" rel="noreferrer">En savoir plus...</a></p>
             </section>

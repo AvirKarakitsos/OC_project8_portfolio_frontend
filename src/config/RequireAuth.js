@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom"
 
 function RequireAuth() {
     let user = localStorage.getItem("userId")
-    console.log(user)
     
     return (
         user ? <Outlet/> : <Error/>

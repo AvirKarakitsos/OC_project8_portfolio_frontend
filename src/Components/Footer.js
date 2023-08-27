@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { ThemeContext } from "../utils/context/ThemeContext"
 
 function Footer() {
+	const {theme} = useContext(ThemeContext)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     //Assign the good strings depending on the viewport
@@ -23,7 +25,7 @@ function Footer() {
 				<p>Arno Cotsoyannis</p>
 				<p>Site réalisé avec React et Node JS</p>
 			</>
-			: <p>Arno Cotsoyannis | Site réalisé avec React et Node JS</p>
+			: <p>Arno Cotsoyannis | Site réalisé avec React et Node JS {" "+theme}</p>
 			}
 		</footer>
     )

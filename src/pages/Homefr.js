@@ -8,10 +8,12 @@ import Layout from "../Components/layouts/Layout"
 import Card from '../Components/Card'
 import Modal from '../Components/Modal'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Skills from '../Components/Skills'
+import { ThemeContext } from '../utils/context/ThemeContext'
 
 function Homefr() {
+	const {theme} = useContext(ThemeContext)
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState("")
 	const [filter, setFilter] = useState(false)
@@ -45,6 +47,7 @@ function Homefr() {
 			    		<section className="cursor-default">
 			    			<h1 className="title">Arno Cotsoyannis</h1>
 			    			<h2>Développeur web full stack Javascript</h2>
+							<h3>{theme}</h3>
 			    		</section>
 			    		<ul className="flex justify-center align-center no-bullet relative">
 			    			<li className="link-1 absolute"><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>

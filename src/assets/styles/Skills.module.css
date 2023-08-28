@@ -1,7 +1,29 @@
+.skills-container {
+    margin-top: 50px;
+    padding: 35px 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
 .list {
+    padding: 25px 0;
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    padding: 25px 0;
     font-size: 18px;
+}
+
+@media screen and (max-width: 750px) {
+    .skills-container {
+        padding: 25px;
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
+
+    .list {
+        padding: 10px 0;
+        flex-direction: row;
+        column-gap: 15px;
+    }
 }

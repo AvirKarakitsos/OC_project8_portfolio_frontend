@@ -11,15 +11,15 @@ function Skills() {
     return (
         <section className='section-1'>
             <h2 className="text-center">{translate(lang).main.skills.subTitle}</h2>
-            <div className={`section-grid ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
+            <div className={`${styles["skills-container"]} ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
                 <div className="text-center">
                     <div>
                         <i className="fa-solid fa-laptop font-size-medium color-grey"></i>
                         <p>client</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li>Javascript</li>
-                        <li>React</li>
+                        <li><strong>Javascript</strong></li>
+                        <li><strong>React</strong></li>
                         <li>Vue</li>
                     </ul>
                 </div>
@@ -29,7 +29,7 @@ function Skills() {
                         <p>{translate(lang).main.skills.server}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li>Node JS</li>
+                        <li><strong>Node JS</strong></li>
                         <li>Laravel</li>
                         <li>PHP</li>
                     </ul>
@@ -40,7 +40,7 @@ function Skills() {
                         <p>{translate(lang).main.skills.tools}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li>MongoDB</li>
+                        <li><strong>MongoDB</strong></li>
                         <li>phpMyAdmin / mySQL</li>
                     </ul>
                 </div>

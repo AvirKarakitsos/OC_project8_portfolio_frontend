@@ -48,15 +48,13 @@ function Homefr() {
             <main>
                 <section className="main-top flex justify-space align-center">
 			    	<div className="div-left relative">
-			    		<div className="frame-left absolute border-black"></div>
+			    		<div className={`frame-left absolute ${theme === "light" ? "border-black" : "border-white"}`}></div>
 			    		<img className= "image-left relative" src={photo} alt="Allée de baobabs à Madagascar"/>
 			    	</div>
-			    	<div className="div-right flex justify-space align-center">
-			    		<section className="cursor-default">
-			    			<h1 className="title">Arno Cotsoyannis</h1>
-			    			<h2>{translate(lang).main.part1.subTitle}</h2>
-			    		</section>
-			    		<ul className="flex justify-center align-center no-bullet relative">
+			    	<div className="div-right">
+						<h1 className="title">Arno Cotsoyannis</h1>
+						<h2 className='sub-title'>{translate(lang).main.part1.subTitle}</h2>
+			    		<ul className="nav-links flex justify-center align-center no-bullet relative">
 			    			<li className="link-1 absolute"><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>
 			    			<li className="link-2 absolute"><a href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={instagram} alt="lien instagram"/></a></li>
 			    			<li className="link-3 absolute"><a href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={twitter} alt="lien twitter"/></a></li>

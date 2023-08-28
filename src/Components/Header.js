@@ -1,6 +1,6 @@
 import logo from '../assets/images/logo-light.png'
 import styles from '../assets/styles/Header.module.css'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { useNavigate } from 'react-router-dom'
 import { LanguageContext } from '../utils/context/LanguageContext'
@@ -9,17 +9,17 @@ import { translate } from '../utils/common'
 function Header() {
 	const {theme, toggleTheme} = useContext(ThemeContext)
 	const {lang, toggleLanguage} = useContext(LanguageContext)
+	const [open, setOpen] = useState(false)
 	const navigate = useNavigate()
-	let isOpen = false
-
+	
 	const handleSidebar = function () {
 		const sideBar = document.querySelector(`.${styles.anchor}`)
-		if(!isOpen) {
+		if(!open) {
 			sideBar.classList.add(`${styles.slide}`)
-			isOpen = true
+			setOpen(true)
 		} else {
 			sideBar.classList.remove(`${styles.slide}`)
-			isOpen = false
+			setOpen(false)
 		}
 	}
 
@@ -32,7 +32,7 @@ function Header() {
         <header className={`header flex justify-space align-center ${theme === "light" ? "bg-light-1" : "darker-2"}`}>
             <img className="size-32" src={logo} alt="logo"/>
 			<nav className="relative flex justify-space small-column-gap cursor-default">
-				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet`}>
+				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "darker-2"}`}>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#about-me'>{translate(lang).header.about}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#project'>{translate(lang).header.projects}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#footer'>Contact</a></li>

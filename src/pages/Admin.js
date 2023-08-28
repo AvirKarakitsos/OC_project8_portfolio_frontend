@@ -87,6 +87,7 @@ function Admin() {
     const handleAddProject = function(e) {
         e.preventDefault()
         let newProject = {
+            userId: localStorage.getItem("userId"),
             title: title,
             tags: tags,
             content: [{language:language,text:content}],

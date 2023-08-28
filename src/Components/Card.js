@@ -38,9 +38,10 @@ function Card({project, setModal}) {
             setWindowWidth(window.innerWidth)
         })
     },[])
+
     useEffect(() => {
         document.querySelectorAll('.box').forEach(box => {
-            if(windowWidth <= 750) box.style.height = "350px"
+            if(windowWidth <= 750) box.style.height = "340px"
             else box.style.height = "500px"
         })
     },[windowWidth])
@@ -58,7 +59,7 @@ function Card({project, setModal}) {
                 </picture>
             </div>
             <section className="box-section">
-                <p><b>Tags: </b><span>{project.tags}</span></p>
+                <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
                     ? <Collapse project={project} content={content}/>
                     : <p className={styles["box-description"]}>{content[0]?.text}</p>

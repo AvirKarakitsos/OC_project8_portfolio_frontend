@@ -191,7 +191,6 @@ img {
     background-color: var(--background-light);
 }
 
-
 .darker-1 {
     background-color: var(--background-dark-primary);
 }
@@ -374,7 +373,6 @@ main {
 }
 
 .box {
-    height: 500px;
     width: 100%;
     max-width: 530px;
     padding: 15px 20px ;
@@ -507,8 +505,13 @@ main {
     }
 
     .box {
-        height: 350px;
+        padding: 10px 10px 0 10px;
         transition: height 1250ms;
+    }
+
+    .box-section {
+        justify-content: flex-start;
+        row-gap: 10px;
     }
 
     .error-container {

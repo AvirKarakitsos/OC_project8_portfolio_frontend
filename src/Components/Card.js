@@ -4,10 +4,14 @@ import styles from '../assets/styles/Card.module.css'
 import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
 
+import Collapse from './Collapse'
+
 function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
     const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
@@ -23,12 +27,26 @@ function Card({project, setModal}) {
         default:
             bookmarkColor = "color-blue"
     }
+
     useEffect(() => {
        setContent(project.content.filter(input => input.language === lang))
     },[lang,project])
+
+    //Assign the good strings depending on the viewport
+    useEffect(() => {
+        window.addEventListener("resize",()=> {
+            setWindowWidth(window.innerWidth)
+        })
+    },[])
+    useEffect(() => {
+        document.querySelectorAll('.box').forEach(box => {
+            if(windowWidth <= 750) box.style.height = "350px"
+            else box.style.height = "500px"
+        })
+    },[windowWidth])
   
     return (
-        <article className={`box ${theme === "light" ? "" : "darker-2"}`}>
+        <article id={"article"+project._id} className={`box ${theme === "light" ? "" : "darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
@@ -41,7 +59,10 @@ function Card({project, setModal}) {
             </div>
             <section className="box-section">
                 <p><b>Tags: </b><span>{project.tags}</span></p>
-                <p className="box-description">{content[0]?.text}</p>
+                {windowWidth <= 750 
+                    ? <Collapse project={project} content={content}/>
+                    : <p className={styles["box-description"]}>{content[0]?.text}</p>
+                }
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>Voir le code...</a></p>
             </section>
         </article>    

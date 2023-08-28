@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import kasa from '../assets/videos/Kasa.mp4'
+import styles from '../assets/styles/Modal.module.css'
 
 function Modal({modal, setModal}) {
 
@@ -16,9 +17,9 @@ function Modal({modal, setModal}) {
     },[modal, setModal])
 
     return(
-        <dialog id="modal">
+        <dialog id="modal" className={styles.modal}>
             <div className="modal-container flex">
-                <video src={kasa} controls></video>
+                <video className={styles.video} src={kasa} controls autoPlay muted={true} ></video>
             </div>
         </dialog>
     )

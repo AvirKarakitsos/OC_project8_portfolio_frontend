@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Redirection from './pages/Redirection'
-import Homefr from './pages/Homefr'
-//import Homeen from './pages/Homeen'
+import Home from './pages/Home'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
 import Error from './pages/Error';
@@ -18,8 +17,8 @@ function Router() {
 				<LanguageProvider>
 					<Routes>
 						<Route path="/" element={<Redirection/>} />
-						<Route path="/fr" element={<Homefr/>} />
-						<Route path="/en" element={<Homefr/>} />
+						<Route path="/fr" element={<Home/>} />
+						<Route path="/en" element={<Home/>} />
 						<Route path="/login" element={<Login/>} />
 						<Route element={<RequireAuth/>}>
 							<Route path="/admin" element={<Admin/>} />

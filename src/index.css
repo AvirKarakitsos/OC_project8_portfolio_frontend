@@ -63,6 +63,9 @@ img {
 .small-column-gap {
 	column-gap: 15px;
 }
+.small-row-gap {
+	row-gap: 15px;
+}
 
 /*Position*/
 .none {
@@ -90,25 +93,14 @@ img {
 }
 
 /*Box size*/
+.width-100 {
+    width: 100%;
+}
 .size-32 {
     height: 32px;
     width: 32px;
 }
 
-.container-100 {
-    height: 100vh;
-}
-
-.form-container {
-    width: 500px;
-    padding: 20px 50px;
-    flex-direction: column;
-}
-
-.label-style {
-    width: 100%;
-    justify-content: flex-end;
-}
 
 .section-size {
     margin-top: 50px;
@@ -136,19 +128,6 @@ img {
 .btn {
     padding: 10px 15px;
     border-radius: 30px;
-}
-
-.input-style {
-    width: 250px;
-    margin: 15px 0;
-}
-
-.input-size {
-    height: 35px;
-}
-
-.area-size {
-    height: 100px;
 }
 
 /*Font-size*/
@@ -350,7 +329,9 @@ main {
 .border-cercle {
     border-radius: 50%;
 }
-
+.section-2 {
+   padding: 50px 100px;
+}
 /*Filter*/
 .section-1 {
     padding: 100px 0 0 0;

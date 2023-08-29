@@ -14,7 +14,7 @@ import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
 
-function Homefr() {
+function Home() {
 	const {theme} = useContext(ThemeContext)
 	const {lang, toggleLanguage} = useContext(LanguageContext)
 
@@ -95,4 +95,4 @@ function Homefr() {
     )
 }
 
-export default Homefr
+export default Home

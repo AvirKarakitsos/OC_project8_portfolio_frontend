@@ -75,7 +75,10 @@ function Admin() {
                         setTags('')
                         setContent('')
                         setLink('')
+                        setLanguage('')
+                        setType('')
                         setImage(null)
+                        setSelect('')
                     } 
                     return response.json()
                 })

@@ -7,3 +7,32 @@ export const translate = function(input) {
     else data = dataEn
     return data
  }
+
+ //Message for adding or removing project
+export function notification(value,method){
+    let displayMessage = document.querySelector(".message")
+    displayMessage.innerHTML = value
+    switch(method){
+        case "post":
+            displayMessage.classList.remove("blue")
+            displayMessage.classList.remove("red")
+            displayMessage.classList.add("green")
+            break
+        case "put":
+            displayMessage.classList.remove("green")
+            displayMessage.classList.remove("red")
+            displayMessage.classList.add("blue")
+            break
+        case "delete":
+            displayMessage.classList.remove("green")
+            displayMessage.classList.add("blue")
+            displayMessage.classList.add("red")
+            break
+        default:
+            displayMessage.classList.add("")
+    }
+    displayMessage.style.display = "block"
+    setTimeout(()=>{
+        displayMessage.style.display = "none"
+    },3000)
+}

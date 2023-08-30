@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
 import { API_URL } from '../../utils/constants'
 import EditSkill from './EditSkill'
+import { notification } from '../../utils/common'
 
 function Content() {
     const [name, setName] = useState('')
@@ -19,7 +20,7 @@ function Content() {
 			.then((response) => {
                 setAll(response) 
             })
-			 .catch((error) => console.log(error))
+			.catch((error) => console.log(error))
     }, [])
 
     useEffect(() => {
@@ -55,6 +56,7 @@ function Content() {
             })
             .then(data => {
                 console.log(data.message)
+                notification(data.message,"post")
                 fetch('http://localhost:4000/api/skills')
                 .then((response) => response.json())
                 .then((response) => setAll(response))
@@ -82,6 +84,7 @@ function Content() {
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)
+                notification(data.message,"delete")
                 fetch('http://localhost:4000/api/skills')
                 .then((response) => response.json())
                 .then((response) => setAll(response))

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Project from "../Components/admin/Project";
 import Content from "../Components/admin/Content";
+import styles from '../assets/styles/Form.module.css'
 
 function Admin() {
     const [select, setSelect] = useState(true)
@@ -20,6 +21,7 @@ function Admin() {
                     </ul>
                 </div>
             </div>
+            <p className={`message ${styles["message-style"]}`}></p>
                 {select
                     ? <Project/>
                     : <Content/>

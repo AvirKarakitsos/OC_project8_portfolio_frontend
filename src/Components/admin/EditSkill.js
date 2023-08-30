@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
+import { notification } from '../../utils/common'
 
 function EditSkill({ skill, setAll }) {
     const [skillEdit,setSkillEdit] = useState(skill.name)
@@ -23,11 +24,12 @@ function EditSkill({ skill, setAll }) {
                     })
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data.message)
+                        notification(data.message,"put")
                         fetch('http://localhost:4000/api/skills')
                         .then((response) => response.json())
                         .then((response) => setAll(response))
                         .catch((error) => console.log(error))
-                        console.log(data.message)
                     })
                     .catch(err => console.log(err.message))
     }

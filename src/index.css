@@ -188,6 +188,10 @@ img {
     background-color: var(--color-green);
 }
 
+.red {
+    background-color: var(--color-red);
+}
+
 .color-green {
     color: var(--color-green);
 }
@@ -204,9 +208,6 @@ img {
     color: var(--button-dark);
 }
 
-.red {
-    background-color: var(--color-red);
-}
 
 .cursor-default {
     cursor: default;

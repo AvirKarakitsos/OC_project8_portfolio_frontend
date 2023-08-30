@@ -34,3 +34,11 @@
 .title {
     font-size: 22px;
 }
+
+.message-style {
+    position: fixed;
+    top: 75%;
+    left: 10%;
+    padding: 15px 10px;
+    border-radius: 10px;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from '../../assets/styles/Form.module.css'
+import { notification } from "../../utils/common";
 
 function Project() {
     const [projects, setProjects] = useState([]);
@@ -16,6 +17,7 @@ function Project() {
 
     const allLanguages = ["fr","en"]
     const allTypes = ["perso",'openclassrooms']
+
     const classBtn = "flex align-center justify-center btn btn-delete no-border"
 
     useEffect(() => {
@@ -83,7 +85,14 @@ function Project() {
                     } 
                     return response.json()
                 })
-                .then(data => console.log(data.message))
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"delete")
+                    fetch('http://localhost:4000/api/projects')
+                    .then((response) => response.json())
+                    .then((response) => setProjects(response))
+                    .catch((error) => console.log(error))
+                })
                 .catch(err => console.log(err.message))
         }
     }
@@ -122,7 +131,14 @@ function Project() {
                     } 
                     return response.json()
                 })
-                .then(data => console.log(data.message))
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"put")
+                    fetch('http://localhost:4000/api/projects')
+                    .then((response) => response.json())
+                    .then((response) => setProjects(response))
+                    .catch((error) => console.log(error))
+                })
                 .catch(err => console.log(err.message))
 
         } else {
@@ -151,7 +167,14 @@ function Project() {
                         } 
                         return response.json()
                     })
-                    .then(data => console.log(data.message))
+                    .then(data => {
+                        console.log(data.message)
+                        notification(data.message,"post")
+                        fetch('http://localhost:4000/api/projects')
+                        .then((response) => response.json())
+                        .then((response) => setProjects(response))
+                        .catch((error) => console.log(error))
+                    })
                     .catch(err => console.log(err.message))
             }
         }
@@ -208,7 +231,7 @@ function Project() {
                         <label className={styles["label-style"]} htmlFor="content">
                             <p>Contenu</p>
                             <textarea
-                                className={styles["input-style"]}
+                                className={styles["area-size"]}
                                 name="content"
                                 id="content"
                                 value={content}

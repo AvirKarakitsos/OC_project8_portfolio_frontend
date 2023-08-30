@@ -71,6 +71,23 @@ function Content() {
             }
         })
     }
+
+    const handleDelete = function(id) {
+        fetch(`http://localhost:4000/api/skills/${id}`,
+            {
+                method: "DELETE",
+                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message)
+                fetch('http://localhost:4000/api/skills')
+                .then((response) => response.json())
+                .then((response) => setAll(response))
+                .catch((error) => console.log(error))
+            })
+            .catch(err => console.log(err.message))
+    }
     
     return (
         <div className="flex direction-column justify-center align-center">
@@ -96,13 +113,31 @@ function Content() {
                         <div>
                             <p>Serveur</p>
                             <ul className='no-bullet'>
-                            {server?.map(value => <li key={value?._id}>{value?.name}</li>)}
+                                {server?.map(value => 
+                                    <li className='flex justify-space' key={value._id}>
+                                        {!value.edit
+                                            ? <p>{value?.name}</p>
+                                            : <EditSkill skill={value} setAll={setAll}/>
+                                        }
+                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
+                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
+                                    </li>
+                                )}  
                             </ul>
                         </div>
                         <div>
                             <p>Outils</p>
                             <ul className='no-bullet'>
-                            {tool?.map(value => <li key={value?._id}>{value?.name}</li>)}
+                                {tool?.map(value => 
+                                    <li className='flex justify-space' key={value._id}>
+                                        {!value.edit
+                                            ? <p>{value?.name}</p>
+                                            : <EditSkill skill={value} setAll={setAll}/>
+                                        }
+                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
+                                        <i className="fa-solid fa-trash"></i>
+                                    </li>
+                                )}  
                             </ul>
                         </div>
                     </div>
@@ -113,14 +148,14 @@ function Content() {
                             name="name"
                             id="name"
                             value={name}
-                            onChange={(e) => { setName(e.target.value); }}
+                            onChange={(e) => setName(e.target.value)}
                             required
                         />
                         <select 
                             name="category" 
                             id="category" 
                             className={styles["input-style"]}
-                            onChange={(e) => { setCategory(e.target.value); }}
+                            onChange={(e) => setCategory(e.target.value)}
                             required
                         >
                             <option value=""></option>

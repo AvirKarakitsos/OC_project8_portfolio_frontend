@@ -101,29 +101,29 @@ function Project() {
 
         if(select !== "") {
             fetch(`http://localhost:4000/api/projects/${select}`,
-                    {
-                        method: "PUT",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        },
-                        body: JSON.stringify(newProject)
-                    })
-                    .then(response => {
-                        if(response.ok) {
-                            setTitle('')
-                            setTags('')
-                            setContent('')
-                            setLink('')
-                            setLanguage('')
-                            setType('')
-                            setImage(null)
-                            setSelect('')
-                        } 
-                        return response.json()
-                    })
-                    .then(data => console.log(data.message))
-                    .catch(err => console.log(err.message))
+                {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(newProject)
+                })
+                .then(response => {
+                    if(response.ok) {
+                        setTitle('')
+                        setTags('')
+                        setContent('')
+                        setLink('')
+                        setLanguage('')
+                        setType('')
+                        setImage(null)
+                        setSelect('')
+                    } 
+                    return response.json()
+                })
+                .then(data => console.log(data.message))
+                .catch(err => console.log(err.message))
 
         } else {
             if(!image) console.log("Ajouter une image")
@@ -164,7 +164,7 @@ function Project() {
                     name="select" 
                     id="select" 
                     className={styles["input-style"]}
-                    onChange={(e) => { setSelect(e.target.value); }}
+                    onChange={(e) => setSelect(e.target.value)}
                 >
                     <option value=""></option>
                     {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
@@ -188,7 +188,7 @@ function Project() {
                             name="title"
                             id="title"
                             value={title}
-                            onChange={(e) => { setTitle(e.target.value); }}
+                            onChange={(e) => setTitle(e.target.value)}
                             required
                         />
                     </label>
@@ -200,7 +200,7 @@ function Project() {
                             name="tags"
                             id="tags"
                             value={tags}
-                            onChange={(e) => { setTags(e.target.value); }}
+                            onChange={(e) => setTags(e.target.value)}
                             required
                         />
                     </label>
@@ -212,7 +212,7 @@ function Project() {
                                 name="content"
                                 id="content"
                                 value={content}
-                                onChange={(e) => { setContent(e.target.value); }}
+                                onChange={(e) => setContent(e.target.value)}
                                 required
                             >
                             </textarea>
@@ -221,7 +221,7 @@ function Project() {
                             name="language" 
                             id="language" 
                             className={styles["input-size"]}
-                            onChange={(e) => { setLanguage(e.target.value); }}
+                            onChange={(e) => setLanguage(e.target.value)}
                             required
                         >
                             <option value={language}>{language.toLocaleUpperCase()}</option>
@@ -244,7 +244,7 @@ function Project() {
                             name="link"
                             id="link"
                             value={link}
-                            onChange={(e) => { setLink(e.target.value); }}
+                            onChange={(e) => setLink(e.target.value)}
                             required
                         />
                     </label>
@@ -255,7 +255,7 @@ function Project() {
                             type="file"
                             id="image"
                             accept="image/*"
-                            onChange={(e) => { setImage(e.target.files[0]); }}
+                            onChange={(e) => setImage(e.target.files[0])}
                         />
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
@@ -264,7 +264,7 @@ function Project() {
                             name="type" 
                             id="type" 
                             className={styles["input-style"]}
-                            onChange={(e) => { setType(e.target.value); }}
+                            onChange={(e) => setType(e.target.value)}
                             required
                         >
 

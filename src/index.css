@@ -204,6 +204,10 @@ img {
     color: var(--border-blue);
 }
 
+.color-red {
+    color: var(--color-red);
+}
+
 .color-grey {
     color: var(--button-dark);
 }

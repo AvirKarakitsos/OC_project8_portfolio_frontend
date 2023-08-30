@@ -99,51 +99,57 @@ function Project() {
 
     const handleAddProject = function(e) {
         e.preventDefault()
-        let newProject = {
-            userId: localStorage.getItem("userId"),
-            title: title,
-            tags: tags,
-            content: [{language:language,text:content}],
-            link: link,
-            type: type
-        }
+        let test = [title,tags,content,link,image,language,type]
 
-        if(select !== "") {
-            fetch(`http://localhost:4000/api/projects/${select}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify(newProject)
-                })
-                .then(response => {
-                    if(response.ok) {
-                        setTitle('')
-                        setTags('')
-                        setContent('')
-                        setLink('')
-                        setLanguage('')
-                        setType('')
-                        setImage(null)
-                        setSelect('')
-                    } 
-                    return response.json()
-                })
-                .then(data => {
-                    console.log(data.message)
-                    notification(data.message,"put")
-                    fetch('http://localhost:4000/api/projects')
-                    .then((response) => response.json())
-                    .then((response) => setProjects(response))
-                    .catch((error) => console.log(error))
-                })
-                .catch(err => console.log(err.message))
+        if (test.some(field => field === "")) {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+        } else {           
+            let newProject = {
+                userId: localStorage.getItem("userId"),
+                title: title,
+                tags: tags,
+                content: [{language:language,text:content}],
+                link: link,
+                type: type
+            }
 
-        } else {
-            if(!image) console.log("Ajouter une image")
-            else {
+            if(select !== "") {
+                fetch(`http://localhost:4000/api/projects/${select}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        },
+                        body: JSON.stringify(newProject)
+                    })
+                    .then(response => {
+                        if(response.ok) {
+                            setTitle('')
+                            setTags('')
+                            setContent('')
+                            setLink('')
+                            setLanguage('')
+                            setType('')
+                            setImage(null)
+                            setSelect('')
+                        } 
+                        return response.json()
+                    })
+                    .then(data => {
+                        console.log(data.message)
+                        notification(data.message,"put")
+                        fetch('http://localhost:4000/api/projects')
+                        .then((response) => response.json())
+                        .then((response) => setProjects(response))
+                        .catch((error) => console.log(error))
+                    })
+                    .catch(err => console.log(err.message))
+
+            } else {
+                if (test.some(field => field === null)) {
+                    document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
+                }
                 let formData = new FormData()
                 
                 formData.append("project",JSON.stringify( newProject))
@@ -164,6 +170,7 @@ function Project() {
                             setLanguage('')
                             setType('')
                             setImage(null)
+                            document.querySelector('.form-message').innerHTML = ""
                         } 
                         return response.json()
                     })
@@ -212,7 +219,7 @@ function Project() {
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            required
+                            
                         />
                     </label>
                     <label className={styles["label-style"]} htmlFor="tags">
@@ -224,7 +231,7 @@ function Project() {
                             id="tags"
                             value={tags}
                             onChange={(e) => setTags(e.target.value)}
-                            required
+                            
                         />
                     </label>
                     <div className="flex align-center small-column-gap">
@@ -236,7 +243,7 @@ function Project() {
                                 id="content"
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
-                                required
+                                
                             >
                             </textarea>
                         </label>
@@ -245,7 +252,7 @@ function Project() {
                             id="language" 
                             className={styles["input-size"]}
                             onChange={(e) => setLanguage(e.target.value)}
-                            required
+                            
                         >
                             <option value={language}>{language.toLocaleUpperCase()}</option>
                     
@@ -268,7 +275,7 @@ function Project() {
                             id="link"
                             value={link}
                             onChange={(e) => setLink(e.target.value)}
-                            required
+                            
                         />
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
@@ -288,7 +295,7 @@ function Project() {
                             id="type" 
                             className={styles["input-style"]}
                             onChange={(e) => setType(e.target.value)}
-                            required
+                            
                         >
                             <option value={type}>{type}</option>
                             {allTypes.map((element,index) => {
@@ -300,6 +307,7 @@ function Project() {
                             )}
                         </select>
                     </label>
+                    <p className="form-message color-red btn"></p>
                     {select !== "" ?
                     <button type="submit" className= "btn green no-border">Modifier</button>
                     : <button type="submit" className= "btn blue no-border">Ajouter</button>

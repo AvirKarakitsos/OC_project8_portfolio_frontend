@@ -32,37 +32,42 @@ function Content() {
 
     const handleAddSkill = function(e) {
         e.preventDefault()
-        let newSkill = {
-            userId: localStorage.getItem("userId"),
-            name: name,
-            category: category
+        if((name === "") || (category === "")) {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+        } else {
+            let newSkill = {
+                userId: localStorage.getItem("userId"),
+                name: name,
+                category: category
+            }
+    
+            fetch(`${API_URL}/api/skills`,
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(newSkill)
+                })
+                .then(response => {
+                    if(response.ok) {
+                        setName('')
+                        setCategory('')
+                        document.querySelector('.form-message').innerHTML = ""
+                    } 
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"post")
+                    fetch('http://localhost:4000/api/skills')
+                    .then((response) => response.json())
+                    .then((response) => setAll(response))
+                    .catch((error) => console.log(error))
+                })
+                .catch(err => console.log(err.message))
         }
-
-        fetch(`${API_URL}/api/skills`,
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(newSkill)
-            })
-            .then(response => {
-                if(response.ok) {
-                    setName('')
-                    setCategory('')
-                } 
-                return response.json()
-            })
-            .then(data => {
-                console.log(data.message)
-                notification(data.message,"post")
-                fetch('http://localhost:4000/api/skills')
-                .then((response) => response.json())
-                .then((response) => setAll(response))
-                .catch((error) => console.log(error))
-            })
-            .catch(err => console.log(err.message))
     }
 
     const handleEdit = function(id) {
@@ -154,14 +159,12 @@ function Content() {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             autoComplete='off'
-                            required
                         />
                         <select 
                             name="category" 
                             id="category" 
                             className={styles["input-style"]}
                             onChange={(e) => setCategory(e.target.value)}
-                            required
                         >
                             <option value={category}>{category}</option>
                             {allCategories.map((element,index) => {
@@ -173,6 +176,7 @@ function Content() {
                             )}
                         </select>
                     </div>
+                        <p className="form-message color-red btn"></p>
                         <button className='btn blue no-border'>Ajouter</button>
                 </fieldset>
             </form>

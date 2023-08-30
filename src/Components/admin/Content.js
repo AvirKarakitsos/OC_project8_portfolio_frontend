@@ -7,7 +7,6 @@ function Content() {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [all, setAll] = useState(null)
-    const [isEdit, setIsEdit] = useState([])
 
     const [client, setClient] = useState(null)
     const [server, setServer] = useState(null)
@@ -28,15 +27,6 @@ function Content() {
         setTool(all?.filter(value => value.category === "tool"))
         
     }, [all])
-
-    const myFunction = function() {
-        all.forEach(skill => {
-            const copy = [...isEdit]    
-            copy.push({id: skill._id, edit: false})
-            setIsEdit(copy)
-        })
-    }
-    myFunction()
 
     const handleAddSkill = function(e) {
         e.preventDefault()
@@ -71,6 +61,16 @@ function Content() {
             })
             .catch(err => console.log(err.message))
     }
+
+    const handleEdit = function(id) {
+        let copy = [...all]
+        copy.forEach(skill => {
+            if(skill._id === id) {
+                skill.edit = true
+                setAll(copy)
+            }
+        })
+    }
     
     return (
         <div className="flex direction-column justify-center align-center">
@@ -82,16 +82,15 @@ function Content() {
                             <p>Client</p>
                             <ul className='no-bullet'>
                                 {client?.map(value => 
-                                    <li key={value._id}>
-                                        {/* {!isEdit
+                                    <li className='flex justify-space' key={value._id}>
+                                        {!value.edit
                                             ? <p>{value?.name}</p>
-                                            : <EditSkill/>
+                                            : <EditSkill skill={value} setAll={setAll}/>
                                         }
-                                        <i className="fa-solid fa-pen-to-square" onClick={() => setIsEdit(true)}></i>
-                                        <i className="fa-solid fa-trash"></i> */}
+                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
+                                        <i className="fa-solid fa-trash"></i>
                                     </li>
-                                )}
-                                        
+                                )}  
                             </ul>
                         </div>
                         <div>

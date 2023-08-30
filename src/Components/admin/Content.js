@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
 import { API_URL } from '../../utils/constants'
+import EditSkill from './EditSkill'
 
 function Content() {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [all, setAll] = useState(null)
-    
+    const [isEdit, setIsEdit] = useState([])
+
     const [client, setClient] = useState(null)
     const [server, setServer] = useState(null)
     const [tool, setTool] = useState(null)
 
-
     useEffect(() => {
 		fetch('http://localhost:4000/api/skills')
-			 .then((response) => response.json())
-			 .then((response) => setAll(response))
+			.then((response) => response.json())
+			.then((response) => {
+                setAll(response) 
+            })
 			 .catch((error) => console.log(error))
     }, [])
 
@@ -23,7 +26,17 @@ function Content() {
         setClient(all?.filter(value => value.category === "client"))
         setServer(all?.filter(value => value.category === "server"))
         setTool(all?.filter(value => value.category === "tool"))
+        
     }, [all])
+
+    const myFunction = function() {
+        all.forEach(skill => {
+            const copy = [...isEdit]    
+            copy.push({id: skill._id, edit: false})
+            setIsEdit(copy)
+        })
+    }
+    myFunction()
 
     const handleAddSkill = function(e) {
         e.preventDefault()
@@ -68,7 +81,17 @@ function Content() {
                         <div>
                             <p>Client</p>
                             <ul className='no-bullet'>
-                                {client?.map(value => <li key={value._id}>{value?.name}</li>)}
+                                {client?.map(value => 
+                                    <li key={value._id}>
+                                        {/* {!isEdit
+                                            ? <p>{value?.name}</p>
+                                            : <EditSkill/>
+                                        }
+                                        <i className="fa-solid fa-pen-to-square" onClick={() => setIsEdit(true)}></i>
+                                        <i className="fa-solid fa-trash"></i> */}
+                                    </li>
+                                )}
+                                        
                             </ul>
                         </div>
                         <div>

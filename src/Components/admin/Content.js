@@ -7,6 +7,7 @@ function Content() {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [all, setAll] = useState(null)
+    const allCategories = ["client","server","tool"]
 
     const [client, setClient] = useState(null)
     const [server, setServer] = useState(null)
@@ -105,7 +106,7 @@ function Content() {
                                             : <EditSkill skill={value} setAll={setAll}/>
                                         }
                                         <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
-                                        <i className="fa-solid fa-trash"></i>
+                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
                                     </li>
                                 )}  
                             </ul>
@@ -135,7 +136,7 @@ function Content() {
                                             : <EditSkill skill={value} setAll={setAll}/>
                                         }
                                         <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
-                                        <i className="fa-solid fa-trash"></i>
+                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
                                     </li>
                                 )}  
                             </ul>
@@ -149,6 +150,7 @@ function Content() {
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            autoComplete='off'
                             required
                         />
                         <select 
@@ -158,10 +160,14 @@ function Content() {
                             onChange={(e) => setCategory(e.target.value)}
                             required
                         >
-                            <option value=""></option>
-                            <option value="client">Client</option>
-                            <option value="server">Serveur</option>
-                            <option value="tool">Outils</option>
+                            <option value={category}>{category}</option>
+                            {allCategories.map((element,index) => {
+                                if (element !== category) {
+                                    return <option key={index} value={element}>{element}</option>
+                                }
+                                return ''
+                            } 
+                            )}
                         </select>
                     </div>
                         <button className='btn blue no-border'>Ajouter</button>

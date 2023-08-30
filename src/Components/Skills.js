@@ -1,5 +1,5 @@
 import styles from '../assets/styles/Skills.module.css'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
@@ -7,6 +7,24 @@ import { translate } from '../utils/common'
 function Skills() {
     const {theme} = useContext(ThemeContext)
     const {lang} = useContext(LanguageContext)
+
+    const [skills, setSkills] = useState(null)
+    const [client, setClient] = useState(null)
+    const [server, setServer] = useState(null)
+    const [tool, setTool] = useState(null)
+
+    useEffect(() => {
+		fetch('http://localhost:4000/api/skills')
+        .then((response) => response.json())
+        .then((response) => setSkills(response))
+        .catch((error) => console.log(error))
+	}, [])
+
+     useEffect(() => {
+        setClient(skills?.filter(value => value.category === "client"))
+        setServer(skills?.filter(value => value.category === "server"))
+        setTool(skills?.filter(value => value.category === "tool"))
+    }, [skills])
 
     return (
         <section className='section-1'>
@@ -18,9 +36,7 @@ function Skills() {
                         <p>client</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li><strong>Javascript</strong></li>
-                        <li><strong>React</strong></li>
-                        <li>Vue</li>
+                        {client?.map(skill => <li key={skill._id}>{skill.name}</li>)}
                     </ul>
                 </div>
                 <div className="text-center">
@@ -29,9 +45,7 @@ function Skills() {
                         <p>{translate(lang).main.skills.server}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li><strong>Node JS</strong></li>
-                        <li>Laravel</li>
-                        <li>PHP</li>
+                        {server?.map(skill => <li key={skill._id}>{skill.name}</li>)}
                     </ul>
                 </div>
                 <div className="text-center">
@@ -40,8 +54,7 @@ function Skills() {
                         <p>{translate(lang).main.skills.tools}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>
-                        <li><strong>MongoDB</strong></li>
-                        <li>phpMyAdmin / mySQL</li>
+                        {tool?.map(skill => <li key={skill._id}>{skill.name}</li>)}
                     </ul>
                 </div>
                 </div>

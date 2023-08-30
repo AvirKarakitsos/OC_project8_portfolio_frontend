@@ -267,9 +267,7 @@ function Project() {
                             onChange={(e) => setType(e.target.value)}
                             required
                         >
-
                             <option value={type}>{type}</option>
-                    
                             {allTypes.map((element,index) => {
                                 if (element !== type) {
                                     return <option key={index} value={element}>{element}</option>

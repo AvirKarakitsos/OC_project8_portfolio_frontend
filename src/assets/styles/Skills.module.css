@@ -14,6 +14,10 @@
     font-size: 18px;
 }
 
+.list > li:nth-child(1) {
+    font-weight: bold;
+}
+
 @media screen and (max-width: 750px) {
     .skills-container {
         padding: 25px;

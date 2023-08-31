@@ -26,6 +26,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+/********** Common **********/
 .no-bullet {
     list-style-type: none;
 }
@@ -39,7 +40,10 @@ img {
     object-fit: cover;
 }
 
-/***** Flexbox *****/
+.cursor-default {
+    cursor: default;
+}
+/********** Flexbox **********/
 .flex {
     display: flex;
 }
@@ -59,7 +63,7 @@ img {
 .justify-center {
     justify-content: center;
 }
-/* Gap */
+/***** Gap *****/
 .large-row-gap {
     row-gap: 139px;
 }
@@ -80,12 +84,12 @@ img {
 	row-gap: 10px;
 }
 
-/*Flexbox responsive*/
+/***** Flexbox responsive *****/
 .flex-row-to-column {
     display: flex;
 }
 
-/***** Position *****/
+/********** Position **********/
 .relative {
     position: relative;
 }
@@ -107,7 +111,7 @@ img {
     text-align: center;
 }
 
-/***** Box size *****/
+/********** Box size **********/
 .h-100vh {
     height: 100vh;
 }
@@ -126,11 +130,12 @@ img {
     border-radius: 30px;
 }
 
+
 .no-border {
     border: 0;
 }
 
-/***** Font-size *****/
+/********** Font-size **********/
 .large-font-size {
     font-size: 288px;
 }
@@ -143,15 +148,11 @@ img {
     font-size: 32px;
 }
 
-/*Colors*/
-
-.border-blue {
-    border-bottom: 2px solid var(--color-blue);
-}
-
+/*********** Border **********/
 .border-black {
     border: 2px solid var(--black);
 }
+
 .border-white {
     border: 2px solid var(--white);
 }
@@ -160,41 +161,50 @@ img {
     border: 1px solid var(--color-grey);
 }
 
+.border-blue {
+    border-bottom: 2px solid var(--color-blue);
+}
+
+/*********** Background-Color **********/
+.bg-light-1 {
+    background-color: var(--white);
+}
+
+.bg-light-2 {
+    background-color: var(--background-light);
+}
+
+.bg-darker-1 {
+    background-color: var(--background-dark-primary);
+}
+
+.bg-darker-2 {
+    background-color: var(--background-dark-secondary);
+}
+
+.bg-dark {
+    background-color: var(--color-grey);
+}
+
+.bg-blue {
+    background-color: var(--color-blue);
+}
+
+.bg-green {
+    background-color: var(--color-green);
+}
+
+.bg-red {
+    background-color: var(--color-red);
+}
+
+/*********** Colors **********/
 .color-black {
     color: var(--black);
 }
 
 .color-white {
     color: var(--white);
-}
-
-.bg-light-1 {
-    background-color: var(--white);
-}
-.bg-light-2 {
-    background-color: var(--background-light);
-}
-
-.darker-1 {
-    background-color: var(--background-dark-primary);
-}
-.darker-2 {
-    background-color: var(--background-dark-secondary);
-}
-.dark {
-    background-color: var(--color-grey);
-}
-
-.blue {
-    background-color: var(--color-blue);
-}
-
-.green {
-    background-color: var(--color-green);
-}
-
-.red {
-    background-color: var(--color-red);
 }
 
 .color-green {
@@ -215,11 +225,6 @@ img {
 
 .color-grey {
     color: var(--color-grey);
-}
-
-
-.cursor-default {
-    cursor: default;
 }
 
 /*Header*/

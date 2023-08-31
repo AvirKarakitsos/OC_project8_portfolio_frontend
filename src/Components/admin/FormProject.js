@@ -201,7 +201,7 @@ function Project() {
                     {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
                 </select>
                 <button 
-                    className={select !== "" ? classBtn+" red" : classBtn+" dark"}
+                    className={select !== "" ? classBtn+" bg-red" : classBtn+" bg-dark"}
                     onClick={handleDelete}
                 >
                     Supprimer
@@ -310,8 +310,8 @@ function Project() {
                     </label>
                     <p className="form-message color-red btn"></p>
                     {select !== "" ?
-                    <button type="submit" className= "btn green no-border">Modifier</button>
-                    : <button type="submit" className= "btn blue no-border">Ajouter</button>
+                    <button type="submit" className= "btn bg-green no-border">Modifier</button>
+                    : <button type="submit" className= "btn bg-blue no-border">Ajouter</button>
                     }
                 </fieldset>
             </form>

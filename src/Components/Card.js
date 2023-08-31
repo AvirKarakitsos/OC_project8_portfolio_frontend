@@ -47,7 +47,7 @@ function Card({project, setModal}) {
     },[windowWidth])
   
     return (
-        <article id={"article"+project._id} className={`box ${theme === "light" ? "" : "darker-2"}`}>
+        <article id={"article"+project._id} className={`box ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>

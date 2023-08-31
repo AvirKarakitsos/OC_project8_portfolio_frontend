@@ -29,10 +29,10 @@ function Header() {
 	}
 
     return (
-        <header className={`header flex justify-space align-center ${theme === "light" ? "bg-light-1" : "darker-2"}`}>
+        <header className={`header flex justify-space align-center ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
             <img className="size-32" src={logo} alt="logo"/>
 			<nav className="relative flex justify-space small-column-gap cursor-default">
-				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "darker-2"}`}>
+				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#about-me'>{translate(lang).header.about}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#project'>{translate(lang).header.projects}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#footer'>Contact</a></li>
@@ -44,7 +44,7 @@ function Header() {
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"
-						? <li className="btn dark" onClick={() => toggleTheme("dark")}>{translate(lang).header.darkMode}</li>
+						? <li className="btn bg-dark" onClick={() => toggleTheme("dark")}>{translate(lang).header.darkMode}</li>
 						: <li className="btn bg-light-1 color-black" onClick={() => toggleTheme("light")}>{translate(lang).header.lightMode}</li>
 					}
 				

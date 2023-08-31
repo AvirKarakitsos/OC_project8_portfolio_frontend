@@ -73,9 +73,9 @@ function Home() {
 				<section id="project" className="section-1 flex">
 					<h2 className="text-center">Mes projets</h2>
 					<ul className="list flex align-center justify-center no-bullet cursor-default">
-						<li className='btn dark' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
-						<li className='btn dark' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
-						<li className='btn dark' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
+						<li className='btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
+						<li className='btn bg-green-opacity' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
+						<li className='btn bg-green-opacity' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
 					</ul>
 				</section>
 

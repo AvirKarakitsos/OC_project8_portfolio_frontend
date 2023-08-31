@@ -29,7 +29,7 @@ function Skills() {
     return (
         <section className='section-1'>
             <h2 className="text-center">{translate(lang).main.skills.subTitle}</h2>
-            <div className={`${styles["skills-container"]} ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
+            <div className={`${styles["skills-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 <div className="text-center">
                     <div>
                         <i className="fa-solid fa-laptop font-size-medium color-grey"></i>

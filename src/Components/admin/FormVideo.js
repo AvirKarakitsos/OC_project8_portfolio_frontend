@@ -77,7 +77,7 @@ function FormVideo() {
                         </select>
                     </label>
                     <p className="form-message color-red btn"></p>
-                    <button type="submit" className= "btn blue no-border">Ajouter</button>
+                    <button type="submit" className= "btn bg-blue no-border">Ajouter</button>
                 </fieldset>
             </form>
         </div>

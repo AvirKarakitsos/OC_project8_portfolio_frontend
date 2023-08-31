@@ -7,7 +7,7 @@ import { ThemeContext } from "../../utils/context/ThemeContext";
 function Layout({children}) {
     const {theme} = useContext(ThemeContext)
     return (
-        <div className={theme === 'light' ? styles.container : `${styles.container} darker-1 color-white`}>
+        <div className={theme === 'light' ? styles.container : `${styles.container} bg-darker-1 color-white`}>
             <div className={styles["sub-container"]}>
                 <Header/>
                 {children}

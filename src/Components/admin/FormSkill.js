@@ -183,7 +183,7 @@ function Content() {
                         </select>
                     </div>
                         <p className="form-message color-red btn"></p>
-                        <button className='btn blue no-border'>Ajouter</button>
+                        <button className='btn bg-blue no-border'>Ajouter</button>
                 </fieldset>
             </form>
         </div>

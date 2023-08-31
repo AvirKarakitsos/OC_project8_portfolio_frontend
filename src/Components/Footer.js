@@ -16,7 +16,7 @@ function Footer() {
     },[])
 
     return(
-        <footer id="footer" className={`footer flex align-center justify-center cursor-default  ${theme === "light" ? "" : "darker-2"}`}>
+        <footer id="footer" className={`footer flex align-center justify-center cursor-default  ${theme === "light" ? "" : "bg-darker-2"}`}>
 			<p className="footer-contact">{translate(lang).footer.contact} : arnocotso8@gmail.com</p>
 			<ul className="flex small-column-gap no-bullet">
 				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">github</a></li>

@@ -3,7 +3,7 @@
         "about": "About",
         "projects": "My projects",
         "contact": "Contact",
-        "darkMode": "Dark",
+        "bg-darkMode": "Dark",
         "lightMode": "Light"
     },
     "main": {

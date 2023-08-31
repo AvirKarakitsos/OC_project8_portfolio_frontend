@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Project from "../Components/admin/Project";
-import Content from "../Components/admin/Content";
+import FormSkill from '../Components/admin/FormSkill'
+import FormProject from '../Components/admin/FormProject'
 import styles from '../assets/styles/Form.module.css'
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function Admin() {
                 </div>
             </div>
             <p className={`message ${styles["message-style"]}`}></p>
-                {select === 'project' ? <Project/> : select === 'skill' ? <Content/> : <Project/>}
+                {select === 'project' ? <FormProject/> : select === 'skill' ? <FormSkill/> : <FormProject/>}
         </>
     )
 }

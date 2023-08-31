@@ -49,7 +49,7 @@ function Header() {
 					}
 				
 					<li 
-						className='display-dynamic size-32 flex justify-center align-center border-cercle border-grey'
+						className='display-dynamic size-32 flex justify-center align-center border-cercle border-bottom-grey'
 						onClick={handleSidebar}
 					>
 						<i className="fa-solid fa-bars"></i>

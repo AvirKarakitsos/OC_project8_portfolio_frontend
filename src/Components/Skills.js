@@ -31,7 +31,7 @@ function Skills() {
             <h2 className="text-center">{translate(lang).main.skills.subTitle}</h2>
             <div className={`${styles["skills-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 <div className="text-center">
-                    <div>
+                    <div className='flex direction-column tiny-row-gap-2'>
                         <i className="fa-solid fa-laptop font-size-medium color-grey"></i>
                         <p>client</p>
                     </div>
@@ -40,7 +40,7 @@ function Skills() {
                     </ul>
                 </div>
                 <div className="text-center">
-                    <div>
+                    <div className='flex direction-column tiny-row-gap-2'>
                         <i className="fa-solid fa-server font-size-medium color-grey"></i>
                         <p>{translate(lang).main.skills.server}</p>
                     </div>
@@ -49,7 +49,7 @@ function Skills() {
                     </ul>
                 </div>
                 <div className="text-center">
-                    <div>
+                    <div className='flex direction-column tiny-row-gap-2'>
                         <i className="fa-solid fa-gear font-size-medium color-grey"></i>
                         <p>{translate(lang).main.skills.tools}</p>
                     </div>

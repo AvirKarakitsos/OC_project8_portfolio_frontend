@@ -32,7 +32,6 @@ function Card({project, setModal}) {
        setContent(project.content.filter(input => input.language === lang))
     },[lang,project])
 
-    //Assign the good strings depending on the viewport
     useEffect(() => {
         window.addEventListener("resize",()=> {
             setWindowWidth(window.innerWidth)
@@ -40,7 +39,7 @@ function Card({project, setModal}) {
     },[])
 
     useEffect(() => {
-        document.querySelectorAll('.box').forEach(box => {
+        document.querySelectorAll(`.${styles.box}`).forEach(box => {
             if(windowWidth <= 750) box.style.height = "340px"
             else box.style.height = "500px"
         })
@@ -52,8 +51,8 @@ function Card({project, setModal}) {
                 <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
             </div>
-            <div className='box-picture'>
-                <picture className="picture" onClick={() => setModal(name)}>
+            <div>
+                <picture onClick={() => setModal(name)}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>
                     <img className={styles.image} src={project.imageUrl} alt={`projet ${project.title}`}/>
                 </picture>

@@ -99,6 +99,10 @@ img {
 	row-gap: 10px;
 }
 
+.tiny-row-gap-2 {
+	row-gap: 5px;
+}
+
 /***** Flexbox responsive *****/
 .flex-row-to-column {
     display: flex;
@@ -186,8 +190,12 @@ img {
     border: 2px solid var(--white);
 }
 
-.border-buttom-grey {
+.border-grey {
     border: 1px solid var(--color-grey);
+}
+
+.border-bottom-grey {
+    border-bottom: 1px solid var(--color-grey);
 }
 
 .border-top-grey {
@@ -275,14 +283,6 @@ img {
  /**********Media Query*/
  /***Mobile***/
  @media screen and (max-width: 750px) {
-    .main-top {
-        height: auto;
-        padding: 90px 0 0 0;
-        flex-direction: column;
-        row-gap: 10px;
-        align-items: center;
-    }
-    
     .section-1 {
         padding: 50px 0 0 0;
     }

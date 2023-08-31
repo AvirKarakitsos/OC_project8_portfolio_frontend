@@ -1,5 +1,5 @@
-import { useContext } from "react"
 import styles from "../assets/styles/Collapse.module.css"
+import { useContext } from "react"
 import { ThemeContext } from "../utils/context/ThemeContext"
 
 function Collapse({project, content}) {
@@ -32,7 +32,7 @@ function Collapse({project, content}) {
 
     return (
         <div className={styles.bar}>     
-            <div className={`${styles.title} ${theme === "light" ? "bg-light-2" : "bg-darker-1"}`} onClick={() => handleShow(project._id)}>
+            <div className={`border-grey ${styles.title} ${theme === "light" ? "bg-light-1" : "bg-darker-1"}`} onClick={() => handleShow(project._id)}>
                 <i className={"fa-solid fa-chevron-up arrow"+project._id}></i>
             </div>
             <div className={`content${project._id} ${styles.content} ${theme === "light" ? "" : "color-white"}`}>

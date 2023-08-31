@@ -1,4 +1,3 @@
-
 .box {
     width: 100%;
     max-width: 530px;
@@ -45,11 +44,7 @@
 }
 
 @media screen and (max-width: 750px) {
-    .picture {
-        height: auto;
-    }
-
-    .picture img {
+    .image {
         height: 185px;
     }
 

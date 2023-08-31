@@ -48,7 +48,7 @@ function Home() {
     return (
         <Layout>
             <main className={styles["main-container"]}>
-                <section className="h-100vh flex justify-space align-center">
+                <section className={styles["top-container"]}>
 			    	<div className="relative">
 			    		<div className={`${styles["frame-left"]} absolute ${theme === "light" ? "border-black" : "border-white"}`}></div>
 			    		<img className= {`${styles["image-left"]} relative`}  src={photo} alt="Allée de baobabs à Madagascar"/>

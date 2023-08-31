@@ -1,3 +1,17 @@
+.header {
+    height: 70px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 50px;
+    border-bottom: 1px solid var(--opacity-grey);
+    z-index: 30;
+}
+
 @media screen and (max-width: 750px) {
     .anchor {
         position: absolute;

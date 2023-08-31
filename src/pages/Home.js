@@ -1,3 +1,4 @@
+import styles from '../assets/styles/'
 import photo from '../assets/images/photo-baobab.png'
 import github from '../assets/images/github.png'
 import twitter from '../assets/images/twitter.png'
@@ -7,13 +8,13 @@ import gmail from '../assets/images/gmail.png'
 import Layout from "../Components/layouts/Layout"
 import Card from '../Components/Card'
 import Modal from '../Components/Modal'
+import Skills from '../Components/Skills'
+import About from '../Components/About'
 
 import { useState, useEffect, useContext } from 'react'
-import Skills from '../Components/Skills'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
-import About from '../Components/About'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)
@@ -46,8 +47,8 @@ function Home() {
 	
     return (
         <Layout>
-            <main>
-                <section className="main-top flex justify-space align-center">
+            <main className={styles["main-container"]}>
+                <section className="h-100vh flex justify-space align-center">
 			    	<div className="div-left relative">
 			    		<div className={`frame-left absolute ${theme === "light" ? "border-black" : "border-white"}`}></div>
 			    		<img className= "image-left relative" src={photo} alt="Allée de baobabs à Madagascar"/>

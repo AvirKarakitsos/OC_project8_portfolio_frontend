@@ -29,7 +29,7 @@ function Header() {
 	}
 
     return (
-        <header className={`header flex justify-space align-center ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
+        <header className={`${styles.header} ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
             <img className="size-32" src={logo} alt="logo"/>
 			<nav className="relative flex justify-space small-column-gap cursor-default">
 				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
@@ -39,8 +39,8 @@ function Header() {
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>
-					<li className={`flex btn-lang size-32 ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}>FR</li>
-					<li className={`flex btn-lang size-32 ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}>EN</li>
+					<li className={`flex btn-2 size-32 ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}>FR</li>
+					<li className={`flex btn-2 size-32 ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}>EN</li>
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"

@@ -9,15 +9,13 @@ function FormVideo() {
 
     const handleAddVideo = function(e) {
         e.preventDefault()
-
             if(!oneProject || !video ) {
                 document.querySelector('.form-message').innerHTML = "Veuillez compléter les champs"
             } else {
             let newVideo = {
                 userId: localStorage.getItem("userId"),
-                projectId: oneProject._id
+                projectId: oneProject
             }
-            console.log(newVideo)
 
             let formData = new FormData()
             formData.append("content",JSON.stringify(newVideo))

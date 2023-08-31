@@ -71,6 +71,18 @@ img {
     row-gap: 139px;
 }
 
+.medium-column-gap {
+    column-gap: 50px;
+}
+
+.medium-row-gap {
+    row-gap: 50px;
+}
+
+.medium-row-gap-2 {
+    row-gap: 25px;
+}
+
 .small-column-gap {
     column-gap: 15px;
 }
@@ -102,8 +114,7 @@ img {
 }
 
 .display-dynamic {
-    display: 
-    none;
+    display: none;
 }
 
 .none {
@@ -128,6 +139,18 @@ img {
     width: 32px;
 }
 
+.section-1 {
+    padding: 100px 0 0 0;
+}
+
+.section-2 {
+    padding: 50px 100px;
+} 
+
+.section-3 {
+    height: 200px;
+ }
+
 .btn {
     padding: 10px 15px;
     border-radius: 30px;
@@ -137,6 +160,10 @@ img {
     padding-top: 8px;
     margin: 0 5px;
 }
+
+.btn-3 {
+    height: 35px;
+ }
 /********** Font-size **********/
 .large-font-size {
     font-size: 288px;
@@ -159,12 +186,20 @@ img {
     border: 2px solid var(--white);
 }
 
-.border-grey {
+.border-buttom-grey {
     border: 1px solid var(--color-grey);
+}
+
+.border-top-grey {
+    border-top: 1px solid var(--opacity-grey);
 }
 
 .border-blue {
     border-bottom: 2px solid var(--color-blue);
+}
+
+.border-cercle {
+    border-radius: 50%;
 }
 
 .no-border {
@@ -237,129 +272,9 @@ img {
     color: var(--color-grey);
 }
 
-
-/*Main*/
-
-.border-cercle {
-    border-radius: 50%;
-}
-.section-2 {
-   padding: 50px 100px;
-}
-/*Filter*/
-.section-1 {
-    padding: 100px 0 0 0;
-    flex-direction: column;
-    row-gap: 50px;
-}
-
-.section-1 .list {
-    column-gap: 50px;
-}
-
-/*Projects*/
-.box-container {
-    margin-top: 100px;
-    padding: 0 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    gap: 50px 15px;
-}
-
-.box {
-    width: 100%;
-    max-width: 530px;
-    padding: 15px 20px ;
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    box-shadow: 1px 2px 3px 4px rgba(20,20,20,0.4);
-}
-
-.picture img {
-    height: 250px;
-    width: 100%;
-    transition: transform .2s;
-}
-
-.picture img:hover  {
-    transform: scale(1.03);
-}
-
-.box-section {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: justify;
-}
-
-.box-section span {
-    font-style: italic;
-    font-size: .8rem;
-}
-
-/*Footer*/
-.footer {
-    height: 200px;
-    flex-direction: column;
-    row-gap: 25px;
-    border-top: 1px solid var(--opacity-grey);
- }
-
- /*Admin Page*/
- .btn-delete {
-    height: 35px;
- }
-
  /**********Media Query*/
-/***Tablet***/
-@media screen and (max-width: 1024px) {
-    .div-right {
-        height: 328px;
-    }
-
-    .div-right .title {
-        font-size: 70px;
-    }
-
-    .div-right .sub-title {
-        font-size: 24px;
-    }
-
-    .box-container {
-        margin-top: 50px;
-        padding: 0;
-        grid-template-columns: 1fr;
-        row-gap: 35px;
-    }
-/* 
-    .box {
-        margin: 0 auto;
-    } */
-    
-    @keyframes frameStatic {
-        0% {
-            transform: translate(0);
-        }
-        100% {
-            transform: translate(0);
-        }
-    }
-    
-    .frame-left {
-        animation: frameStatic;
-        z-index: 20;
-    }
-}
-
  /***Mobile***/
  @media screen and (max-width: 750px) {
-    .header {
-        padding: 0 10px;
-    }
-    
     .main-top {
         height: auto;
         padding: 90px 0 0 0;
@@ -368,48 +283,15 @@ img {
         align-items: center;
     }
     
-    .div-right .title {
-        font-size: 60px;
-    }
-
-    .div-right .sub-title {
-        font-size: 20px;
-    }
-    
-    .section-size {
-        margin-top: 25px;
-        text-align: justify;
-        padding: 15px;
-        font-size: 17px;
-    }
-    
     .section-1 {
         padding: 50px 0 0 0;
     }
     
-    .section-1 .list {
+    .medium-column-gap {
         column-gap: 15px;
     }
     
-    .picture {
-        height: auto;
-    }
-    
-    .picture img {
-        height: 185px;
-    }
-
-    .box {
-        padding: 10px 10px 0 10px;
-        transition: height 1250ms;
-    }
-
-    .box-section {
-        justify-content: flex-start;
-        row-gap: 10px;
-    }
-
-    .error-container {
+    .larg-row-gap {
         row-gap: 50px;
     }
     

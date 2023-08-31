@@ -18,7 +18,7 @@ function Project() {
     const allLanguages = ["fr","en"]
     const allTypes = ["perso",'openclassrooms']
 
-    const classBtn = "flex align-center justify-center btn btn-delete no-border"
+    const classBtn = "flex align-center justify-center btn btn-3 no-border"
 
     useEffect(() => {
 		fetch('http://localhost:4000/api/projects')

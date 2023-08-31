@@ -11,7 +11,7 @@ function About() {
     return(
         <section id='about-me' className="section-1">
             <h2 className="text-center">{translate(lang).main.about.subTitle}</h2>
-            <div className={`felx direction-column ${styles["about-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
+            <div className={`${styles["about-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 <p>{translate(lang).main.about.content1}</p>
                 <p>{translate(lang).main.about.content2}</p>
             </div>

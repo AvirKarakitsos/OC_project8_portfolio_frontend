@@ -1,4 +1,4 @@
-import styles from '../assets/styles/'
+import styles from '../assets/styles/Home.module.css'
 import photo from '../assets/images/photo-baobab.png'
 import github from '../assets/images/github.png'
 import twitter from '../assets/images/twitter.png'
@@ -49,18 +49,18 @@ function Home() {
         <Layout>
             <main className={styles["main-container"]}>
                 <section className="h-100vh flex justify-space align-center">
-			    	<div className="div-left relative">
-			    		<div className={`frame-left absolute ${theme === "light" ? "border-black" : "border-white"}`}></div>
-			    		<img className= "image-left relative" src={photo} alt="Allée de baobabs à Madagascar"/>
+			    	<div className="relative">
+			    		<div className={`${styles["frame-left"]} absolute ${theme === "light" ? "border-black" : "border-white"}`}></div>
+			    		<img className= {`${styles["image-left"]} relative`}  src={photo} alt="Allée de baobabs à Madagascar"/>
 			    	</div>
-			    	<div className="div-right">
-						<h1 className="title">Arno Cotsoyannis</h1>
-						<h2 className='sub-title'>{translate(lang).main.part1.subTitle}</h2>
-			    		<ul className="nav-links flex justify-center align-center no-bullet relative">
-			    			<li className="link-1 absolute"><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>
-			    			<li className="link-2 absolute"><a href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={instagram} alt="lien instagram"/></a></li>
-			    			<li className="link-3 absolute"><a href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={twitter} alt="lien twitter"/></a></li>
-			    			<li className="link-4 absolute"><img className="border-cercle" onClick={() => alert('avir.karakitsos@gmail.com')} src={gmail} alt="email"/></li>
+			    	<div className={styles["div-right"]}>
+						<h1 className={styles["title"]}>Arno Cotsoyannis</h1>
+						<h2 className={styles.subtitle}>{translate(lang).main.part1.subTitle}</h2>
+			    		<ul className={`${styles["links-container"]} no-bullet relative`}>
+			    			<li className={`${styles["link-1"]} absolute`}><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>
+			    			<li className={`${styles["link-2"]} absolute`}><a href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={instagram} alt="lien instagram"/></a></li>
+			    			<li className={`${styles["link-3"]} absolute`}><a href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={twitter} alt="lien twitter"/></a></li>
+			    			<li className={`${styles["link-4"]} absolute`}><img className="border-cercle" onClick={() => alert('avir.karakitsos@gmail.com')} src={gmail} alt="email"/></li>
 			    		</ul>
 			    	</div>
 			    </section>
@@ -71,16 +71,16 @@ function Home() {
 				
 				<Modal modal={modal} setModal={setModal}/>
 
-				<section id="project" className="section-1 flex">
+				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">Mes projets</h2>
-					<ul className="list flex align-center justify-center no-bullet cursor-default">
+					<ul className="flex align-center justify-center medium-column-gap no-bullet cursor-default">
 						<li className='btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
 						<li className='btn bg-green-opacity' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
 						<li className='btn bg-green-opacity' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
 					</ul>
 				</section>
 
-				<div className="box-container cursor-default">
+				<div className={styles["box-container"]}>
 					{ filter ?
 					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
 					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)

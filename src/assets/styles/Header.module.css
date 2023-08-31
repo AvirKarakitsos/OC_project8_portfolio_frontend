@@ -13,6 +13,10 @@
 }
 
 @media screen and (max-width: 750px) {
+    .header {
+        padding: 0 10px;
+    }
+
     .anchor {
         position: absolute;
         top: 54px;

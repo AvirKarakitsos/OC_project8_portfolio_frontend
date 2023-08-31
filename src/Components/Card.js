@@ -47,7 +47,7 @@ function Card({project, setModal}) {
     },[windowWidth])
   
     return (
-        <article id={"article"+project._id} className={`box ${theme === "light" ? "" : "bg-darker-2"}`}>
+        <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
                 <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
@@ -55,10 +55,10 @@ function Card({project, setModal}) {
             <div className='box-picture'>
                 <picture className="picture" onClick={() => setModal(name)}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>
-                    <img src={project.imageUrl} alt="projet react"/>
+                    <img className={styles.image} src={project.imageUrl} alt={`projet ${project.title}`}/>
                 </picture>
             </div>
-            <section className="box-section">
+            <section className={styles["box-section"]}>
                 <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
                     ? <Collapse project={project} content={content}/>

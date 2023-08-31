@@ -1,4 +1,4 @@
-main {
+.main-container {
     margin-bottom: 100px;
 }
 
@@ -32,17 +32,20 @@ main {
     justify-content: space-between;
 }
 
-.div-right .title {
+.title {
     font-family: 'Oregano', cursive;
     font-size: 85px;
 }
 
-.div-right .sub-title {
+.subtitle {
     font-size: 30px;
 }
 
-.nav-links {
+.links-container {
     height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes link1 {
@@ -88,4 +91,58 @@ main {
 }
 .link-4 {
     animation: link4 1000ms 500ms forwards cubic-bezier(.63,.22,.49,.95);
+}
+
+.box-container {
+    margin-top: 100px;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 50px 15px;
+    cursor: default;
+}
+
+@media screen and (max-width: 1024px) {
+    .div-right {
+        height: 328px;
+    }
+
+    .title {
+        font-size: 70px;
+    }
+
+    .subtitle {
+        font-size: 24px;
+    }
+
+    .box-container {
+        margin-top: 50px;
+        padding: 0;
+        grid-template-columns: 1fr;
+        row-gap: 35px;
+    }
+    @keyframes frameStatic {
+        0% {
+            transform: translate(0);
+        }
+        100% {
+            transform: translate(0);
+        }
+    }
+    
+    .frame-left {
+        animation: frameStatic;
+        z-index: 20;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .title {
+        font-size: 60px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
 }

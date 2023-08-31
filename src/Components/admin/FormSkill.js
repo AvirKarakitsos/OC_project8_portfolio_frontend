@@ -4,7 +4,7 @@ import { API_URL } from '../../utils/constants'
 import EditSkill from './EditSkill'
 import { notification } from '../../utils/common'
 
-function Content() {
+function FormSkill() {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [all, setAll] = useState(null)
@@ -190,4 +190,4 @@ function Content() {
     )
 }
 
-export default Content
+export default FormSkill

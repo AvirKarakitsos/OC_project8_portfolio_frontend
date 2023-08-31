@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from '../../assets/styles/Form.module.css'
 import { notification } from "../../utils/common";
 
-function Project() {
+function FormProject() {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [select, setSelect] = useState("")
@@ -319,4 +319,4 @@ function Project() {
     )
 }
 
-export default Project
+export default FormProject

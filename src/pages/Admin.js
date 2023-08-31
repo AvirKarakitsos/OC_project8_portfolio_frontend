@@ -4,6 +4,7 @@ import FormProject from '../Components/admin/FormProject'
 import styles from '../assets/styles/Form.module.css'
 import { Link, useNavigate } from "react-router-dom";
 import FormVideo from "../Components/admin/FormVideo";
+import FormContent from "../Components/admin/FormContent";
 
 function Admin() {
     const [select, setSelect] = useState("project")
@@ -28,6 +29,7 @@ function Admin() {
                         <li onClick={() => setSelect("projet")}>Mes Projets</li>
                         <li onClick={() => setSelect("skill")}>Mes Compétences</li>
                         <li onClick={() => setSelect("video")}>Vidéos</li>
+                        <li onClick={() => setSelect("about")}>A Propos</li>
                     </ul>
                 </div>
             </div>
@@ -36,8 +38,10 @@ function Admin() {
                     ? <FormProject/> 
                     : select === 'skill' 
                         ? <FormSkill/> 
-                        : select=== "video" 
-                            ? <FormVideo/> : <FormProject/>}
+                        : select === "video" 
+                            ? <FormVideo/> 
+                            : select === "about" 
+                                ? <FormContent/> : <FormProject/>}
         </>
     )
 }

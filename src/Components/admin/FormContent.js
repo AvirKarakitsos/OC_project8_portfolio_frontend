@@ -8,6 +8,7 @@ function FormContent() {
     const [french, setFrench] = useState('')
     const [english, setEnglish] = useState('')
     const [allContents, setAllContents] = useState(null)
+    const [display, setDisplay] = useState(null)
 
     useEffect(() => {
 		fetch('http://localhost:4000/api/contents')
@@ -17,6 +18,10 @@ function FormContent() {
             })
 			.catch((error) => console.log(error))
     }, [])
+
+    useEffect(() => {
+        setDisplay(allContents)
+    }, [allContents])
 
     const handleAddContent = function(e) {
         e.preventDefault()
@@ -91,11 +96,14 @@ function FormContent() {
             <form onSubmit={handleAddContent}>
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>A Propos</legend>
-                    <ul className='flex direction-column tiny-row-gap no-bullet'>
-                        {allContents?.map(value => 
+                    <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
+                        {display?.map(value => 
                             <li className='flex justify-space' key={value._id}>
                                 {!value.edit
-                                    ? <p>{value?.name}</p>
+                                    ? <div className='flex justify-space'>
+                                        <p>{value?.french}</p>
+                                        <p>{value?.english}</p>
+                                    </div>
                                     : <EditContent content={value} setAllContents={setAllContents}/>
                                 }
                                 <div className='flex aling-center tiny-column-gap'>

@@ -15,19 +15,19 @@ export function notification(value,method){
     displayMessage.innerHTML = value
     switch(method){
         case "post":
-            displayMessage.classList.remove("blue")
-            displayMessage.classList.remove("red")
-            displayMessage.classList.add("green")
+            displayMessage.classList.remove("bg-blue")
+            displayMessage.classList.remove("bg-red")
+            displayMessage.classList.add("bg-green")
             break
         case "put":
-            displayMessage.classList.remove("green")
-            displayMessage.classList.remove("red")
-            displayMessage.classList.add("blue")
+            displayMessage.classList.remove("bg-green")
+            displayMessage.classList.remove("bg-red")
+            displayMessage.classList.add("bg-blue")
             break
         case "delete":
-            displayMessage.classList.remove("green")
-            displayMessage.classList.add("blue")
-            displayMessage.classList.add("red")
+            displayMessage.classList.remove("bg-green")
+            displayMessage.classList.add("bg-blue")
+            displayMessage.classList.add("bg-red")
             break
         default:
             displayMessage.classList.add("")

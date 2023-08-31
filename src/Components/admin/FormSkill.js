@@ -27,7 +27,6 @@ function FormSkill() {
         setClient(all?.filter(value => value.category === "client"))
         setServer(all?.filter(value => value.category === "server"))
         setTool(all?.filter(value => value.category === "tool"))
-        
     }, [all])
 
     const handleAddSkill = function(e) {

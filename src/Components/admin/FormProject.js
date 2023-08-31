@@ -12,7 +12,6 @@ function Project() {
     const [content, setContent] = useState('')
     const [link, setLink] = useState('')
     const [image, setImage] = useState(null)
-    const [video, setVideo] = useState(null)
     const [language, setLanguage] = useState('')
     const [type, setType] = useState('')
 
@@ -101,8 +100,8 @@ function Project() {
     const handleAddProject = function(e) {
         e.preventDefault()
         let test = [title,tags,content,link,image,language,type]
-        if(false){
-        //if (test.some(field => field === "")) {
+        
+        if (test.some(field => field === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {           
             let newProject = {
@@ -148,16 +147,13 @@ function Project() {
                     .catch(err => console.log(err.message))
 
             } else {
-                if(false) {
-                //if (test.some(field => field === null)) {
+                if (test.some(field => field === null)) {
                     document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
                 } else {
-                    console.log(video)
                     let formData = new FormData()
                     
                     formData.append("project",JSON.stringify( newProject))
                     formData.append("image",image)
-                    formData.append("video",video)
                     
                     fetch(`http://localhost:4000/api/projects`,
                         {
@@ -291,15 +287,6 @@ function Project() {
                             id="image"
                             accept="image/*"
                             onChange={(e) => setImage(e.target.files[0])}
-                        />
-                    </label>
-                    <label className={styles["label-style"]} htmlFor="video">
-                        <p>Ajouter une video</p>   
-                        <input
-                            className={styles["input-style"]}
-                            type="file"
-                            id="video"
-                            onChange={(e) => setVideo(e.target.files[0])}
                         />
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">

@@ -3,6 +3,7 @@ import FormSkill from '../Components/admin/FormSkill'
 import FormProject from '../Components/admin/FormProject'
 import styles from '../assets/styles/Form.module.css'
 import { Link, useNavigate } from "react-router-dom";
+import FormVideo from "../Components/admin/FormVideo";
 
 function Admin() {
     const [select, setSelect] = useState("project")
@@ -25,12 +26,18 @@ function Admin() {
                 <div className="flex">
                     <ul className="flex small-column-gap no-bullet">
                         <li onClick={() => setSelect("projet")}>Mes Projets</li>
-                        <li onClick={() => setSelect("skill")}>Mon Contenu</li>
+                        <li onClick={() => setSelect("skill")}>Mes Compétences</li>
+                        <li onClick={() => setSelect("video")}>Vidéos</li>
                     </ul>
                 </div>
             </div>
             <p className={`message ${styles["message-style"]}`}></p>
-                {select === 'project' ? <FormProject/> : select === 'skill' ? <FormSkill/> : <FormProject/>}
+                {select === 'project' 
+                    ? <FormProject/> 
+                    : select === 'skill' 
+                        ? <FormSkill/> 
+                        : select=== "video" 
+                            ? <FormVideo/> : <FormProject/>}
         </>
     )
 }

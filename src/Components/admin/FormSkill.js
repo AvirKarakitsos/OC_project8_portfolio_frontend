@@ -103,48 +103,54 @@ function Content() {
             <form onSubmit={handleAddSkill}>
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>Compétences</legend>              
-                    <div className='width-100 flex justify-space'>
+                    <div className={styles["grid-container"]}>
                         <div>
-                            <p>Client</p>
-                            <ul className='no-bullet'>
+                            <p className={styles.subtitle}>Client</p>
+                            <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {client?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAll={setAll}/>
                                         }
-                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
-                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
+                                        <div className='flex aling-center tiny-column-gap'>
+                                            <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
+                                            <i className="fa-solid fa-trash color-grey" onClick={() => handleDelete(value._id)}></i>
+                                        </div>
                                     </li>
                                 )}  
                             </ul>
                         </div>
                         <div>
-                            <p>Serveur</p>
-                            <ul className='no-bullet'>
+                            <p className={styles.subtitle}>Serveur</p>
+                            <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {server?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAll={setAll}/>
                                         }
-                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
-                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
+                                        <div className='flex aling-center tiny-column-gap'>
+                                            <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
+                                            <i className="fa-solid fa-trash color-grey" onClick={() => handleDelete(value._id)}></i>
+                                        </div>
                                     </li>
                                 )}  
                             </ul>
                         </div>
                         <div>
-                            <p>Outils</p>
-                            <ul className='no-bullet'>
+                            <p className={styles.subtitle}>Outils</p>
+                            <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {tool?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAll={setAll}/>
                                         }
-                                        <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(value._id)}></i>
-                                        <i className="fa-solid fa-trash" onClick={() => handleDelete(value._id)}></i>
+                                        <div className='flex aling-center tiny-column-gap'>
+                                            <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
+                                            <i className="fa-solid fa-trash color-grey" onClick={() => handleDelete(value._id)}></i>
+                                        </div>
                                     </li>
                                 )}  
                             </ul>

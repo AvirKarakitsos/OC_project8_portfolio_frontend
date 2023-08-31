@@ -13,6 +13,7 @@ import Skills from '../Components/Skills'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
+import About from '../Components/About'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)
@@ -63,13 +64,7 @@ function Home() {
 			    	</div>
 			    </section>
 
-				<section id='about-me' className="section-1">
-					<h2 className="text-center">{translate(lang).main.about.subTitle}</h2>
-					<div className={`section-size ${theme === "light" ? "bg-light-2" : "darker-2"}`}>
-						<p>{translate(lang).main.about.content1}</p>
-						<p>{translate(lang).main.about.content2}</p>
-					</div>
-				</section>
+				<About/>
 
 				<Skills/>
 				

@@ -35,14 +35,14 @@ function EditSkill({ skill, setAll }) {
     }
 
     return (
-        <div className='flex'>
+        <div className='flex align-center small-column-gap'>
             <input 
                 type="text"
-                className={styles["input-size"]}
+                className={styles["input-style-2"]}
                 value={skillEdit}
                 onChange={(e) => setSkillEdit(e.target.value)}
             />
-            <div onClick={() => handleValidate(skill._id)}>OK</div>
+            <div className='color-green' onClick={() => handleValidate(skill._id)}>OK</div>
         </div>
     )
 }

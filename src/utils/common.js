@@ -1,6 +1,7 @@
 import dataFr from '../assets/lang/fr.json'
 import dataEn from '../assets/lang/en.json'
 
+//Data language
 export const translate = function(input) {
     let data = null
     if(input === "fr") data = dataFr
@@ -35,4 +36,15 @@ export function notification(value,method){
     setTimeout(()=>{
         displayMessage.style.display = "none"
     },3000)
+}
+
+export function changeColor(tag) {
+    document.querySelectorAll(".btn-filter").forEach(btn => {
+        btn.classList = ""
+        if(btn.dataset.tag === tag) {
+            btn.classList.add("btn-filter", "btn", "bg-green")
+        } else {
+            btn.classList.add("btn-filter", "btn", "bg-green-opacity")
+        }
+    })
 }

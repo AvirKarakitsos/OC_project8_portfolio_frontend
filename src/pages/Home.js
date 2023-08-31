@@ -14,7 +14,7 @@ import About from '../Components/About'
 import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
-import { translate } from '../utils/common'
+import { changeColor, translate } from '../utils/common'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)
@@ -22,15 +22,18 @@ function Home() {
 
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState("")
-	const [filter, setFilter] = useState(false)
+	const [isFilter, setIsFilter] = useState(false)
 	const [table, setTable] = useState(false)
 
 	const handleFilter = function(tag) {
-		if(tag === "all") setTable(projects)
+		if(tag === "all") {
+			setTable(projects)
+		}
 		else {
 			setTable(projects.filter(element => element.type === tag))
-			setFilter(true)
+			setIsFilter(true)
 		}
+		changeColor(tag)
 	}
 
 	useEffect(() => {
@@ -74,14 +77,14 @@ function Home() {
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">Mes projets</h2>
 					<ul className="flex align-center justify-center medium-column-gap no-bullet cursor-default">
-						<li className='btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
-						<li className='btn bg-green-opacity' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
-						<li className='btn bg-green-opacity' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
+						<li data-tag="all" className='btn-filter btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
+						<li data-tag="openclassrooms" className='btn-filter btn bg-green-opacity' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
+						<li data-tag="perso" className='btn-filter btn bg-green-opacity' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
 					</ul>
 				</section>
 
 				<div className={styles["box-container"]}>
-					{ filter ?
+					{ isFilter ?
 					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
 					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
 					}

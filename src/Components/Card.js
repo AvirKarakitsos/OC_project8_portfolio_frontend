@@ -22,10 +22,10 @@ function Card({project, setModal}) {
             bookmarkColor = "color-purple"
             break
         case "perso":
-            bookmarkColor = "color-green"
+            bookmarkColor = "color-blue"
             break
         default:
-            bookmarkColor = "color-blue"
+            bookmarkColor = "color-green"
     }
 
     useEffect(() => {

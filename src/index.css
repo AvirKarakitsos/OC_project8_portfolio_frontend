@@ -12,10 +12,10 @@
     --color-grey: #8899A6;
     --color-purple: #C500E8;
     --color-blue: #0096FF;
-    --color-green: #28BE35;
+    --color-green: #32B903;
     --color-red: #E80000;
     --opacity-grey: #3C3C3CCC;
-    --opacity-green: #28BE35CC;
+    --opacity-green: #32B90380;
     --white: #FFF;
     --black: #000;
 }
@@ -167,6 +167,10 @@ img {
 
 .btn-3 {
     height: 35px;
+ }
+
+ .btn-filter:hover {
+    background-color: #32B903BF;
  }
 /********** Font-size **********/
 .large-font-size {

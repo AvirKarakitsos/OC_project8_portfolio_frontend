@@ -5,7 +5,7 @@ import styles from '../assets/styles/Form.module.css'
 import { Link, useNavigate } from "react-router-dom";
 
 function Admin() {
-    const [select, setSelect] = useState(true)
+    const [select, setSelect] = useState("project")
     const navigate = useNavigate()
     
     const logout = function() {
@@ -24,16 +24,13 @@ function Admin() {
                 </ul>
                 <div className="flex">
                     <ul className="flex small-column-gap no-bullet">
-                        <li onClick={() => setSelect(true)}>Mes Projets</li>
-                        <li onClick={() => setSelect(false)}>Mon Contenu</li>
+                        <li onClick={() => setSelect("projet")}>Mes Projets</li>
+                        <li onClick={() => setSelect("skill")}>Mon Contenu</li>
                     </ul>
                 </div>
             </div>
             <p className={`message ${styles["message-style"]}`}></p>
-                {select
-                    ? <Project/>
-                    : <Content/>
-                }
+                {select === 'project' ? <Project/> : select === 'skill' ? <Content/> : <Project/>}
         </>
     )
 }

@@ -38,10 +38,9 @@ function Home() {
 
 	useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
-			 .then((response) => response.json())
-			 .then((response) => setProjects(response))
-			 .catch((error) => console.log(error))
-		 
+			.then((response) => response.json())
+			.then((response) => setProjects(response))
+			.catch((error) => console.log(error))
 	 }, [])
 
 	useEffect(() => {

@@ -2,7 +2,7 @@ import dataFr from '../assets/lang/fr.json'
 import dataEn from '../assets/lang/en.json'
 
 //Data language
-export const translate = function(input) {
+export function translate(input) {
     let data = null
     if(input === "fr") data = dataFr
     else data = dataEn

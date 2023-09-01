@@ -3,27 +3,33 @@ import { useContext, useEffect, useState } from 'react';
 import styles from '../assets/styles/Card.module.css'
 import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
+import { API_URL } from '../utils/constants'
 
 import Collapse from './Collapse'
 
-function Card({project, setModal, allCategories}) {
+function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
     const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [color, setColor] = useState("")
 
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
     
     useEffect(() => {
-       setContent(project.content.filter(input => input.language === lang))
-    },[lang,project])
+        fetch(`${API_URL}/${project._id}/color`)
+        .then((response) => response.json())
+        .then((response) => {
+            setColor(response)
+        })
+        .catch((error) => console.log(error))
+    },[project])
 
     useEffect(() => {
-        let bookmarkColor = allCategories?.filter(input => input.key === project.type )
-        document.querySelector('.fa-bookmark').style.color = `${bookmarkColor[0].color}`
-    },[allCategories,project])
+       setContent(project.content.filter(input => input.language === lang))
+    },[lang,project])
 
     useEffect(() => {
         window.addEventListener("resize",()=> {
@@ -42,7 +48,7 @@ function Card({project, setModal, allCategories}) {
         <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
-                <i className= {styles.bookmark+" fa-solid fa-bookmark"}></i>
+                <i className= {styles.bookmark+" fa-solid fa-bookmark"} style={{ color: `${color}`}}></i>
             </div>
             <div>
                 <picture onClick={() => setModal(name)}>

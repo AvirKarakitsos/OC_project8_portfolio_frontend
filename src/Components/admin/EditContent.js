@@ -38,7 +38,7 @@ function EditContent({ content, setAllContents }) {
         <div className='flex align-center small-column-gap'>
             <div className="flex">
                 <label className={styles["label-style"]} htmlFor="french">
-                    <p>Texte en français</p>
+                    <p>Français</p>
                     <textarea
                         className={styles["area-size"]}
                         name="french"
@@ -49,7 +49,7 @@ function EditContent({ content, setAllContents }) {
                     </textarea>
                 </label>
                     <label className={styles["label-style"]} htmlFor="english">
-                    <p>texte en anglais</p>
+                    <p>Anglais</p>
                     <textarea
                         className={styles["area-size"]}
                         name="english"
@@ -60,7 +60,7 @@ function EditContent({ content, setAllContents }) {
                     </textarea>
                 </label>
             </div>
-            <div className='color-green' onClick={() => handleValidate(content._id)}>OK</div>
+            <div className='color-green cursor-default' onClick={() => handleValidate(content._id)}>OK</div>
         </div>
     )
 }

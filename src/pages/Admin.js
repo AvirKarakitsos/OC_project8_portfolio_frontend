@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState } from "react"
+import { Link, useNavigate } from 'react-router-dom'
 import FormSkill from '../Components/admin/FormSkill'
 import FormProject from '../Components/admin/FormProject'
 import styles from '../assets/styles/Form.module.css'
-import { Link, useNavigate } from "react-router-dom";
-import FormVideo from "../Components/admin/FormVideo";
-import FormContent from "../Components/admin/FormContent";
+import FormVideo from '../Components/admin/FormVideo'
+import FormContent from '../Components/admin/FormContent'
+import FormCategory from '../Components/admin/FormCategory'
 
 function Admin() {
     const [select, setSelect] = useState("project")
@@ -30,6 +31,7 @@ function Admin() {
                         <li onClick={() => setSelect("skill")}>Mes Compétences</li>
                         <li onClick={() => setSelect("video")}>Vidéos</li>
                         <li onClick={() => setSelect("about")}>A Propos</li>
+                        <li onClick={() => setSelect("category")}>Catégories</li>
                     </ul>
                 </div>
             </div>
@@ -41,7 +43,9 @@ function Admin() {
                         : select === "video" 
                             ? <FormVideo/> 
                             : select === "about" 
-                                ? <FormContent/> : <FormProject/>}
+                                ? <FormContent/> 
+                                : select=== "category"
+                                    ? <FormCategory/> : <FormProject/>}
         </>
     )
 }

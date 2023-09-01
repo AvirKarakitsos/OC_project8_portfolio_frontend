@@ -1,52 +1,55 @@
-import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
+import { useEffect, useState } from 'react'
 import { API_URL } from '../../utils/constants'
 import { notification } from '../../utils/common'
-import EditContent from './EditContent'
+import EditCategory from './EditCategory'
 
-function FormContent() {
+function FormCategory() {
     const [french, setFrench] = useState('')
     const [english, setEnglish] = useState('')
-    const [allContents, setAllContents] = useState(null)
+    const [color, setColor] = useState('')
+    const [allCategories, setAllCategories] = useState(null)
     const [display, setDisplay] = useState(null)
 
     useEffect(() => {
-		fetch('http://localhost:4000/api/contents')
+		fetch('http://localhost:4000/api/categories')
 			.then((response) => response.json())
 			.then((response) => {
-                setAllContents(response) 
+                setAllCategories(response) 
             })
 			.catch((error) => console.log(error))
     }, [])
 
     useEffect(() => {
-        setDisplay(allContents)
-    }, [allContents])
+        setDisplay(allCategories)
+    }, [allCategories])
 
-    const handleAddContent = function(e) {
+    const handleAddCategory = function(e) {
         e.preventDefault()
-        if((french === "") || (english === "")) {
+        if((french === "") || (english === "") || (color === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            let newContent = {
+            let newCategory = {
                 userId: localStorage.getItem("userId"),
                 french: french,
-                english: english
+                english: english,
+                color: color
             }
     
-            fetch(`${API_URL}/api/contents`,
+            fetch(`${API_URL}/api/categories`,
                 {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
                     },
-                    body: JSON.stringify(newContent)
+                    body: JSON.stringify(newCategory)
                 })
                 .then(response => {
                     if(response.ok) {
                         setFrench('')
                         setEnglish('')
+                        setColor('')
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -54,9 +57,9 @@ function FormContent() {
                 .then(data => {
                     console.log(data.message)
                     notification(data.message,"post")
-                    fetch('http://localhost:4000/api/contents')
+                    fetch('http://localhost:4000/api/categories')
                     .then((response) => response.json())
-                    .then((response) => setAllContents(response))
+                    .then((response) => setAllCategories(response))
                     .catch((error) => console.log(error))
                 })
                 .catch(err => console.log(err.message))
@@ -64,17 +67,17 @@ function FormContent() {
     }
 
     const handleEdit = function(id) {
-        let copy = [...allContents]
+        let copy = [...allCategories]
         copy.forEach(content => {
             if(content._id === id) {
                 content.edit = true
-                setAllContents(copy)
+                setAllCategories(copy)
             }
         })
     }
 
     const handleDelete = function(id) {
-        fetch(`http://localhost:4000/api/contents/${id}`,
+        fetch(`http://localhost:4000/api/categories/${id}`,
             {
                 method: "DELETE",
                 headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
@@ -83,19 +86,20 @@ function FormContent() {
             .then(data => {
                 console.log(data.message)
                 notification(data.message,"delete")
-                fetch('http://localhost:4000/api/contents')
+                fetch('http://localhost:4000/api/categories')
                 .then((response) => response.json())
-                .then((response) => setAllContents(response))
+                .then((response) => setAllCategories(response))
                 .catch((error) => console.log(error))
             })
             .catch(err => console.log(err.message))
     }
-    
+
     return (
         <div className="flex direction-column justify-center align-center">
-            <form onSubmit={handleAddContent}>
+            <form onSubmit={handleAddCategory}>
                 <fieldset className={`border-black ${styles["form-container"]}`}>
-                    <legend className={styles.title}>A Propos</legend>
+                    <legend className={styles.title}>Catégories</legend>
+
                     <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
                         {display?.map(value => 
                             <li className='flex justify-space' key={value._id}>
@@ -104,7 +108,7 @@ function FormContent() {
                                         <p>{value?.french}</p>
                                         <p>{value?.english}</p>
                                     </div>
-                                    : <EditContent content={value} setAllContents={setAllContents}/>
+                                    : <EditCategory category={value} setAllCategories={setAllCategories}/>
                                 }
                                 <div className='flex aling-center tiny-column-gap'>
                                     <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -113,36 +117,51 @@ function FormContent() {
                             </li>
                         )}
                     </ul>
-                    <div className="flex">
+            
+                    <div className='width-100 flex small-column-gap'>
                         <label className={styles["label-style"]} htmlFor="french">
-                            <p>Texte en français</p>
-                            <textarea
-                                className={styles["area-size"]}
+                            Français
+                            <input 
+                                type="text"
+                                className={styles["input-style"]}
                                 name="french"
                                 id="french"
                                 value={french}
                                 onChange={(e) => setFrench(e.target.value)}
-                            >
-                            </textarea>
+                                autoComplete='off'
+                            />
                         </label>
-                         <label className={styles["label-style"]} htmlFor="english">
-                            <p>texte en anglais</p>
-                            <textarea
-                                className={styles["area-size"]}
+                        <label className={styles["label-style"]} htmlFor="english">
+                            Anglais
+                            <input 
+                                type="text"
+                                className={styles["input-style"]}
                                 name="english"
                                 id="english"
                                 value={english}
                                 onChange={(e) => setEnglish(e.target.value)}
-                            >
-                            </textarea>
+                                autoComplete='off'
+                            />
+                        </label>
+                        <label className={styles["label-style"]} htmlFor="color">
+                            Couleur
+                            <input 
+                                type="text"
+                                className={styles["input-style"]}
+                                name="color"
+                                id="color"
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                                autoComplete='off'
+                            />
                         </label>
                     </div>
-                    <p className="form-message color-red btn"></p>
-                    <button className='btn bg-blue no-border'>Ajouter</button>
+                        <p className="form-message color-red btn"></p>
+                        <button className='btn bg-blue no-border'>Ajouter</button>
                 </fieldset>
             </form>
         </div>
     )
 }
 
-export default FormContent
+export default FormCategory

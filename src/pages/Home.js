@@ -45,7 +45,7 @@ function Home() {
 			setTable(projects)
 		}
 		else {
-			setTable(projects.filter(element => element.type === tag))
+			setTable(projects?.filter(element => element.type === tag))
 			setIsFilter(true)
 		}
 		changeColor(tag)
@@ -80,14 +80,15 @@ function Home() {
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">Mes projets</h2>
 					<ul className="flex align-center justify-center medium-column-gap no-bullet cursor-default">
+						<li data-tag="all" className='btn-filter btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
 						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} key={category._id}/>) }
 					</ul>
 				</section>
 
 				<div className={styles["box-container"]}>
 					{ isFilter ?
-					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
-					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
+					table.map(project => <Card key={project._id} project={project} setModal={setModal} allCategories={allCategories}/>)
+					: projects.map(project => <Card key={project._id} project={project} setModal={setModal} allCategories={allCategories}/>)
 					}
 				</div>
             </main>

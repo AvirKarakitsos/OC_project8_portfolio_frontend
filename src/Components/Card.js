@@ -6,7 +6,7 @@ import { LanguageContext } from '../utils/context/LanguageContext'
 
 import Collapse from './Collapse'
 
-function Card({project, setModal}) {
+function Card({project, setModal, allCategories}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
     const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
@@ -15,22 +15,15 @@ function Card({project, setModal}) {
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
-    let bookmarkColor
-
-    switch (project.type) {
-        case "openclassrooms":
-            bookmarkColor = "color-purple"
-            break
-        case "perso":
-            bookmarkColor = "color-blue"
-            break
-        default:
-            bookmarkColor = "color-green"
-    }
-
+    
     useEffect(() => {
        setContent(project.content.filter(input => input.language === lang))
     },[lang,project])
+
+    useEffect(() => {
+        let bookmarkColor = allCategories?.filter(input => input.key === project.type )
+        document.querySelector('.fa-bookmark').style.color = `${bookmarkColor[0].color}`
+    },[allCategories,project])
 
     useEffect(() => {
         window.addEventListener("resize",()=> {
@@ -49,7 +42,7 @@ function Card({project, setModal}) {
         <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
-                <i className= {styles.bookmark+" "+bookmarkColor+" fa-solid fa-bookmark"}></i>
+                <i className= {styles.bookmark+" fa-solid fa-bookmark"}></i>
             </div>
             <div>
                 <picture onClick={() => setModal(name)}>

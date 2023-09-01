@@ -87,8 +87,8 @@ function Home() {
 
 				<div className={styles["box-container"]}>
 					{ isFilter ?
-					table.map(project => <Card key={project._id} project={project} setModal={setModal} allCategories={allCategories}/>)
-					: projects.map(project => <Card key={project._id} project={project} setModal={setModal} allCategories={allCategories}/>)
+					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
+					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
 					}
 				</div>
             </main>

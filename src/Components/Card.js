@@ -12,17 +12,19 @@ function Card({project, setModal}) {
     const { lang } = useContext(LanguageContext)
     const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-    const [color, setColor] = useState("")
+    const [category, setCategory] = useState("")
+    const [isLoading, setIsLoading] = useState(true)
 
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
     const date = project.createdAt.split(".")[0]
     const name = date.split(":").join("")
     
     useEffect(() => {
-        fetch(`${API_URL}/${project._id}/color`)
+        fetch(`${API_URL}/api/projects/${project._id}/color`)
         .then((response) => response.json())
         .then((response) => {
-            setColor(response)
+            setCategory(response)
+            setIsLoading(false)
         })
         .catch((error) => console.log(error))
     },[project])
@@ -48,7 +50,7 @@ function Card({project, setModal}) {
         <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
-                <i className= {styles.bookmark+" fa-solid fa-bookmark"} style={{ color: `${color}`}}></i>
+                {!isLoading && <i className={styles.bookmark+" fa-solid fa-bookmark" } style={{color: category[0].color}}></i>}
             </div>
             <div>
                 <picture onClick={() => setModal(name)}>

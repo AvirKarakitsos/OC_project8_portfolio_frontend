@@ -102,11 +102,12 @@ function FormCategory() {
 
                     <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
                         {display?.map(value => 
-                            <li className='flex justify-space' key={value._id}>
+                            <li className='width-100 flex justify-space medium-column-gap' key={value._id}>
                                 {!value.edit
-                                    ? <div className='flex justify-space'>
+                                    ? <div className='width-100 flex justify-space'>
                                         <p>{value?.french}</p>
                                         <p>{value?.english}</p>
+                                        <p>{value?.color}</p>
                                     </div>
                                     : <EditCategory category={value} setAllCategories={setAllCategories}/>
                                 }

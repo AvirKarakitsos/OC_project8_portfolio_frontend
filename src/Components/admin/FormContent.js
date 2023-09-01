@@ -96,11 +96,11 @@ function FormContent() {
             <form onSubmit={handleAddContent}>
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>A Propos</legend>
-                    <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
+                    <ul className='width-100 flex direction-column medium-row-gap no-bullet'>
                         {display?.map(value => 
-                            <li className='flex justify-space' key={value._id}>
+                            <li className='flex justify-space small-column-gap' key={value._id}>
                                 {!value.edit
-                                    ? <div className='flex justify-space'>
+                                    ? <div className='width-100 flex justify-space'>
                                         <p>{value?.french}</p>
                                         <p>{value?.english}</p>
                                     </div>
@@ -113,9 +113,9 @@ function FormContent() {
                             </li>
                         )}
                     </ul>
-                    <div className="flex">
-                        <label className={styles["label-style"]} htmlFor="french">
-                            <p>Texte en français</p>
+                    <div className="width-100 flex justify-space medium-column-gap">
+                        <label className={styles["label-style-column"]} htmlFor="french">
+                            <p>Français</p>
                             <textarea
                                 className={styles["area-size"]}
                                 name="french"
@@ -125,8 +125,8 @@ function FormContent() {
                             >
                             </textarea>
                         </label>
-                         <label className={styles["label-style"]} htmlFor="english">
-                            <p>texte en anglais</p>
+                         <label className={styles["label-style-column"]} htmlFor="english">
+                            <p>Anglais</p>
                             <textarea
                                 className={styles["area-size"]}
                                 name="english"

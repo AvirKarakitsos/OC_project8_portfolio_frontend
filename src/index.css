@@ -67,38 +67,33 @@ img {
     justify-content: center;
 }
 /***** Gap *****/
-.large-row-gap {
-    row-gap: 139px;
-}
-
 .medium-column-gap {
     column-gap: 50px;
 }
-
-.medium-row-gap {
-    row-gap: 50px;
-}
-
-.medium-row-gap-2 {
-    row-gap: 25px;
-}
-
 .small-column-gap {
     column-gap: 15px;
 }
 
 .tiny-column-gap {
-	column-gap: 5px;
+    column-gap: 5px;
 }
 
+
+.large-row-gap {
+    row-gap: 139px;
+}
+.medium-row-gap {
+    row-gap: 50px;
+}
+.medium-row-gap-2 {
+    row-gap: 25px;
+}
 .small-row-gap {
 	row-gap: 15px;
 }
-
 .tiny-row-gap {
 	row-gap: 10px;
 }
-
 .tiny-row-gap-2 {
 	row-gap: 5px;
 }

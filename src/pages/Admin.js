@@ -23,10 +23,10 @@ function Admin() {
                 <h1>Page Admin</h1>
                 <ul className="width-100 flex justify-space no-bullet small-column-gap">
                     <li><Link to="/">Page d'accueil</Link></li>
-                    <li onClick={logout}>Déconnexion</li>
+                    <li className="cursor-default" onClick={logout}>Déconnexion</li>
                 </ul>
                 <div className="flex">
-                    <ul className="flex small-column-gap no-bullet">
+                    <ul className="flex medium-column-gap no-bullet cursor-default">
                         <li onClick={() => setSelect("projet")}>Mes Projets</li>
                         <li onClick={() => setSelect("skill")}>Mes Compétences</li>
                         <li onClick={() => setSelect("video")}>Vidéos</li>

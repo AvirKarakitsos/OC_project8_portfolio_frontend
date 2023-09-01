@@ -66,33 +66,35 @@ function Login() {
 
     return (
         <div className="container-100 flex justify-center align-center">
-            <form onSubmit={handleLogin} className={`border-black ${styles["form-container"]}`}>
-                <legend className={styles.title}>Se Connecter</legend>
-                <label htmlFor={email}>
-                    <p>Adresse email</p>
-                    <input
-                        className={styles["input-style"]}
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
-                <label htmlFor="password">
-                    <p>Mot de passe</p>
-                    <input
-                        className={styles["input-style"]}
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                <button type="submit" className="btn dark no-border">
-                    Se connecter
-                </button>
+            <form onSubmit={handleLogin}>
+                <fieldset className={`border-black ${styles["form-container"]}`}>
+                    <legend className={styles.title}>Se Connecter</legend>
+                    <label htmlFor={email}>
+                        <p>Adresse email</p>
+                        <input
+                            className={styles["input-style"]}
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="password">
+                        <p>Mot de passe</p>
+                        <input
+                            className={styles["input-style"]}
+                            type="password"
+                            name="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    <button type="submit" className="btn dark no-border">
+                        Se connecter
+                    </button>
+                </fieldset>
             </form>
         </div>
     )

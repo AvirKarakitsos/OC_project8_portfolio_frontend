@@ -35,30 +35,24 @@ function EditContent({ content, setAllContents }) {
     }
 
     return (
-        <div className='flex align-center small-column-gap'>
-            <div className="flex">
-                <label className={styles["label-style"]} htmlFor="french">
-                    <p>Français</p>
-                    <textarea
-                        className={styles["area-size"]}
-                        name="french"
-                        id="french"
-                        value={frenchEdit}
-                        onChange={(e) => setFrenchEdit(e.target.value)}
-                    >
-                    </textarea>
-                </label>
-                    <label className={styles["label-style"]} htmlFor="english">
-                    <p>Anglais</p>
-                    <textarea
-                        className={styles["area-size"]}
-                        name="english"
-                        id="english"
-                        value={englishEdit}
-                        onChange={(e) => setEnglishEdit(e.target.value)}
-                    >
-                    </textarea>
-                </label>
+        <div className='width-100 flex justify-space align-center small-column-gap'>
+            <div className="width-100 flex justify-space medium-column-gap">
+                <textarea
+                    className={styles["area-size"]}
+                    name="french"
+                    id="french"
+                    value={frenchEdit}
+                    onChange={(e) => setFrenchEdit(e.target.value)}
+                >
+                </textarea>
+                <textarea
+                    className={styles["area-size"]}
+                    name="english"
+                    id="english"
+                    value={englishEdit}
+                    onChange={(e) => setEnglishEdit(e.target.value)}
+                >
+                </textarea>
             </div>
             <div className='color-green cursor-default' onClick={() => handleValidate(content._id)}>OK</div>
         </div>

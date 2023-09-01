@@ -13,14 +13,14 @@ function About() {
     useEffect(() => {
         getRequest('contents',setAllContent)
     },[])
-
+    
     return(
         <section id='about-me' className="section-1">
             <h2 className="text-center">{translate(lang).main.about.subTitle}</h2>
             <div className={`${styles["about-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 {allContent?.map( content => {
-                    if (lang === "fr")  return <p>{content.french}</p>
-                    else return <p>{content.english}</p>
+                    if (lang === "fr") return <p key={content._id}>{content.french}</p>
+                    else return <p key={content._id}>{content.english}</p>
                 })}
             </div>
         </section>

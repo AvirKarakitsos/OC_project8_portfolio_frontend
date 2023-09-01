@@ -15,6 +15,8 @@ import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { changeColor, translate } from '../utils/common'
+import { getRequest } from '../utils/request'
+import Category from '../Components/Category'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)
@@ -24,8 +26,21 @@ function Home() {
 	const [modal, setModal] = useState("")
 	const [isFilter, setIsFilter] = useState(false)
 	const [table, setTable] = useState(false)
+	const [allCategories, setAllCategories] = useState(null)
 
-	const handleFilter = function(tag) {
+	useEffect(() => {
+		getRequest("projects",setProjects)
+	 }, [])
+
+	 useEffect(() => {
+		getRequest("categories",setAllCategories)
+	 }, [])
+
+	useEffect(() => {
+		toggleLanguage(window.location.pathname.substring(1))
+	 }, [toggleLanguage])
+
+	 const handleFilter = function(tag) {
 		if(tag === "all") {
 			setTable(projects)
 		}
@@ -35,17 +50,6 @@ function Home() {
 		}
 		changeColor(tag)
 	}
-
-	useEffect(() => {
-		fetch('http://localhost:4000/api/projects')
-			.then((response) => response.json())
-			.then((response) => setProjects(response))
-			.catch((error) => console.log(error))
-	 }, [])
-
-	useEffect(() => {
-		toggleLanguage(window.location.pathname.substring(1))
-	 }, [toggleLanguage])
 	
     return (
         <Layout>
@@ -76,9 +80,7 @@ function Home() {
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">Mes projets</h2>
 					<ul className="flex align-center justify-center medium-column-gap no-bullet cursor-default">
-						<li data-tag="all" className='btn-filter btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
-						<li data-tag="openclassrooms" className='btn-filter btn bg-green-opacity' onClick={() => handleFilter("openclassrooms")}>{translate(lang).main.projects.openclassrooms}</li>
-						<li data-tag="perso" className='btn-filter btn bg-green-opacity' onClick={() => handleFilter("perso")}>{translate(lang).main.projects.personal}</li>
+						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} key={category._id}/>) }
 					</ul>
 				</section>
 

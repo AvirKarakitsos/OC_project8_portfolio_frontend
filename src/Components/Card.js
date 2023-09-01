@@ -16,11 +16,9 @@ function Card({project, setModal}) {
     const [isLoading, setIsLoading] = useState(true)
 
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
-    const date = project.createdAt.split(".")[0]
-    const name = date.split(":").join("")
     
     useEffect(() => {
-        fetch(`${API_URL}/api/projects/${project._id}/color`)
+        fetch(`${API_URL}/api/projects/${project._id}/category`)
         .then((response) => response.json())
         .then((response) => {
             setCategory(response)
@@ -53,7 +51,7 @@ function Card({project, setModal}) {
                 {!isLoading && <i className={styles.bookmark+" fa-solid fa-bookmark" } style={{color: category[0].color}}></i>}
             </div>
             <div>
-                <picture onClick={() => setModal(name)}>
+                <picture onClick={() => setModal(project._id)}>
                     <source media="(max-width: 450px)" srcSet={smallUrl}/>
                     <img className={styles.image} src={project.imageUrl} alt={`projet ${project.title}`}/>
                 </picture>

@@ -101,8 +101,8 @@ function FormContent() {
                             <li className='flex justify-space small-column-gap' key={value._id}>
                                 {!value.edit
                                     ? <div className='width-100 flex justify-space'>
-                                        <p>{value?.french}</p>
-                                        <p>{value?.english}</p>
+                                        <p className={styles.paragraph}>{value?.french}</p>
+                                        <p className={styles.paragraph}>{value?.english}</p>
                                     </div>
                                     : <EditContent content={value} setAllContents={setAllContents}/>
                                 }

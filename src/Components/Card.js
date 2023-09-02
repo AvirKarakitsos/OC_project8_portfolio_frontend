@@ -40,7 +40,7 @@ function Card({project, setModal}) {
     useEffect(() => {
         document.querySelectorAll(`.${styles.box}`).forEach(box => {
             if(windowWidth <= 750) box.style.height = "340px"
-            else box.style.height = "500px"
+            else box.style.height = "550px"
         })
     },[windowWidth])
   

@@ -28,7 +28,7 @@ function Skills() {
 
     return (
         <section className='section-1'>
-            <h2 className="text-center">{translate(lang).main.skills.subTitle}</h2>
+            <h2 className="text-center">{translate(lang).main.skills.subtitle}</h2>
             <div className={`${styles["skills-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 <div className="text-center">
                     <div className='flex direction-column tiny-row-gap-2'>

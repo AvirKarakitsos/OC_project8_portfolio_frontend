@@ -26,9 +26,9 @@ function Footer() {
 			{windowWidth <= 750 ?
 			<>
 				<p>Arno Cotsoyannis</p>
-				<p>{translate(lang).footer.subTitle}</p>
+				<p>{translate(lang).footer.subtitle}</p>
 			</>
-			: <p>Arno Cotsoyannis | {translate(lang).footer.subTitle}</p>
+			: <p>Arno Cotsoyannis | {translate(lang).footer.subtitle}</p>
 			}
 		</footer>
     )

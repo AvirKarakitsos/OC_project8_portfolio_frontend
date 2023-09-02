@@ -16,11 +16,11 @@ function About() {
     
     return(
         <section id='about-me' className="section-1">
-            <h2 className="text-center">{translate(lang).main.about.subTitle}</h2>
+            <h2 className="text-center">{translate(lang).main.about.subtitle}</h2>
             <div className={`${styles["about-container"]} ${theme === "light" ? "bg-light-2" : "bg-darker-2"}`}>
                 {allContent?.map( content => {
-                    if (lang === "fr") return <p key={content._id}>{content.french}</p>
-                    else return <p key={content._id}>{content.english}</p>
+                    if (lang === "fr") return <p className={styles.paragraph} key={content._id}>{content.french}</p>
+                    else return <p className={styles.paragraph} key={content._id}>{content.english}</p>
                 })}
             </div>
         </section>

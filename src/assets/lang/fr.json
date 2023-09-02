@@ -3,31 +3,27 @@
         "about": "A propos",
         "projects": "Mes projets",
         "contact": "Contact",
-        "darkMode": "Mode sombre",
-        "lightMode": "Mode clair"
+        "mode": "Mode"
     },
     "main": {
         "part1": {
-            "subTitle": "Développeur web full stack Javascript"
+            "subtitle": "Développeur web full stack Javascript"
         },
         "about": {
-            "subTitle": "A propos",
-            "content1": "En reconversion développeur web. Après m'être auto formé en apprenant les bases de HTML, CSS et Javascript, j'ai pu tester côté client Vue js et côté serveur php avec le framework Laravel. J'ai suivi en 2023 la formation Openclassrooms développeur web afin de professionnaliser ma démarche et ainsi devenir développeur Javascript.",
-            "content2": "En scrollant sur cette page vous découvrirez mes projets personnels ainsi que mes projets chez Openclassrooms. Vous pouvez cliquez sur l'image afin de visionner une démonstration du site. L'ensemble du code est disponible sur mon github."
+            "subtitle": "A propos"
         },
         "skills": {
-            "subTitle": "Mes compétences",
+            "subtitle": "Mes compétences",
             "server": "serveur",
             "tools": "outils"
         },
         "projects": {
-            "all": "Tous",
-            "openclassrooms": "Openclassrooms",
-            "personal": "Personnels"
+            "subtitle": "Mes Projets",
+            "all": "Tous"
         }
     },
     "footer" : {
         "contact": "Me contacter",
-        "subTitle": "Site rélalisé avec React et Node JS"
+        "subtitle": "Site rélalisé avec React et Node JS"
     }
 }

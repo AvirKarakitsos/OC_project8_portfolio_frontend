@@ -49,6 +49,12 @@
     margin: 5px 0;
 }
 
+.area-size-2 {
+    height: 150px;
+    width: 500px;
+    margin: 5px 0;
+}
+
 .title {
     font-size: 22px;
 }
@@ -66,4 +72,7 @@
     left: 10%;
     padding: 10px;
     border-radius: 10px;
+}
+.paragraph {
+    width: 500px;
 }

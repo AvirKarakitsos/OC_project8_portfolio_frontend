@@ -3,31 +3,27 @@
         "about": "About",
         "projects": "My projects",
         "contact": "Contact",
-        "bg-darkMode": "Dark",
-        "lightMode": "Light"
+        "mode": "Theme"
     },
     "main": {
         "part1": {
-            "subTitle": "Web developer full stack Javascript"
+            "subtitle": "Web developer full stack Javascript"
         },
         "about": {
-            "subTitle": "About",
-            "content1": "Lorem ipsum dolor sit amet, mel ex tale delicata. Solum errem qualisque in vix. Per cu admodum officiis.Eu dolor detraxit maluisset vix, falli docendi maluisset at nam, sit accusata adipiscing an. Nihil lobortis expetendis qui ad, te mea consul graece, pro sale fabellas posidonium et.",
-            "content2": "Ut maluisset assentior nam. Vix et evertitur urbanitas reprehendunt, labores volutpat in mea. Unum adolescens posidonium in sea. Est at alii virtute cotidieque, ea duo labitur indoctum salutatus."
+            "subtitle": "About me"
         },
         "skills": {
-            "subTitle": "My skills",
+            "subtitle": "My skills",
             "server": "server",
             "tools": "tools"
         },
         "projects": {
-            "all": "All",
-            "openclassrooms": "Openclassrooms",
-            "personal": "Personal"
+            "subtitle": "My Projects",
+            "all": "All"
         }
     },
     "footer" : {
         "contact": "Contact",
-        "subTitle": "Web site coding with React and Node JS"
+        "subtitle": "Website coded with React and Node JS"
     }
 }

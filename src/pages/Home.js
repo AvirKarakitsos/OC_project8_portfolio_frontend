@@ -61,7 +61,7 @@ function Home() {
 			    	</div>
 			    	<div className={styles["div-right"]}>
 						<h1 className={styles["title"]}>Arno Cotsoyannis</h1>
-						<h2 className={styles.subtitle}>{translate(lang).main.part1.subTitle}</h2>
+						<h2 className={styles.subtitle}>{translate(lang).main.part1.subtitle}</h2>
 			    		<ul className={`${styles["links-container"]} no-bullet relative`}>
 			    			<li className={`${styles["link-1"]} absolute`}><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={github} alt="lien github"/></a></li>
 			    			<li className={`${styles["link-2"]} absolute`}><a href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer"><img className="border-cercle" src={instagram} alt="lien instagram"/></a></li>

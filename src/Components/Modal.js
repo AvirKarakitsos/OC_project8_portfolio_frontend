@@ -3,7 +3,7 @@ import styles from '../assets/styles/Modal.module.css'
 import { API_URL } from "../utils/constants"
 
 function Modal({modal, setModal}) {
-    const [video, setVideo] = useState(null)
+    const [video, setVideo] = useState([])
 
     useEffect(()=> {
         if(modal !== "") {
@@ -26,9 +26,9 @@ function Modal({modal, setModal}) {
     return(
         <dialog id="modal" className={styles.modal}>
             <div className="modal-container flex">
-                { video !== null
+                { video.length !== 0
                     ? <video className={styles.video} src={video[0].videoUrl} controls autoPlay muted={true} ></video>
-                    : <i className="fa-solid fa-wrench"></i>
+                    : <i className="fa-solid fa-wrench large-font-size color-grey"></i>
                 }
             </div>
         </dialog>

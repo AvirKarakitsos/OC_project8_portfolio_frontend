@@ -38,7 +38,7 @@ function EditContent({ content, setAllContents }) {
         <div className='width-100 flex justify-space align-center small-column-gap'>
             <div className="width-100 flex justify-space medium-column-gap">
                 <textarea
-                    className={styles["area-size"]}
+                    className={styles["area-size-2"]}
                     name="french"
                     id="french"
                     value={frenchEdit}
@@ -46,7 +46,7 @@ function EditContent({ content, setAllContents }) {
                 >
                 </textarea>
                 <textarea
-                    className={styles["area-size"]}
+                    className={styles["area-size-2"]}
                     name="english"
                     id="english"
                     value={englishEdit}

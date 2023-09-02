@@ -6,6 +6,8 @@ function FormProject() {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [select, setSelect] = useState("")
+    const [allCategories, setAllCategories] = useState([])
+    const [isLoading, setIsLoading] = useState({categoryLoading: true, projectLoading: true})
     
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
@@ -13,18 +15,37 @@ function FormProject() {
     const [link, setLink] = useState('')
     const [image, setImage] = useState(null)
     const [language, setLanguage] = useState('')
-    const [type, setType] = useState('')
+    const [category, setCategory] = useState('')
 
     const allLanguages = ["fr","en"]
-    const allTypes = ["perso",'openclassrooms']
+
 
     const classBtn = "flex align-center justify-center btn btn-3 no-border"
 
     useEffect(() => {
 		fetch('http://localhost:4000/api/projects')
-			 .then((response) => response.json())
-			 .then((response) => setProjects(response))
-			 .catch((error) => console.log(error))
+			.then((response) => response.json())
+			.then((response) => {
+                setProjects(response)
+                setIsLoading(actualValues => ({
+                    ...actualValues,
+                    projectLoading: false
+                }))
+            })
+			.catch((error) => console.log(error))
+	 }, [])
+
+    useEffect(() => {
+		fetch('http://localhost:4000/api/categories')
+			.then((response) => response.json())
+			.then((response) => {
+                setAllCategories(response)
+                setIsLoading(actualValues => ({
+                    ...actualValues,
+                    categoryLoading: false
+                }))
+            })
+			.catch((error) => console.log(error))
 	 }, [])
 
     useEffect(() => {
@@ -41,7 +62,7 @@ function FormProject() {
                     setContent(response.content[0].text)
                     setLanguage(response.content[0].language)
                     setLink(response.link)
-                    setType(response.type)
+                    setCategory(response.category)
 
                     setProject(response)
                  })
@@ -52,7 +73,7 @@ function FormProject() {
             setContent('')
             setLink('')
             setLanguage('')
-            setType('')
+            setCategory('')
 
             setProject({})
         }
@@ -79,7 +100,7 @@ function FormProject() {
                         setContent('')
                         setLink('')
                         setLanguage('')
-                        setType('')
+                        setCategory('')
                         setImage(null)
                         setSelect('')
                     } 
@@ -99,7 +120,7 @@ function FormProject() {
 
     const handleAddProject = function(e) {
         e.preventDefault()
-        let test = [title,tags,content,link,image,language,type]
+        let test = [title,tags,content,link,image,language,category]
         
         if (test.some(field => field === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
@@ -110,7 +131,7 @@ function FormProject() {
                 tags: tags,
                 content: [{language:language,text:content}],
                 link: link,
-                type: type
+                category: category
             }
 
             if(select !== "") {
@@ -130,9 +151,14 @@ function FormProject() {
                             setContent('')
                             setLink('')
                             setLanguage('')
-                            setType('')
+                            setCategory('')
                             setImage(null)
                             setSelect('')
+                            setIsLoading(actualValues => ({
+                                ...actualValues,
+                                projectLoading: true,
+                                categoryLoading: true,
+                            }))
                         } 
                         return response.json()
                     })
@@ -168,8 +194,13 @@ function FormProject() {
                                 setContent('')
                                 setLink('')
                                 setLanguage('')
-                                setType('')
+                                setCategory('')
                                 setImage(null)
+                                setIsLoading(actualValues => ({
+                                    ...actualValues,
+                                    projectLoading: true,
+                                    categoryLoading: true,
+                                }))
                                 document.querySelector('.form-message').innerHTML = ""
                             } 
                             return response.json()
@@ -191,15 +222,17 @@ function FormProject() {
     return (
         <div className="flex direction-column justify-center align-center">
             <div className="flex align-center small-column-gap">
-                <select 
-                    name="select" 
-                    id="select" 
-                    className={styles["input-style"]}
-                    onChange={(e) => setSelect(e.target.value)}
-                >
-                    <option value=""></option>
-                    {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
-                </select>
+                {!isLoading.projectLoading
+                    && <select 
+                        name="select" 
+                        id="select" 
+                        className={styles["input-style"]}
+                        onChange={(e) => setSelect(e.target.value)}
+                    >
+                        <option value=""></option>
+                        {projects.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
+                    </select>
+                }
                 <button 
                     className={select !== "" ? classBtn+" bg-red" : classBtn+" bg-dark"}
                     onClick={handleDelete}
@@ -290,18 +323,18 @@ function FormProject() {
                         />
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
-                        <p>Projet</p>
+                        <p>Catégorie</p>
                         <select 
-                            name="type" 
-                            id="type" 
+                            name="category" 
+                            id="category" 
                             className={styles["input-style"]}
-                            onChange={(e) => setType(e.target.value)}
+                            onChange={(e) => setCategory(e.target.value)}
                             
                         >
-                            <option value={type}>{type}</option>
-                            {allTypes.map((element,index) => {
-                                if (element !== type) {
-                                    return <option key={index} value={element}>{element}</option>
+                            <option value={category}>{category}</option>
+                            {allCategories.map((element) => {
+                                if (element !== category) {
+                                    return <option key={element._id} value={element.key}>{element.french}</option>
                                 }
                                 return ''
                             } 

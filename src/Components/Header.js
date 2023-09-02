@@ -1,4 +1,5 @@
-import logo from '../assets/images/logo-light.png'
+import logo1 from '../assets/images/logo-light.png'
+import logo2 from '../assets/images/logo-dark.png'
 import styles from '../assets/styles/Header.module.css'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
@@ -30,7 +31,10 @@ function Header() {
 
     return (
         <header className={`${styles.header} ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
-            <img className="size-32" src={logo} alt="logo"/>
+			{theme === "light"
+				? <img className="size-50" src={logo1} alt="logo"/>
+				: <img className="size-50" src={logo2} alt="logo"/>
+			}
 			<nav className="relative flex justify-space small-column-gap cursor-default">
 				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#about-me'>{translate(lang).header.about}</a></li>

@@ -24,12 +24,16 @@ function Home() {
 
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState("")
-	const [isFilter, setIsFilter] = useState(false)
-	const [table, setTable] = useState(false)
+	const [table, setTable] = useState([])
 	const [allCategories, setAllCategories] = useState(null)
 
+	const callback = function(data) {
+		setProjects(data)
+		setTable(data)
+	}
+
 	useEffect(() => {
-		getRequest("projects",setProjects)
+		getRequest("projects",callback)
 	 }, [])
 
 	 useEffect(() => {
@@ -45,8 +49,9 @@ function Home() {
 			setTable(projects)
 		}
 		else {
-			setTable(projects?.filter(element => element.type === tag))
-			setIsFilter(true)
+			let copy = [...projects]
+			let filter = copy?.filter(element => element.category === tag)
+			setTable(filter)
 		}
 		changeColor(tag)
 	}
@@ -86,10 +91,7 @@ function Home() {
 				</section>
 
 				<div className={styles["box-container"]}>
-					{ isFilter ?
-					table.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
-					: projects.map(project => <Card key={project._id} project={project} setModal={setModal}/>)
-					}
+					{ table.map(project => <Card key={project._id} project={project} setModal={setModal}/>) }
 				</div>
             </main>
         </Layout>

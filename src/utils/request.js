@@ -1,10 +1,10 @@
 import { API_URL } from "./constants";
 
-export function getRequest(route, output) { 
+export function getRequest(route, callback) { 
     fetch(`${API_URL}/api/${route}`)
         .then((response) => response.json())
         .then((response) => {
-            output(response)
+            callback(response)
         } )
         .catch((error) => console.log(error))
 }

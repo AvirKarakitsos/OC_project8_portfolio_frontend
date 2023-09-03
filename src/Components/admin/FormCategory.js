@@ -1,7 +1,7 @@
 import styles from '../../assets/styles/Form.module.css'
+import EditCategory from './EditCategory'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
-import EditCategory from './EditCategory'
 import { getRequest, fetchRequest } from '../../utils/request'
 
 function FormCategory() {

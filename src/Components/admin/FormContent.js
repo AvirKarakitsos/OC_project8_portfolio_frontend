@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
-import { notification } from '../../utils/common'
 import EditContent from './EditContent'
+import { useEffect, useState } from 'react'
+import { notification } from '../../utils/common'
 import { fetchRequest, getRequest } from '../../utils/request'
 
 function FormContent() {

@@ -2,7 +2,7 @@ import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import EditCategory from './EditCategory'
-import { getRequest, postRequest } from '../../utils/request'
+import { getRequest, fetchRequest } from '../../utils/request'
 
 function FormCategory() {
     const [data,setData] = useState({
@@ -43,14 +43,10 @@ function FormCategory() {
                 body: JSON.stringify(data)
             }
 
-            postRequest("categories",requestOptions)
+            fetchRequest("categories",requestOptions)
                 .then(response => {
                     if(response.ok) {
-                        setData({
-                            french: '',
-                            english: '',
-                            color: ''
-                        })
+                        setData( {french: '', english: '', color: ''} )
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -84,10 +80,7 @@ function FormCategory() {
             .then(data => {
                 console.log(data.message)
                 notification(data.message,"delete")
-                fetch('http://localhost:4000/api/categories')
-                .then((response) => response.json())
-                .then((response) => setAllCategories(response))
-                .catch((error) => console.log(error))
+                getRequest("categories",setAllCategories)
             })
             .catch(err => console.log(err.message))
     }

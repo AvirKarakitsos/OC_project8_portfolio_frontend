@@ -1,37 +1,39 @@
 import { useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
 import { notification } from '../../utils/common'
+import { fetchRequest, getRequest } from '../../utils/request'
 
 function EditContent({ content, setAllContents }) {
-    const [frenchEdit, setFrenchEdit] = useState(content.french)
-    const [englishEdit, setEnglishEdit] = useState(content.english)
+    const [editData,setEditData] = useState({
+        french: content.french,
+        english: content.english,
+    })
 
+    const onEditChange = function(e) {
+        setEditData({
+            ...editData,
+            [e.target.name]: e.target.value
+        })
+    }
+   
     const handleValidate = function() {
-        let updateContent = {
-            userId: localStorage.getItem('userId'),
-            french: frenchEdit,
-            english: englishEdit
+        let requestOptions = {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(editData)
         }
 
-        fetch(`http://localhost:4000/api/contents/${content._id}`,
-                    {
-                        method: "PUT",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        },
-                        body: JSON.stringify(updateContent)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data.message)
-                        notification(data.message,"put")
-                        fetch('http://localhost:4000/api/contents')
-                        .then((response) => response.json())
-                        .then((response) => setAllContents(response))
-                        .catch((error) => console.log(error))
-                    })
-                    .catch(err => console.log(err.message))
+        fetchRequest(`contents/${content._id}`,requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message)
+                notification(data.message,"put")
+                getRequest("contents",setAllContents)
+            })
+            .catch(err => console.log(err.message))
     }
 
     return (
@@ -41,16 +43,16 @@ function EditContent({ content, setAllContents }) {
                     className={styles["area-size-2"]}
                     name="french"
                     id="french"
-                    value={frenchEdit}
-                    onChange={(e) => setFrenchEdit(e.target.value)}
+                    value={editData.french}
+                    onChange={onEditChange}
                 >
                 </textarea>
                 <textarea
                     className={styles["area-size-2"]}
                     name="english"
                     id="english"
-                    value={englishEdit}
-                    onChange={(e) => setEnglishEdit(e.target.value)}
+                    value={editData.english}
+                    onChange={onEditChange}
                 >
                 </textarea>
             </div>

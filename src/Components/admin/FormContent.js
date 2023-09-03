@@ -1,52 +1,50 @@
 import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
-import { API_URL } from '../../utils/constants'
 import { notification } from '../../utils/common'
 import EditContent from './EditContent'
+import { fetchRequest, getRequest } from '../../utils/request'
 
 function FormContent() {
-    const [french, setFrench] = useState('')
-    const [english, setEnglish] = useState('')
-    const [allContents, setAllContents] = useState(null)
-    const [display, setDisplay] = useState(null)
+    const [data,setData] = useState({
+        french: '',
+        english: '',
+    })
+    const [allContents, setAllContents] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    const onChange = function(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const callback = function(values) {
+        setAllContents(values)
+        setIsLoading(false)
+    }
 
     useEffect(() => {
-		fetch('http://localhost:4000/api/contents')
-			.then((response) => response.json())
-			.then((response) => {
-                setAllContents(response) 
-            })
-			.catch((error) => console.log(error))
+        getRequest("contents",callback)
     }, [])
-
-    useEffect(() => {
-        setDisplay(allContents)
-    }, [allContents])
 
     const handleAddContent = function(e) {
         e.preventDefault()
-        if((french === "") || (english === "")) {
+        if((data.french === "") || (data.english === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            let newContent = {
-                userId: localStorage.getItem("userId"),
-                french: french,
-                english: english
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(data)
             }
-    
-            fetch(`${API_URL}/api/contents`,
-                {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify(newContent)
-                })
+            fetchRequest("contents",requestOptions)
                 .then(response => {
                     if(response.ok) {
-                        setFrench('')
-                        setEnglish('')
+                        setData( {french: '', english: ''} )
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -54,10 +52,7 @@ function FormContent() {
                 .then(data => {
                     console.log(data.message)
                     notification(data.message,"post")
-                    fetch('http://localhost:4000/api/contents')
-                    .then((response) => response.json())
-                    .then((response) => setAllContents(response))
-                    .catch((error) => console.log(error))
+                    getRequest("contents",setAllContents)
                 })
                 .catch(err => console.log(err.message))
         }
@@ -83,10 +78,7 @@ function FormContent() {
             .then(data => {
                 console.log(data.message)
                 notification(data.message,"delete")
-                fetch('http://localhost:4000/api/contents')
-                .then((response) => response.json())
-                .then((response) => setAllContents(response))
-                .catch((error) => console.log(error))
+                getRequest("contents",setAllContents)
             })
             .catch(err => console.log(err.message))
     }
@@ -97,7 +89,7 @@ function FormContent() {
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>A Propos</legend>
                     <ul className='width-100 flex direction-column medium-row-gap no-bullet'>
-                        {display?.map(value => 
+                        {!isLoading && allContents.map(value => 
                             <li className='flex justify-space small-column-gap' key={value._id}>
                                 {!value.edit
                                     ? <div className='width-100 flex justify-space'>
@@ -120,8 +112,8 @@ function FormContent() {
                                 className={styles["area-size"]}
                                 name="french"
                                 id="french"
-                                value={french}
-                                onChange={(e) => setFrench(e.target.value)}
+                                value={data.french}
+                                onChange={onChange}
                             >
                             </textarea>
                         </label>
@@ -131,8 +123,8 @@ function FormContent() {
                                 className={styles["area-size"]}
                                 name="english"
                                 id="english"
-                                value={english}
-                                onChange={(e) => setEnglish(e.target.value)}
+                                value={data.english}
+                                onChange={onChange}
                             >
                             </textarea>
                         </label>

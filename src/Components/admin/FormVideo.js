@@ -4,8 +4,8 @@ import { notification } from '../../utils/common'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
-    const [allProjects, setAllProjects] = useState(null)
     const [oneProject, setOneProject] = useState(null)
+    const [allProjects, setAllProjects] = useState(null)
 
     const handleAddVideo = function(e) {
         e.preventDefault()

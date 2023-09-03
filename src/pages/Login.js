@@ -1,11 +1,22 @@
+import styles from "../assets/styles/Form.module.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../assets/styles/Form.module.css"
+import { API_URL } from "../utils/constants";
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [credentials, setCrendentials] = useState({
+        email: '',
+        password: ''
+    })
     const navigate = useNavigate()
+
+    const onChange = function(e) {
+        e.preventDefault()
+        setCrendentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        }) 
+    }
 
     // const handleConnect= function(e){
 	// 	e.preventDefault()
@@ -34,21 +45,16 @@ function Login() {
 
     const handleLogin = function(e){
 		e.preventDefault()
-        let newUser = {
-            email: email,
-            password: password
-        }
         let requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newUser)
+            body: JSON.stringify(credentials)
         }
 
-        fetch('http://localhost:4000/api/auth/login', requestOptions)
+        fetch(`${API_URL}/api/auth/login`, requestOptions)
             .then(response => {
                 if(response.ok) {
-                    setEmail('')
-                    setPassword('')
+                    setCrendentials({email:'', password:''})
                 } 
                 return response.json()
             })
@@ -69,15 +75,15 @@ function Login() {
             <form onSubmit={handleLogin}>
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>Se Connecter</legend>
-                    <label htmlFor={email}>
+                    <label htmlFor="email">
                         <p>Adresse email</p>
                         <input
                             className={styles["input-style"]}
                             type="email"
                             name="email"
                             id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={credentials.email}
+                            onChange={onChange}
                         />
                     </label>
                     <label htmlFor="password">
@@ -87,8 +93,8 @@ function Login() {
                             type="password"
                             name="password"
                             id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={credentials.password}
+                            onChange={onChange}
                         />
                     </label>
                     <button type="submit" className="btn dark no-border">

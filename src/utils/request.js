@@ -8,3 +8,7 @@ export function getRequest(route, callback) {
         } )
         .catch((error) => console.log(error))
 }
+
+export function postRequest(route,requestOptions) {
+    return fetch(`${API_URL}/api/${route}`, requestOptions)
+}

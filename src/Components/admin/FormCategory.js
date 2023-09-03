@@ -1,55 +1,56 @@
 import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from 'react'
-import { API_URL } from '../../utils/constants'
 import { notification } from '../../utils/common'
 import EditCategory from './EditCategory'
+import { getRequest, postRequest } from '../../utils/request'
 
 function FormCategory() {
-    const [french, setFrench] = useState('')
-    const [english, setEnglish] = useState('')
-    const [color, setColor] = useState('')
-    const [allCategories, setAllCategories] = useState(null)
-    const [display, setDisplay] = useState(null)
+    const [data,setData] = useState({
+        french: '',
+        english: '',
+        color: ''
+    })
+    const [allCategories, setAllCategories] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    const onChange = function(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const callback = function(values) {
+        setAllCategories(values)
+        setIsLoading(false)
+    }
 
     useEffect(() => {
-		fetch('http://localhost:4000/api/categories')
-			.then((response) => response.json())
-			.then((response) => {
-                setAllCategories(response) 
-            })
-			.catch((error) => console.log(error))
+        getRequest("categories",callback)
     }, [])
-
-    useEffect(() => {
-        setDisplay(allCategories)
-    }, [allCategories])
 
     const handleAddCategory = function(e) {
         e.preventDefault()
-        if((french === "") || (english === "") || (color === "")) {
+        if((data.french === "") || (data.english === "") || (data.color === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            let newCategory = {
-                userId: localStorage.getItem("userId"),
-                french: french,
-                english: english,
-                color: color
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(data)
             }
-    
-            fetch(`${API_URL}/api/categories`,
-                {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify(newCategory)
-                })
+
+            postRequest("categories",requestOptions)
                 .then(response => {
                     if(response.ok) {
-                        setFrench('')
-                        setEnglish('')
-                        setColor('')
+                        setData({
+                            french: '',
+                            english: '',
+                            color: ''
+                        })
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -57,10 +58,7 @@ function FormCategory() {
                 .then(data => {
                     console.log(data.message)
                     notification(data.message,"post")
-                    fetch('http://localhost:4000/api/categories')
-                    .then((response) => response.json())
-                    .then((response) => setAllCategories(response))
-                    .catch((error) => console.log(error))
+                    getRequest("categories",setAllCategories)
                 })
                 .catch(err => console.log(err.message))
         }
@@ -101,7 +99,7 @@ function FormCategory() {
                     <legend className={styles.title}>Catégories</legend>
 
                     <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
-                        {display?.map(value => 
+                        {!isLoading && allCategories.map(value =>
                             <li className='width-100 flex justify-space medium-column-gap' key={value._id}>
                                 {!value.edit
                                     ? <div className='width-100 flex justify-space'>
@@ -127,8 +125,8 @@ function FormCategory() {
                                 className={styles["input-style"]}
                                 name="french"
                                 id="french"
-                                value={french}
-                                onChange={(e) => setFrench(e.target.value)}
+                                value={data.french}
+                                onChange={onChange}
                                 autoComplete='off'
                             />
                         </label>
@@ -139,8 +137,8 @@ function FormCategory() {
                                 className={styles["input-style"]}
                                 name="english"
                                 id="english"
-                                value={english}
-                                onChange={(e) => setEnglish(e.target.value)}
+                                value={data.english}
+                                onChange={onChange}
                                 autoComplete='off'
                             />
                         </label>
@@ -151,8 +149,8 @@ function FormCategory() {
                                 className={styles["input-style"]}
                                 name="color"
                                 id="color"
-                                value={color}
-                                onChange={(e) => setColor(e.target.value)}
+                                value={data.color}
+                                onChange={onChange}
                                 autoComplete='off'
                             />
                         </label>

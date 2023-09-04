@@ -69,9 +69,9 @@ function FormProject() {
                         ...values,
                         title: response.title,
                         tags: response.tags,
-                        content: response.content[0].text,
+                        content: response?.content[0].text,
                         link: response.link,
-                        language: response.content[0].language,
+                        language: response?.content[0].language,
                         category: response.category
                     }))
                     setProject(response)
@@ -119,7 +119,8 @@ function FormProject() {
         
         if (test.some(field => field === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
-        } else {           
+        } else {
+            // Insise modify a project loop
             if(select !== "") {
                 let newProject = {
                     userId: localStorage.getItem("token"),
@@ -130,29 +131,60 @@ function FormProject() {
                     language: data.language,
                     category:data.category
                 }
-                let putOptions = requestOptions("PUT",newProject)
+                // Case with a new image
+                if(image !== null) {
+                    let formData = new FormData()
+                    formData.append("project",JSON.stringify(newProject))
+                    formData.append("image",image)
+                    let postOptionsImage = requestOptions("PUT",formData,true)
 
-                fetchRequest(`projects/${select}`, putOptions)  
-                    .then(response => {
-                        if(response.ok) {
-                            cleanInput()
-                            setSelect('')
-                            setIsLoading(actualValues => ({
-                                ...actualValues,
-                                projectLoading: true,
-                                categoryLoading: true,
-                            }))
-                        } 
-                        return response.json()
-                    })
-                    .then(data => {
-                        document.querySelector('.form-message').innerHTML = ""
-                        console.log(data.message)
-                        notification(data.message,"put")
-                        getRequest("projects",callbackProject)
-                    })
-                    .catch(err => console.log(err.message))
+                    fetchRequest(`projects/${select}`, postOptionsImage)  
+                        .then(response => {
+                            if(response.ok) {
+                                cleanInput()
+                                setSelect('')
+                                setIsLoading(actualValues => ({
+                                    ...actualValues,
+                                    projectLoading: true,
+                                    categoryLoading: true,
+                                }))
+                            } 
+                            return response.json()
+                        })
+                        .then(response => {
+                            document.querySelector('.form-message').innerHTML = ""
+                            console.log(response.message)
+                            notification(response.message,"put")
+                            getRequest("projects",callbackProject)
+                        })
+                        .catch(err => console.log(err.message))
+                } else {         
+                    //Modify with no image
+                    let putOptions = requestOptions("PUT",newProject)
+
+                    fetchRequest(`projects/${select}`, putOptions)  
+                        .then(response => {
+                            if(response.ok) {
+                                cleanInput()
+                                setSelect('')
+                                setIsLoading(actualValues => ({
+                                    ...actualValues,
+                                    projectLoading: true,
+                                    categoryLoading: true,
+                                }))
+                            } 
+                            return response.json()
+                        })
+                        .then(response => {
+                            document.querySelector('.form-message').innerHTML = ""
+                            console.log(response.message)
+                            notification(response.message,"put")
+                            getRequest("projects",callbackProject)
+                        })
+                        .catch(err => console.log(err.message))
+                }
             } else {
+                //Inside a post request
                 if (test.some(field => field === null)) {
                     document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
                 } else {

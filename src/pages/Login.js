@@ -100,7 +100,7 @@ function Login() {
                         />
                     </label>
                     <p className="form-message color-red btn"></p>
-                    <button type="submit" className="btn dark no-border">
+                    <button type="submit" className="btn bg-dark no-border">
                         Se connecter
                     </button>
                 </fieldset>

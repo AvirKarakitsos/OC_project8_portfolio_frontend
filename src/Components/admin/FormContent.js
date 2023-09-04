@@ -2,7 +2,7 @@ import styles from '../../assets/styles/Form.module.css'
 import EditContent from './EditContent'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
-import { fetchRequest, getRequest } from '../../utils/request'
+import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function FormContent() {
     const [data,setData] = useState({
@@ -33,15 +33,8 @@ function FormContent() {
         if((data.french === "") || (data.english === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(data)
-            }
-            fetchRequest("contents",requestOptions)
+            let options = requestOptions("POST",data)
+            fetchRequest("contents",options)
                 .then(response => {
                     if(response.ok) {
                         setData( {french: '', english: ''} )
@@ -69,11 +62,7 @@ function FormContent() {
     }
 
     const handleDelete = function(id) {
-        fetch(`http://localhost:4000/api/contents/${id}`,
-            {
-                method: "DELETE",
-                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
-            })
+        fetchRequest(`contents/${id}`,deleteOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)

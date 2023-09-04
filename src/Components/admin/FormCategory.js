@@ -2,7 +2,7 @@ import styles from '../../assets/styles/Form.module.css'
 import EditCategory from './EditCategory'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
-import { getRequest, fetchRequest } from '../../utils/request'
+import { getRequest, fetchRequest, requestOptions, deleteOptions } from '../../utils/request'
 
 function FormCategory() {
     const [data,setData] = useState({
@@ -32,16 +32,8 @@ function FormCategory() {
         if((data.french === "") || (data.english === "") || (data.color === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(data)
-            }
-
-            fetchRequest("categories",requestOptions)
+            let options = requestOptions("POST", data) 
+            fetchRequest("categories",options)
                 .then(response => {
                     if(response.ok) {
                         setData( {french: '', english: '', color: ''} )
@@ -69,11 +61,7 @@ function FormCategory() {
     }
 
     const handleDelete = function(id) {
-        fetch(`http://localhost:4000/api/categories/${id}`,
-            {
-                method: "DELETE",
-                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
-            })
+        fetchRequest(`categories/${id}`,deleteOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)

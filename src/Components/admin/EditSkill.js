@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
 import { notification } from '../../utils/common'
-import { fetchRequest, getRequest } from '../../utils/request'
+import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function EditSkill({ skill, setAllSkills }) {
     const [skillEdit,setSkillEdit] = useState(skill.name)
@@ -12,23 +12,14 @@ function EditSkill({ skill, setAllSkills }) {
             name: skillEdit,
             category: skill.category
         }
+        let putOption = requestOptions("PUT",updateSkill)
 
-        let putOptions = {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(updateSkill)
-        }
-
-        fetchRequest(`skills/${skill._id}`,putOptions)
+        fetchRequest(`skills/${skill._id}`,putOption)
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)
                 notification(data.message,"put")
                 getRequest("skills",setAllSkills)
-                fetch('http://localhost:4000/api/skills')
             })
             .catch(err => console.log(err.message))
     }

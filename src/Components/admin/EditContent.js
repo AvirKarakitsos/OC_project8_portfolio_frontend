@@ -1,7 +1,7 @@
 import styles from '../../assets/styles/Form.module.css'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
-import { fetchRequest, getRequest } from '../../utils/request'
+import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function EditContent({ content, setAllContents }) {
     const [editData,setEditData] = useState({
@@ -17,16 +17,9 @@ function EditContent({ content, setAllContents }) {
     }
    
     const handleValidate = function() {
-        let requestOptions = {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(editData)
-        }
+        let putOption = requestOptions('PUT',editData)
 
-        fetchRequest(`contents/${content._id}`,requestOptions)
+        fetchRequest(`contents/${content._id}`,putOption)
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)

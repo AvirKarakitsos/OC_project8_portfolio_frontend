@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
-import { API_URL } from '../../utils/constants'
 import EditSkill from './EditSkill'
+import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
-import { deleteOptions, fetchRequest, getRequest } from '../../utils/request'
+import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function FormSkill() {
     const [data,setData] = useState({
@@ -44,15 +43,8 @@ function FormSkill() {
         if((data.name === "") || (data.category === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            fetch(`${API_URL}/api/skills`,
-                {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify(data)
-                })
+            let postOptions = requestOptions("POST",data)
+            fetchRequest("/api/skills",postOptions)
                 .then(response => {
                     if(response.ok) {
                         setData( {
@@ -60,6 +52,7 @@ function FormSkill() {
                             name: '', 
                             category: ''
                         })
+                        setIsLoading(true)
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -67,7 +60,7 @@ function FormSkill() {
                 .then(data => {
                     console.log(data.message)
                     notification(data.message,"post")
-                    getRequest("skills",setAllSkills)
+                    getRequest("skills",callback)
                 })
                 .catch(err => console.log(err.message))
         }
@@ -87,9 +80,10 @@ function FormSkill() {
         fetchRequest(`skills/${id}`, deleteOptions)
             .then(response => response.json())
             .then(data => {
+                setIsLoading(true)
                 console.log(data.message)
                 notification(data.message,"delete")
-                getRequest("skills",setAllSkills)
+                getRequest("skills",callback)
             })
             .catch(err => console.log(err.message))
     }

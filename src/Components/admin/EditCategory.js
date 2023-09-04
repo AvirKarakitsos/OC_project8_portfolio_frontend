@@ -1,7 +1,7 @@
 import styles from '../../assets/styles/Form.module.css'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
-import { getRequest, fetchRequest } from '../../utils/request'
+import { getRequest, fetchRequest, requestOptions } from '../../utils/request'
 
 function EditCategory({ category, setAllCategories }) {
     const [editData,setEditData] = useState({
@@ -21,15 +21,9 @@ function EditCategory({ category, setAllCategories }) {
         if((editData.french === "") || (editData.english === "") || (editData.color === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            let requestOptions = {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(editData)
-            }
-            fetchRequest(`categories/${category._id}`,requestOptions)
+            let putOption = requestOptions("PUT",editData)
+
+            fetchRequest(`categories/${category._id}`,putOption)
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('.form-message').innerHTML = ""

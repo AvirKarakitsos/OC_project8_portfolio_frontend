@@ -1,54 +1,60 @@
 import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/Form.module.css'
 import { notification } from '../../utils/common'
+import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
-    const [oneProject, setOneProject] = useState(null)
+    const [data, setData] = useState({
+        userId: localStorage.getItem("userId"),
+        projectId: ""
+    })
     const [allProjects, setAllProjects] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+
+    const onChange = function(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const handleAddVideo = function(e) {
         e.preventDefault()
-            if(!oneProject || !video ) {
+            if(data.projectId === ""  || !video ) {
                 document.querySelector('.form-message').innerHTML = "Veuillez compléter les champs"
             } else {
-            let newVideo = {
-                userId: localStorage.getItem("userId"),
-                projectId: oneProject
-            }
-
             let formData = new FormData()
-            formData.append("content",JSON.stringify(newVideo))
+            formData.append("content",JSON.stringify(data))
             formData.append("video",video)
 
-            fetch(`http://localhost:4000/api/videos`,
-            {
-                method: "POST",
-                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`},
-                body: formData
-            })
-            .then(response => {
-                if(response.ok) {
-                    setOneProject(null)
-                    setVideo(null)
-                    document.querySelector('.form-message').innerHTML = ""
-                } 
-                return response.json()
-            })
-            .then(data => {
-                console.log(data.message)
-                notification(data.message,"post")
-            })
-            .catch(err => console.log(err.message))
+            let postOptions = requestOptions("POST",formData,true)
+            fetchRequest("videos",postOptions)
+                .then(response => {
+                    if(response.ok) {
+                        setData({
+                            ...data,
+                            projectId: ""
+                        })
+                        setVideo(null)
+                        document.querySelector('.form-message').innerHTML = ""
+                    } 
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"post")
+                })
+                .catch(err => console.log(err.message))
         }
     } 
 
-    useEffect(() => {
-        fetch('http://localhost:4000/api/projects')
-        .then((response) => response.json())
-        .then((response) => setAllProjects(response))
-        .catch((error) => console.log(error))
-    },[])
+    const callback = function(data) {
+        setAllProjects(data)
+        setIsLoading(false)
+    }
+    
+    useEffect(() => getRequest("projects",callback), [])
 
     return(
         <div className="flex direction-column justify-center align-center">
@@ -64,16 +70,18 @@ function FormVideo() {
                             onChange={(e) => setVideo(e.target.files[0])}
                         />
                     </label>
-                    <label className={styles["label-style"]} htmlFor="project">
+                    <label className={styles["label-style"]} htmlFor="projectId">
                         Choisir un projet
                         <select 
-                            name="project"
-                            id="project" 
+                            name="projectId"
+                            id="projectId" 
                             className={styles["input-style"]}
-                            onChange={(e) => setOneProject(e.target.value)}
+                            onChange={onChange}
                         >
                         <option value=""></option>
-                            {allProjects?.map(project => <option value={project._id} key={project._id}>{project.title}</option>)}
+                            {!isLoading &&
+                                allProjects?.map(project => <option value={project._id} key={project._id}>{project.title}</option>)
+                            }
                         </select>
                     </label>
                     <p className="form-message color-red btn"></p>

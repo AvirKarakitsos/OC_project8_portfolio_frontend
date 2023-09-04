@@ -22,3 +22,26 @@ export const deleteOptions = {
     method: "DELETE",
     headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
 }
+
+export const requestOptions = function(method,body,option=false) {
+    let result = null
+    if(option) {
+        result = {
+            method: method,
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: body
+        }
+    } else {
+        result = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(body)
+        }
+    }
+    return result
+}

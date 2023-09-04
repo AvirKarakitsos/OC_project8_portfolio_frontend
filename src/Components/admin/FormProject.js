@@ -1,7 +1,7 @@
 import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
-import { deleteOptions, fetchRequest, getOptions, getRequest } from '../../utils/request'
+import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
 
 function FormProject() {
     const [projects, setProjects] = useState([])
@@ -130,14 +130,8 @@ function FormProject() {
                     language: data.language,
                     category:data.category
                 }
-                let putOptions = {
-                    method: "PUT",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify(newProject)
-                }
+                let putOptions = requestOptions("PUT",newProject)
+
                 fetchRequest(`projects/${select}`, putOptions)  
                     .then(response => {
                         if(response.ok) {
@@ -154,7 +148,7 @@ function FormProject() {
                     .then(data => {
                         console.log(data.message)
                         notification(data.message,"put")
-                        getRequest("projects",setProjects)
+                        getRequest("projects",callbackProject)
                     })
                     .catch(err => console.log(err.message))
             } else {
@@ -175,11 +169,7 @@ function FormProject() {
                     formData.append("project",JSON.stringify(newProject))
                     formData.append("image",image)
 
-                    let postOptions = {
-                        method: "POST",
-                        headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`},
-                        body: formData
-                    }
+                    let postOptions = requestOptions("POST",formData,true)
                     
                     fetchRequest("projects",postOptions)
                         .then(response => {
@@ -197,7 +187,7 @@ function FormProject() {
                         .then(data => {
                             console.log(data.message)
                             notification(data.message,"post")
-                            getRequest("projects",setProjects)
+                            getRequest("projects",callbackProject)
                         })
                         .catch(err => console.log(err.message))
                 }

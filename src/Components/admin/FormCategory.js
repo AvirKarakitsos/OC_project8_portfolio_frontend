@@ -25,9 +25,7 @@ function FormCategory() {
         setIsLoading(false)
     }
 
-    useEffect(() => {
-        getRequest("categories",callback)
-    }, [])
+    useEffect(() => getRequest("categories",callback), [])
 
     const handleAddCategory = function(e) {
         e.preventDefault()

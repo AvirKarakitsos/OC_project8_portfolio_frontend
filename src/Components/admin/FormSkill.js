@@ -3,43 +3,47 @@ import styles from '../../assets/styles/Form.module.css'
 import { API_URL } from '../../utils/constants'
 import EditSkill from './EditSkill'
 import { notification } from '../../utils/common'
+import { deleteOptions, fetchRequest, getRequest } from '../../utils/request'
 
 function FormSkill() {
-    const [name, setName] = useState('')
-    const [category, setCategory] = useState('')
-    const [all, setAll] = useState(null)
+    const [data,setData] = useState({
+        userId: localStorage.getItem("userId"),
+        name: '',
+        category: '',
+    })
+    const [allSkills, setAllSkills] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
     const allCategories = ["client","server","tool"]
 
     const [client, setClient] = useState(null)
     const [server, setServer] = useState(null)
     const [tool, setTool] = useState(null)
 
-    useEffect(() => {
-		fetch('http://localhost:4000/api/skills')
-			.then((response) => response.json())
-			.then((response) => {
-                setAll(response) 
-            })
-			.catch((error) => console.log(error))
-    }, [])
+    const onChange = function(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const callback = function(values) {
+        setAllSkills(values)
+        setIsLoading(false)
+    }
+
+    useEffect(() => getRequest("skills",callback), [])
 
     useEffect(() => {
-        setClient(all?.filter(value => value.category === "client"))
-        setServer(all?.filter(value => value.category === "server"))
-        setTool(all?.filter(value => value.category === "tool"))
-    }, [all])
+        setClient(allSkills?.filter(value => value.category === "client"))
+        setServer(allSkills?.filter(value => value.category === "server"))
+        setTool(allSkills?.filter(value => value.category === "tool"))
+    }, [allSkills])
 
     const handleAddSkill = function(e) {
         e.preventDefault()
-        if((name === "") || (category === "")) {
+        if((data.name === "") || (data.category === "")) {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
-            let newSkill = {
-                userId: localStorage.getItem("userId"),
-                name: name,
-                category: category
-            }
-    
             fetch(`${API_URL}/api/skills`,
                 {
                     method: "POST",
@@ -47,12 +51,15 @@ function FormSkill() {
                         'Content-Type': 'application/json',
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
                     },
-                    body: JSON.stringify(newSkill)
+                    body: JSON.stringify(data)
                 })
                 .then(response => {
                     if(response.ok) {
-                        setName('')
-                        setCategory('')
+                        setData( {
+                            ...data,
+                            name: '', 
+                            category: ''
+                        })
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
@@ -60,39 +67,29 @@ function FormSkill() {
                 .then(data => {
                     console.log(data.message)
                     notification(data.message,"post")
-                    fetch('http://localhost:4000/api/skills')
-                    .then((response) => response.json())
-                    .then((response) => setAll(response))
-                    .catch((error) => console.log(error))
+                    getRequest("skills",setAllSkills)
                 })
                 .catch(err => console.log(err.message))
         }
     }
 
     const handleEdit = function(id) {
-        let copy = [...all]
+        let copy = [...allSkills]
         copy.forEach(skill => {
             if(skill._id === id) {
                 skill.edit = true
-                setAll(copy)
+                setAllSkills(copy)
             }
         })
     }
 
     const handleDelete = function(id) {
-        fetch(`http://localhost:4000/api/skills/${id}`,
-            {
-                method: "DELETE",
-                headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
-            })
+        fetchRequest(`skills/${id}`, deleteOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.message)
                 notification(data.message,"delete")
-                fetch('http://localhost:4000/api/skills')
-                .then((response) => response.json())
-                .then((response) => setAll(response))
-                .catch((error) => console.log(error))
+                getRequest("skills",setAllSkills)
             })
             .catch(err => console.log(err.message))
     }
@@ -106,11 +103,11 @@ function FormSkill() {
                         <div>
                             <p className={styles.subtitle}>Client</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
-                                {client?.map(value => 
+                                {!isLoading && client?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
-                                            : <EditSkill skill={value} setAll={setAll}/>
+                                            : <EditSkill skill={value} setAllSkills={setAllSkills}/>
                                         }
                                         <div className='flex aling-center tiny-column-gap'>
                                             <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -123,11 +120,11 @@ function FormSkill() {
                         <div>
                             <p className={styles.subtitle}>Serveur</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
-                                {server?.map(value => 
+                                {!isLoading && server?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
-                                            : <EditSkill skill={value} setAll={setAll}/>
+                                            : <EditSkill skill={value} setAllSkills={setAllSkills}/>
                                         }
                                         <div className='flex aling-center tiny-column-gap'>
                                             <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -140,11 +137,11 @@ function FormSkill() {
                         <div>
                             <p className={styles.subtitle}>Outils</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
-                                {tool?.map(value => 
+                                {!isLoading && tool?.map(value => 
                                     <li className='flex justify-space' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
-                                            : <EditSkill skill={value} setAll={setAll}/>
+                                            : <EditSkill skill={value} setAllSkills={setAllSkills}/>
                                         }
                                         <div className='flex aling-center tiny-column-gap'>
                                             <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -161,19 +158,19 @@ function FormSkill() {
                             className={styles["input-style"]}
                             name="name"
                             id="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={data.name}
+                            onChange={onChange}
                             autoComplete='off'
                         />
                         <select 
                             name="category" 
                             id="category" 
                             className={styles["input-style"]}
-                            onChange={(e) => setCategory(e.target.value)}
+                            onChange={onChange}
                         >
-                            <option value={category}>{category}</option>
+                            <option value={data.category}>{data.category}</option>
                             {allCategories.map((element,index) => {
-                                if (element !== category) {
+                                if (element !== data.category) {
                                     return <option key={index} value={element}>{element}</option>
                                 }
                                 return ''

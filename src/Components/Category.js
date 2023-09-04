@@ -1,10 +1,8 @@
 import { useContext } from "react"
 import { LanguageContext } from '../utils/context/LanguageContext'
-import { ThemeContext } from "../utils/context/ThemeContext"
 
 function Category({ category, handleFilter }) {
 	const { lang } = useContext(LanguageContext)
-    const { theme } = useContext(ThemeContext)
     
     return(
         <li data-tag={category.key} className='list-filter' onClick={() => handleFilter(category.key)}>

@@ -39,10 +39,7 @@ function FormVideo() {
             let options = null
             if(project.length !== 0) {
                 options = requestOptions("PUT",formData,true)
-            } else {
-                options = requestOptions("POST",formData,true)
-            }
-            fetchRequest("videos",options)
+                fetchRequest(`videos/${data.projectId}`,options)
                 .then(response => {
                     if(response.ok) {
                         setData({
@@ -56,32 +53,48 @@ function FormVideo() {
                 })
                 .then(data => {
                     console.log(data.message)
-                    if(project.length !== 0) {
-                        notification(data.message,"put")
-                    } else {
-                        notification(data.message,"post")
-                    }
+                    notification(data.message,"put") 
                 })
                 .catch(err => console.log(err.message))
+            } else {
+                options = requestOptions("POST",formData,true)
+                fetchRequest("videos",options)
+                    .then(response => {
+                        if(response.ok) {
+                            setData({
+                                ...data,
+                                projectId: ""
+                            })
+                            setVideo(null)
+                            document.querySelector('.form-message').innerHTML = ""
+                        } 
+                        return response.json()
+                    })
+                    .then(data => {
+                        console.log(data.message)
+                        notification(data.message,"post")
+                    })
+                    .catch(err => console.log(err.message))
+            }
         }
     } 
 
     const handleDelete = function() {
         fetchRequest(`videos/${data.projectId}`,deleteOptions)
-        .then(response => {
-                    if(response.ok) {
-                        setData({
-                            ...data,
-                            projectId:""
-                        })
-                    } 
-                    return response.json()
-                })
-                .then(data => {
-                    console.log(data.message)
-                    notification(data.message,"delete")
-                })
-                .catch(err => console.log(err.message)) 
+            .then(response => {
+                if(response.ok) {
+                    setData({
+                        ...data,
+                        projectId:""
+                    })
+                } 
+                return response.json()
+            })
+            .then(data => {
+                console.log(data.message)
+                notification(data.message,"delete")
+            })
+            .catch(err => console.log(err.message)) 
     }
 
     return(
@@ -116,7 +129,7 @@ function FormVideo() {
                     {project.length !== 0
                         ? <div className='flex justify-center small-column-gap'>
                             <button type="submit" className="btn bg-green no-border">Modifier</button>
-                            <button className="btn bg-red no-border" onClick={handleDelete}>Supprimer</button>
+                            <div className="btn bg-red no-border" onClick={handleDelete}>Supprimer</div>
                         </div>
                         : <button type="submit" className="btn bg-blue no-border">Ajouter</button>
                     }

@@ -5,6 +5,7 @@ import { getRequest, fetchRequest, requestOptions } from '../../utils/request'
 
 function EditCategory({ category, setAllCategories }) {
     const [editData,setEditData] = useState({
+        userId: localStorage.getItem("token"),
         french: category.french,
         english: category.english,
         color: category.color

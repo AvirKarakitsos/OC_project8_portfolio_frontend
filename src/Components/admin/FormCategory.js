@@ -6,6 +6,7 @@ import { getRequest, fetchRequest, requestOptions, deleteOptions } from '../../u
 
 function FormCategory() {
     const [data,setData] = useState({
+        userId: localStorage.getItem('token'),
         french: '',
         english: '',
         color: ''
@@ -36,7 +37,12 @@ function FormCategory() {
             fetchRequest("categories",options)
                 .then(response => {
                     if(response.ok) {
-                        setData( {french: '', english: '', color: ''} )
+                        setData( values => ( {
+                            ...values,
+                            french: '',
+                            english: '',
+                            color: ''
+                        } ))
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()

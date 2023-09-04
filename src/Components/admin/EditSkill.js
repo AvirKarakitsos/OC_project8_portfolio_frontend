@@ -7,21 +7,25 @@ function EditSkill({ skill, setAllSkills }) {
     const [skillEdit,setSkillEdit] = useState(skill.name)
 
     const handleValidate = function() {
-        let updateSkill = {
-            userId: localStorage.getItem('userId'),
-            name: skillEdit,
-            category: skill.category
-        }
-        let putOption = requestOptions("PUT",updateSkill)
+        if(skillEdit === "") {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter le champ compétence"
+        } else {
+            let updateSkill = {
+                userId: localStorage.getItem('userId'),
+                name: skillEdit,
+                category: skill.category
+            }
+            let putOption = requestOptions("PUT",updateSkill)
 
-        fetchRequest(`skills/${skill._id}`,putOption)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.message)
-                notification(data.message,"put")
-                getRequest("skills",setAllSkills)
-            })
-            .catch(err => console.log(err.message))
+            fetchRequest(`skills/${skill._id}`,putOption)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"put")
+                    getRequest("skills",setAllSkills)
+                })
+                .catch(err => console.log(err.message))
+        }
     }
 
     return (

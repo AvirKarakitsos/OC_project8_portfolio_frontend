@@ -6,6 +6,7 @@ import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../u
 
 function FormContent() {
     const [data,setData] = useState({
+        userId: localStorage.getItem('token'),
         french: '',
         english: '',
     })
@@ -37,7 +38,11 @@ function FormContent() {
             fetchRequest("contents",options)
                 .then(response => {
                     if(response.ok) {
-                        setData( {french: '', english: ''} )
+                        setData( values => ( {
+                            ...values,
+                            french: '',
+                            english: ''
+                        } ))
                         document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()

@@ -1,7 +1,7 @@
 import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
-import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
+import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
@@ -19,7 +19,6 @@ function FormVideo() {
             [e.target.name]: e.target.value
         })
         getRequest(`projects/${e.target.value}/video`,setProject)
-        console.log(project.length)
     }
 
     const callback = function(data) {
@@ -31,15 +30,19 @@ function FormVideo() {
     
     const handleAddVideo = function(e) {
         e.preventDefault()
-            if(data.projectId === ""  || !video ) {
-                document.querySelector('.form-message').innerHTML = "Veuillez compléter les champs"
-            } else {
+        if(data.projectId === ""  || !video ) {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter les champs"
+        } else {
             let formData = new FormData()
             formData.append("content",JSON.stringify(data))
             formData.append("video",video)
-
-            let postOptions = requestOptions("POST",formData,true)
-            fetchRequest("videos",postOptions)
+            let options = null
+            if(project.length !== 0) {
+                options = requestOptions("PUT",formData,true)
+            } else {
+                options = requestOptions("POST",formData,true)
+            }
+            fetchRequest("videos",options)
                 .then(response => {
                     if(response.ok) {
                         setData({
@@ -53,12 +56,33 @@ function FormVideo() {
                 })
                 .then(data => {
                     console.log(data.message)
-                    notification(data.message,"post")
+                    if(project.length !== 0) {
+                        notification(data.message,"put")
+                    } else {
+                        notification(data.message,"post")
+                    }
                 })
                 .catch(err => console.log(err.message))
         }
     } 
 
+    const handleDelete = function() {
+        fetchRequest(`videos/${data.projectId}`,deleteOptions)
+        .then(response => {
+                    if(response.ok) {
+                        setData({
+                            ...data,
+                            projectId:""
+                        })
+                    } 
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data.message)
+                    notification(data.message,"delete")
+                })
+                .catch(err => console.log(err.message)) 
+    }
 
     return(
         <div className="flex direction-column justify-center align-center">
@@ -84,12 +108,18 @@ function FormVideo() {
                         >
                         <option value=""></option>
                             {!isLoading &&
-                                allProjects?.map(project => <option value={project._id} key={project._id}>{project.title}</option>)
+                                allProjects?.map(input => <option value={input._id} key={input._id}>{input.title}</option>)
                             }
                         </select>
                     </label>
                     <p className="form-message color-red btn"></p>
-                    <button type="submit" className= "btn bg-blue no-border">Ajouter</button>
+                    {project.length !== 0
+                        ? <div className='flex justify-center small-column-gap'>
+                            <button type="submit" className="btn bg-green no-border">Modifier</button>
+                            <button className="btn bg-red no-border" onClick={handleDelete}>Supprimer</button>
+                        </div>
+                        : <button type="submit" className="btn bg-blue no-border">Ajouter</button>
+                    }
                 </fieldset>
             </form>
         </div>

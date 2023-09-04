@@ -43,20 +43,21 @@ function Header() {
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>
-					<li className={`flex btn-2 size-32 ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}>FR</li>
-					<li className={`flex btn-2 size-32 ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}>EN</li>
+					<li className={`${styles["list-lang"]} ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}><button className="no-border">FR</button></li>
+					<li className={`${styles["list-lang"]} ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}><button className="no-border">EN</button></li>
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"
-						? <li className="flex align-center tiny-column-gap btn bg-dark" onClick={() => toggleTheme("dark")}><i className="fa-regular fa-moon color-white"></i>{translate(lang).header.mode}</li>
-						: <li className="flex align-center tiny-column-gap btn bg-light-1 color-black" onClick={() => toggleTheme("light")}><i className="fa-solid fa-sun color-black"></i>{translate(lang).header.mode}</li>
+						? <li><button  onClick={() => toggleTheme("dark")} className="no-border flex align-center tiny-column-gap btn bg-dark font-size-normal"><i className="fa-regular fa-moon color-white"></i>{translate(lang).header.mode}</button></li>
+						: <li><button onClick={() => toggleTheme("light")}  className="no-border flex align-center tiny-column-gap btn bg-light-1 color-black font-size-normal"><i className="fa-solid fa-sun color-black"></i>{translate(lang).header.mode}</button></li>
 					}
-				
-					<li 
-						className='display-dynamic size-32 flex justify-center align-center border-cercle border-bottom-grey'
-						onClick={handleSidebar}
-					>
-						<i className="fa-solid fa-bars"></i>
+					<li>
+						<button
+							className='no-border display-dynamic size-32 flex justify-center align-center border-cercle bg-dark'
+							onClick={handleSidebar}
+						>
+							<i className="fa-solid fa-bars"></i>
+						</button>
 					</li>
 				</ul>
 			</nav>

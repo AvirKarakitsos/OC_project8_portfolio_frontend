@@ -112,6 +112,15 @@
     cursor: default;
 }
 
+.project-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 15px;
+    list-style-type: none;
+    cursor: default;
+}
 @media screen and (max-width: 1024px) {
     .div-right {
         height: 328px;

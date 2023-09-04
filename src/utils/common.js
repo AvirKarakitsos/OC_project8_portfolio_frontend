@@ -39,12 +39,12 @@ export function notification(value,method){
 }
 
 export function changeColor(tag) {
-    document.querySelectorAll(".btn-filter").forEach(btn => {
-        btn.classList = ""
+    document.querySelectorAll(".list-filter").forEach(btn => {
+        btn.children[0].classList = ""
         if(btn.dataset.tag === tag) {
-            btn.classList.add("btn-filter", "btn", "bg-green")
+            btn.children[0].classList.add("btn-filter", "btn", "no-border", "bg-green")
         } else {
-            btn.classList.add("btn-filter", "btn", "bg-green-opacity")
+            btn.children[0].classList.add("btn-filter", "btn", "no-border", "bg-green-opacity")
         }
     })
 }

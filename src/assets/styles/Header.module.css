@@ -11,6 +11,11 @@
     border-bottom: 1px solid var(--opacity-grey);
     z-index: 30;
 }
+.list-lang {
+    height: 100%;
+    width: 35px;
+    padding-top: 10px;
+}
 
 @media screen and (max-width: 750px) {
     .header {
@@ -19,7 +24,7 @@
 
     .anchor {
         position: absolute;
-        top: 54px;
+        top: 52px;
         right: -10px;
         transform: translateX(100%);
         transition: transform 1000ms;

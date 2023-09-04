@@ -84,8 +84,14 @@ function Home() {
 
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">Mes projets</h2>
-					<ul className="flex align-center justify-center medium-column-gap no-bullet cursor-default">
-						<li data-tag="all" className='btn-filter btn bg-green' onClick={() => handleFilter("all")}>{translate(lang).main.projects.all}</li>
+					<ul className={styles["project-filter"]}>
+						<li 
+							data-tag="all" 
+							className="list-filter" 
+							onClick={() => handleFilter("all")}
+							>
+							<button className="btn-filter btn bg-green no-border">{translate(lang).main.projects.all}</button>
+						</li>
 						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} key={category._id}/>) }
 					</ul>
 				</section>

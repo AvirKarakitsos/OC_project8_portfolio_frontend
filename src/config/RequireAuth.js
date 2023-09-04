@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom"
 import Error from "../pages/Error"
+import { Outlet } from "react-router-dom"
 
 function RequireAuth() {
     let user = localStorage.getItem("userId")

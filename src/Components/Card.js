@@ -1,4 +1,3 @@
-
 import styles from '../assets/styles/Card.module.css'
 import Collapse from './Collapse'
 import { useContext, useEffect, useState } from 'react';

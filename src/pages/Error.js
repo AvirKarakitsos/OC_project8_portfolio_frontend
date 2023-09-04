@@ -1,4 +1,3 @@
-
 function Error() {
     return (
         <div className="h-100vh flex direction-column justify-center align-center large-row-gap">

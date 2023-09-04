@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import styles from "../../assets/styles/Layout.module.css"
 import Footer from "../Footer";
 import Header from "../Header";
 import { ThemeContext } from "../../utils/context/ThemeContext";
+import { useContext } from "react";
 
 function Layout({children}) {
     const {theme} = useContext(ThemeContext)

@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { Link, useNavigate } from 'react-router-dom'
+import styles from '../assets/styles/Form.module.css'
 import FormSkill from '../Components/admin/FormSkill'
 import FormProject from '../Components/admin/FormProject'
-import styles from '../assets/styles/Form.module.css'
 import FormVideo from '../Components/admin/FormVideo'
 import FormContent from '../Components/admin/FormContent'
 import FormCategory from '../Components/admin/FormCategory'
+import { useState } from "react"
+import { Link, useNavigate } from 'react-router-dom'
 
 function Admin() {
     const [select, setSelect] = useState("project")

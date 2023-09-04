@@ -1,7 +1,7 @@
 import styles from "../assets/styles/Form.module.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../utils/constants";
+import { fetchRequest, requestOptions } from "../utils/request";
 
 function Login() {
     const [credentials, setCrendentials] = useState({
@@ -45,25 +45,21 @@ function Login() {
 
     const handleLogin = function(e){
 		e.preventDefault()
-        let requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(credentials)
-        }
+        let postOption = requestOptions("POST",credentials) 
 
-        fetch(`${API_URL}/api/auth/login`, requestOptions)
+        fetchRequest("auth/login",postOption)
             .then(response => {
                 if(response.ok) {
                     setCrendentials({email:'', password:''})
                 } 
                 return response.json()
             })
-            .then(data => {
-                if (!data?.token) {
+            .then(response => {
+                if (!response?.token) {
                     console.log("error connection")
                 } else {
-                    localStorage.setItem("token", data.token)
-                    localStorage.setItem("userId", data.userId)
+                    localStorage.setItem("token", response.token)
+                    localStorage.setItem("userId", response.userId)
                     navigate('/admin')
                 }
             })

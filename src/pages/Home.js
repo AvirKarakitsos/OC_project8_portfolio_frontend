@@ -10,13 +10,13 @@ import Card from '../Components/Card'
 import Modal from '../Components/Modal'
 import Skills from '../Components/Skills'
 import About from '../Components/About'
+import Category from '../Components/Category'
 
 import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { changeColor, translate } from '../utils/common'
 import { getRequest } from '../utils/request'
-import Category from '../Components/Category'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)

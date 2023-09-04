@@ -12,13 +12,15 @@ function Modal({modal, setModal}) {
                 let modalContainer = document.getElementById("modal")
                 modalContainer.showModal()
                 modalContainer.addEventListener("mousedown", () => {
+                    document.querySelector(`.${styles.video}`).pause()
                     modalContainer.close()
+                    setModal('')
                 })
                 document.querySelector(".modal-container").addEventListener("mousedown", (event) => event.stopPropagation())
             }
             getRequest(`projects/${modal}/video`,option)
         }
-    },[modal])
+    },[modal,setModal])
 
     return(
         <dialog id="modal" className={styles.modal}>

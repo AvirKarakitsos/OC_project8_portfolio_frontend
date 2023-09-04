@@ -8,7 +8,6 @@ function Footer() {
 	const {lang} = useContext(LanguageContext)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
-    //Assign the good strings depending on the viewport
     useEffect(() => {
         window.addEventListener("resize",()=> {
             setWindowWidth(window.innerWidth)

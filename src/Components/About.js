@@ -10,9 +10,7 @@ function About() {
     const { lang } = useContext(LanguageContext)
     const [ allContent, setAllContent] = useState(null)
     
-    useEffect(() => {
-        getRequest('contents',setAllContent)
-    },[])
+    useEffect(() => getRequest('contents',setAllContent), [])
     
     return(
         <section id='about-me' className="section-1">

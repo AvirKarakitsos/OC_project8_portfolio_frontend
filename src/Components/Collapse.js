@@ -8,7 +8,6 @@ function Collapse({project, content}) {
     //Animation for the collapse
     function handleShow(id) {
         let article= document.getElementById(`article${id}`)
-        //let number = content[0].length
         let arrow = document.querySelector(`.arrow${id}`)
         let container = document.querySelector(`.content${id}`)
         
@@ -18,7 +17,6 @@ function Collapse({project, content}) {
             arrow.style.transform = "rotate(-180deg)" 
             arrow.style.transition = "transform 1250ms" 
             container.style.transform = "translateY(0)"; 
-            //( ((number > 3) && (number < 10)) || (number > 250) ) ? container.style.height = "160px" : container.style.height = "90px"
             container.style.height = "180px"
             article.style.height = "520px"
         } else {

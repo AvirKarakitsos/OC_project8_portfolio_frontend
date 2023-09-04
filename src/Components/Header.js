@@ -1,6 +1,6 @@
+import styles from '../assets/styles/Header.module.css'
 import logo1 from '../assets/images/logo-light.png'
 import logo2 from '../assets/images/logo-dark.png'
-import styles from '../assets/styles/Header.module.css'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { useNavigate } from 'react-router-dom'

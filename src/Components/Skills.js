@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
+import { getRequest } from '../utils/request'
 
 function Skills() {
     const {theme} = useContext(ThemeContext)
@@ -13,12 +14,7 @@ function Skills() {
     const [server, setServer] = useState(null)
     const [tool, setTool] = useState(null)
 
-    useEffect(() => {
-		fetch('http://localhost:4000/api/skills')
-        .then((response) => response.json())
-        .then((response) => setSkills(response))
-        .catch((error) => console.log(error))
-	}, [])
+    useEffect(() => getRequest("skills",setSkills), [])
 
      useEffect(() => {
         setClient(skills?.filter(value => value.category === "client"))

@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react"
 import styles from '../assets/styles/Modal.module.css'
-import { API_URL } from "../utils/constants"
+import { useEffect, useState } from "react"
+import { getRequest } from "../utils/request"
 
 function Modal({modal, setModal}) {
     const [video, setVideo] = useState([])
 
     useEffect(()=> {
         if(modal !== "") {
-            fetch(`${API_URL}/api/projects/${modal}/video`)
-            .then((response) => response.json())
-            .then((response) => {
-                setVideo(response)
+            let option = function(values) {
+                setVideo(values)
                 let modalContainer = document.getElementById("modal")
                 modalContainer.showModal()
                 modalContainer.addEventListener("mousedown", () => {
                     modalContainer.close()
-                    setModal("")
                 })
                 document.querySelector(".modal-container").addEventListener("mousedown", (event) => event.stopPropagation())
-        })    
-        .catch((error) => console.log(error))
+            }
+            getRequest(`projects/${modal}/video`,option)
         }
-    },[modal, setModal])
+    },[modal])
 
     return(
         <dialog id="modal" className={styles.modal}>

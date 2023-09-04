@@ -1,11 +1,11 @@
 
 import styles from '../assets/styles/Card.module.css'
+import Collapse from './Collapse'
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
-import { API_URL } from '../utils/constants'
+import { getRequest } from '../utils/request';
 
-import Collapse from './Collapse'
 
 function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
@@ -16,16 +16,12 @@ function Card({project, setModal}) {
     const [isLoading, setIsLoading] = useState(true)
 
     const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
+    const callback = function(values) {
+        setCategory(values)
+        setIsLoading(false)
+    }
     
-    useEffect(() => {
-        fetch(`${API_URL}/api/projects/${project._id}/category`)
-        .then((response) => response.json())
-        .then((response) => {
-            setCategory(response)
-            setIsLoading(false)
-        })
-        .catch((error) => console.log(error))
-    },[project])
+    useEffect(() => getRequest(`projects/${project._id}/category`,callback),[project])
 
     useEffect(() => {
        setContent(project.content.filter(input => input.language === lang))

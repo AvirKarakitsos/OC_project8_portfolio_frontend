@@ -5,6 +5,7 @@ import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
+    const [project, setProject] = useState([])
     const [data, setData] = useState({
         userId: localStorage.getItem("userId"),
         projectId: ""
@@ -17,8 +18,17 @@ function FormVideo() {
             ...data,
             [e.target.name]: e.target.value
         })
+        getRequest(`projects/${e.target.value}/video`,setProject)
+        console.log(project.length)
     }
 
+    const callback = function(data) {
+        setAllProjects(data)
+        setIsLoading(false)
+    }
+    
+    useEffect(() => getRequest("projects",callback), [])
+    
     const handleAddVideo = function(e) {
         e.preventDefault()
             if(data.projectId === ""  || !video ) {
@@ -49,12 +59,6 @@ function FormVideo() {
         }
     } 
 
-    const callback = function(data) {
-        setAllProjects(data)
-        setIsLoading(false)
-    }
-    
-    useEffect(() => getRequest("projects",callback), [])
 
     return(
         <div className="flex direction-column justify-center align-center">

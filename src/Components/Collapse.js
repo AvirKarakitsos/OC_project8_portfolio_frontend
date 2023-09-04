@@ -30,9 +30,9 @@ function Collapse({project, content}) {
 
     return (
         <div className={styles.bar}>     
-            <div className={`border-grey ${styles.title} ${theme === "light" ? "bg-light-1" : "bg-darker-1"}`} onClick={() => handleShow(project._id)}>
+            <button className={`border-grey ${styles.title} ${theme === "light" ? "bg-light-1" : "bg-darker-1"}`} onClick={() => handleShow(project._id)}>
                 <i className={"fa-solid fa-chevron-up arrow"+project._id}></i>
-            </div>
+            </button>
             <div className={`content${project._id} ${styles.content} ${theme === "light" ? "" : "color-white"}`}>
                 <p className={`${styles.text}`}>{content[0]?.text}</p>
             </div>

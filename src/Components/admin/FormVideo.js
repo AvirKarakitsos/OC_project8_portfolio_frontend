@@ -47,11 +47,11 @@ function FormVideo() {
                             projectId: ""
                         })
                         setVideo(null)
-                        document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
                 })
                 .then(data => {
+                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put") 
                 })
@@ -66,13 +66,13 @@ function FormVideo() {
                                 projectId: ""
                             })
                             setVideo(null)
-                            document.querySelector('.form-message').innerHTML = ""
                         } 
                         return response.json()
                     })
-                    .then(data => {
-                        console.log(data.message)
-                        notification(data.message,"post")
+                    .then(response => {
+                        document.querySelector('.form-message').innerHTML = ""
+                        console.log(response.message)
+                        notification(response.message,"post")
                     })
                     .catch(err => console.log(err.message))
             }

@@ -45,6 +45,10 @@ function Login() {
 
     const handleLogin = function(e){
 		e.preventDefault()
+        if((credentials.email === "") || (credentials.password === "")) {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+        } else {
+        
         let postOption = requestOptions("POST",credentials) 
 
         fetchRequest("auth/login",postOption)
@@ -58,12 +62,14 @@ function Login() {
                 if (!response?.token) {
                     console.log("error connection")
                 } else {
+                    document.querySelector('.form-message').innerHTML = ""
                     localStorage.setItem("token", response.token)
                     localStorage.setItem("userId", response.userId)
                     navigate('/admin')
                 }
             })
             .catch(err => console.log(err.message))
+        }
     }
 
     return (
@@ -93,6 +99,7 @@ function Login() {
                             onChange={onChange}
                         />
                     </label>
+                    <p className="form-message color-red btn"></p>
                     <button type="submit" className="btn dark no-border">
                         Se connecter
                     </button>

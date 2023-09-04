@@ -53,13 +53,13 @@ function FormSkill() {
                             category: ''
                         })
                         setIsLoading(true)
-                        document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
                 })
-                .then(data => {
-                    console.log(data.message)
-                    notification(data.message,"post")
+                .then(response => {
+                    document.querySelector('.form-message').innerHTML = ""
+                    console.log(response.message)
+                    notification(response.message,"post")
                     getRequest("skills",callback)
                 })
                 .catch(err => console.log(err.message))

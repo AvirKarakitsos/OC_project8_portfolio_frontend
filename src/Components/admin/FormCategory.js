@@ -43,13 +43,13 @@ function FormCategory() {
                             english: '',
                             color: ''
                         } ))
-                        document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
                 })
-                .then(data => {
-                    console.log(data.message)
-                    notification(data.message,"post")
+                .then(response => {
+                    document.querySelector('.form-message').innerHTML = ""
+                    console.log(response.message)
+                    notification(response.message,"post")
                     getRequest("categories",setAllCategories)
                 })
                 .catch(err => console.log(err.message))

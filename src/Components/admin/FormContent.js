@@ -43,11 +43,11 @@ function FormContent() {
                             french: '',
                             english: ''
                         } ))
-                        document.querySelector('.form-message').innerHTML = ""
                     } 
                     return response.json()
                 })
                 .then(data => {
+                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"post")
                     getRequest("contents",setAllContents)

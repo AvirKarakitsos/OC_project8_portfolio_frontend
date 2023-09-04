@@ -26,6 +26,7 @@ function EditContent({ content, setAllContents }) {
             fetchRequest(`contents/${content._id}`,putOption)
                 .then(response => response.json())
                 .then(data => {
+                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put")
                     getRequest("contents",setAllContents)

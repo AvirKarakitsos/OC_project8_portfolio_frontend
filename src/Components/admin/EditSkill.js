@@ -20,6 +20,7 @@ function EditSkill({ skill, setAllSkills }) {
             fetchRequest(`skills/${skill._id}`,putOption)
                 .then(response => response.json())
                 .then(data => {
+                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put")
                     getRequest("skills",setAllSkills)

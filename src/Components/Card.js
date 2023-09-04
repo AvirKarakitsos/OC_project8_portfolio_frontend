@@ -1,6 +1,6 @@
 
-import { useContext, useEffect, useState } from 'react';
 import styles from '../assets/styles/Card.module.css'
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { API_URL } from '../utils/constants'

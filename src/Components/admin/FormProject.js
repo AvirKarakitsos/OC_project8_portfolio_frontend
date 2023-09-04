@@ -50,8 +50,8 @@ function FormProject() {
             tags: '',
             content: '',
             link: '',
-            language: '',
-            category: ''
+            category: '',
+            language: ''
         }))
         setImage(null)
     }
@@ -115,43 +115,52 @@ function FormProject() {
     const handleAddProject = function(e) {
         e.preventDefault()
         
-    //     let test = [data.title,data.tags,data.content,data.link,image,data.language,data.category]
+        let test = [data.title,data.tags,data.content,data.link,image,data.language,data.category]
         
-    //     if (test.some(field => field === "")) {
-    //         document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
-    //     } else {           
-    //         if(select !== "") {
-    //             let putOptions = {
-    //                 method: "PUT",
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     "Authorization": `Bearer ${localStorage.getItem("token")}`
-    //                 },
-    //                 body: JSON.stringify(data)
-    //             }
-    //             fetchRequest(`projects/${select}`, putOptions)  
-    //                 .then(response => {
-    //                     if(response.ok) {
-    //                         cleanInput()
-    //                         setSelect('')
-    //                         setIsLoading(actualValues => ({
-    //                             ...actualValues,
-    //                             projectLoading: true,
-    //                             categoryLoading: true,
-    //                         }))
-    //                     } 
-    //                     return response.json()
-    //                 })
-    //                 .then(data => {
-    //                     console.log(data.message)
-    //                     notification(data.message,"put")
-    //                     getRequest("projects",setProjects)
-    //                 })
-    //                 .catch(err => console.log(err.message))
-    //         } else {
-    //             if (test.some(field => field === null)) {
-    //                 document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
-    //             } else {
+        if (test.some(field => field === "")) {
+            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+        } else {           
+            if(select !== "") {
+                let newProject = {
+                    userId: localStorage.getItem("token"),
+                    title: data.title,
+                    tags: data.tags,
+                    content: [{language: data.language, text: data.content}],
+                    link: data.link,
+                    language: data.language,
+                    category:data.category
+                }
+                let putOptions = {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(newProject)
+                }
+                fetchRequest(`projects/${select}`, putOptions)  
+                    .then(response => {
+                        if(response.ok) {
+                            cleanInput()
+                            setSelect('')
+                            setIsLoading(actualValues => ({
+                                ...actualValues,
+                                projectLoading: true,
+                                categoryLoading: true,
+                            }))
+                        } 
+                        return response.json()
+                    })
+                    .then(data => {
+                        console.log(data.message)
+                        notification(data.message,"put")
+                        getRequest("projects",setProjects)
+                    })
+                    .catch(err => console.log(err.message))
+            } else {
+                if (test.some(field => field === null)) {
+                    document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
+                } else {
                     let newProject = {
                         userId: localStorage.getItem("token"),
                         title: data.title,
@@ -191,9 +200,9 @@ function FormProject() {
                             getRequest("projects",setProjects)
                         })
                         .catch(err => console.log(err.message))
-                //}
-            //}
-        //}
+                }
+            }
+        }
     }
 
     return (
@@ -303,7 +312,6 @@ function FormProject() {
                             className={styles["input-style"]}
                             onChange={onChange}
                         >
-                            <option value=""></option>
                             <option value={data.category}>{data.category}</option>
                             {allCategories.map((element) => {
                                 if (element !== data.category) {

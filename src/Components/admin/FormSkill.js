@@ -1,6 +1,6 @@
 import styles from '../../assets/styles/Form.module.css'
 import EditSkill from './EditSkill'
-import Input from './form/Input'
+import InputText from './form/InputText'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
@@ -148,7 +148,7 @@ function FormSkill() {
                         </div>
                     </div>
                     <div className='width-100 flex-row-to-column small-column-gap'>
-                        <Input string="name" value={data.name} onChange={onChange}/>
+                        <InputText string="name" value={data.name} onChange={onChange}/>
                         <select 
                             name="category" 
                             id="category" 

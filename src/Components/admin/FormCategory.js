@@ -1,6 +1,6 @@
 import styles from '../../assets/styles/Form.module.css'
 import EditCategory from './EditCategory'
-import Input from './form/Input'
+import InputText from './form/InputText'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions, deleteOptions } from '../../utils/request'
@@ -106,15 +106,15 @@ function FormCategory() {
                     <div className='width-100 flex-row-to-column small-column-gap'>
                         <label className={styles["label-style"]} htmlFor="french">
                             Français
-                            <Input string="french" value={data.french} onChange={onChange} />
+                            <InputText string="french" value={data.french} onChange={onChange} />
                         </label>
                         <label className={styles["label-style"]} htmlFor="english">
                             Anglais
-                            <Input string="english" value={data.english} onChange={onChange}/>
+                            <InputText string="english" value={data.english} onChange={onChange}/>
                         </label>
                         <label className={styles["label-style"]} htmlFor="color">
                             Couleur
-                            <Input string="color" value={data.color} onChange={onChange}/>
+                            <InputText string="color" value={data.color} onChange={onChange}/>
                         </label>
                     </div>
                         <p className="form-message color-red btn"></p>

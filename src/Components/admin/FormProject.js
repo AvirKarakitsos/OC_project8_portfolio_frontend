@@ -1,5 +1,5 @@
 import styles from '../../assets/styles/Form.module.css'
-import Input from './form/Input'
+import InputText from './form/InputText'
 import Textarea from './form/Textarea'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
@@ -270,11 +270,11 @@ function FormProject() {
                     <legend className={styles.title}>Projets</legend>
                     <label className={styles["label-style"]} htmlFor="title">
                         Titre
-                        <Input string="title" value={data.title} onChange={onChange}/>
+                        <InputText string="title" value={data.title} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="tags">
                         <p>Liste de tags</p>
-                        <Input string="tags" value={data.tags} onChange={onChange}/>
+                        <InputText string="tags" value={data.tags} onChange={onChange}/>
                     </label>
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
@@ -301,7 +301,7 @@ function FormProject() {
                     </div>
                     <label className={styles["label-style"]} htmlFor="link">
                         <p>Lien github</p>
-                        <Input string="link" value={data.link} onChange={onChange}/>
+                        <InputText string="link" value={data.link} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
                         <p>Ajouter une image</p>   

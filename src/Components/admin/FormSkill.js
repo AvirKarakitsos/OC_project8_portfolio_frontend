@@ -150,7 +150,7 @@ function FormSkill() {
                     </div>
                     <div className='width-100 flex-row-to-column small-column-gap'>
                         <InputText string="name" value={data.name} onChange={onChange}/>
-                        <Select string="category" onChange={onChange}>
+                        <Select style={styles["input-style"]} string="category" onChange={onChange}>
                             <option value={data.category}>{data.category}</option>
                             {allCategories.map((element,index) => {
                                 if (element !== data.category) {

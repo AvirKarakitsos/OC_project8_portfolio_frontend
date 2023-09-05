@@ -110,7 +110,7 @@ function FormVideo() {
                     </label>
                     <label className={styles["label-style"]} htmlFor="projectId">
                         Choisir un projet
-                        <Select string="projectId" onChange={onChange}>
+                        <Select style={styles["input-style"]} string="projectId" onChange={onChange}>
                         <option value=""></option>
                             {!isLoading &&
                                 allProjects?.map(input => <option value={input._id} key={input._id}>{input.title}</option>)

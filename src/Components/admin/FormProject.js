@@ -2,10 +2,10 @@ import styles from '../../assets/styles/Form.module.css'
 import InputText from './form/InputText'
 import Textarea from './form/Textarea'
 import InputFile from './form/InputFile'
+import Select from './form/Select'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
 import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
-import Select from './form/Select'
 
 function FormProject() {
     const [projects, setProjects] = useState([])
@@ -253,7 +253,7 @@ function FormProject() {
         <div className="flex direction-column justify-center align-center">
             <div className="flex align-center small-column-gap">
                 {!isLoading.projectLoading
-                    && <Select string="select" onChange={handleProject}>
+                    && <Select style={styles["input-style"]}  string="select" onChange={handleProject}>
                         <option value=""></option>
                         {projects.map(input => <option value={input._id} key={input._id}>{input.title}</option>)}
                     </Select>
@@ -282,14 +282,8 @@ function FormProject() {
                             <p>Contenu <span className='counter'>{counter}/440</span></p>
                             <Textarea sting="content" value={data.content} onChange={onChange}/>
                         </label>
-                        <select 
-                            name="language" 
-                            id="language" 
-                            className="size-32"
-                            onChange={onChange}
-                        >
+                        <Select style={styles["input-size"]} string="language" onChange={onChange}>
                             <option value={data.language}>{data.language.toLocaleUpperCase()}</option>
-                    
                             {allLanguages.map((element,index) => {
                                 if (element !== data.language) {
                                     return <option key={index} value={element}>{element.toLocaleUpperCase()}</option>
@@ -297,8 +291,7 @@ function FormProject() {
                                 return ''
                             } 
                             )}
-                    
-                        </select>
+                        </Select>
                     </div>
                     <label className={styles["label-style"]} htmlFor="link">
                         <p>Lien github</p>
@@ -310,7 +303,7 @@ function FormProject() {
                     </label>
                     <label className={styles["label-style"]} htmlFor="category">
                         <p>Catégorie</p>
-                        <Select string="category" onChange={onChange}>
+                        <Select style={styles["input-style"]} string="category" onChange={onChange}>
                             <option value={data.category}>{data.category}</option>
                             {allCategories.map((element) => {
                                 if (element !== data.category) {

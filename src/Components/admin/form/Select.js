@@ -1,9 +1,7 @@
-import styles from '../../../assets/styles/Form.module.css'
-
-function Select({string,onChange,children}) {
+function Select({style,string,onChange,children}) {
     return (
         <select 
-            className={styles["input-style"]} 
+            className={style}
             name={string}
             id={string} 
             onChange={onChange}

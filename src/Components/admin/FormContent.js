@@ -1,9 +1,9 @@
 import styles from '../../assets/styles/Form.module.css'
 import EditContent from './EditContent'
+import Textarea from './form/Textarea'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
-import Textarea from './form/Textarea'
 
 function FormContent() {
     const [data,setData] = useState({

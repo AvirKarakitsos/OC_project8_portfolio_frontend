@@ -1,10 +1,14 @@
+import InputEditText from './form/InputEditText'
 import { useState } from 'react'
-import styles from '../../assets/styles/Form.module.css'
 import { notification } from '../../utils/common'
 import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 
 function EditSkill({ skill, setAllSkills }) {
     const [skillEdit,setSkillEdit] = useState(skill.name)
+
+    const handleEdit = function(e) {
+        setSkillEdit(e.target.value)
+    }
 
     const handleValidate = function() {
         if(skillEdit === "") {
@@ -31,12 +35,7 @@ function EditSkill({ skill, setAllSkills }) {
 
     return (
         <div className='flex align-center small-column-gap'>
-            <input 
-                type="text"
-                className={styles["input-style-2"]}
-                value={skillEdit}
-                onChange={(e) => setSkillEdit(e.target.value)}
-            />
+            <InputEditText string="skill" value={skillEdit} onChange={handleEdit}/>
             <div className='color-green' onClick={() => handleValidate(skill._id)}>OK</div>
         </div>
     )

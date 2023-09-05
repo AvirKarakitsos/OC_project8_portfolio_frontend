@@ -1,4 +1,5 @@
 import styles from '../../assets/styles/Form.module.css'
+import InputEditText from './form/InputEditText'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions } from '../../utils/request'
@@ -41,39 +42,15 @@ function EditCategory({ category, setAllCategories }) {
             <div className="flex-row-to-column">
                 <label className={styles["label-style"]} htmlFor="french">
                     <p>Français</p>
-                    <input 
-                        type="text"
-                        className={styles["input-style-2"]}
-                        name="french"
-                        id="french"
-                        value={editData.french}
-                        onChange={onEditChange}
-                        autoComplete='off'
-                    />
+                    <InputEditText string="french" value={editData.french} onChange={onEditChange}/>
                 </label>
                 <label className={styles["label-style"]} htmlFor="english">
                     <p>Anglais</p>
-                    <input 
-                        type="text"
-                        className={styles["input-style-2"]}
-                        name="english"
-                        id="english"
-                        value={editData.english}
-                        onChange={onEditChange}
-                        autoComplete='off'
-                    />
+                    <InputEditText string="english" value={editData.english} onChange={onEditChange}/>
                 </label>
                 <label className={styles["label-style"]} htmlFor="color">
                     <p>Couleur</p>
-                    <input 
-                        type="text"
-                        className={styles["input-style-2"]}
-                        name="color"
-                        id="color"
-                        value={editData.color}
-                        onChange={onEditChange}
-                        autoComplete='off'
-                    />
+                    <InputEditText string="color" value={editData.color} onChange={onEditChange}/>
                 </label>
             </div>
             <div className='color-green cursor-default' onClick={() => handleValidate(category._id)}>OK</div>

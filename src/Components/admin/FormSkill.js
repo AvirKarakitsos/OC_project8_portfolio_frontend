@@ -1,9 +1,9 @@
 import styles from '../../assets/styles/Form.module.css'
 import EditSkill from './EditSkill'
+import Input from './form/Input'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
-import Input from './form/Input'
 
 function FormSkill() {
     const [data,setData] = useState({

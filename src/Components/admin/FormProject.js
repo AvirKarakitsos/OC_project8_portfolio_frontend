@@ -1,9 +1,9 @@
 import styles from '../../assets/styles/Form.module.css'
+import Input from './form/Input'
+import Textarea from './form/Textarea'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
 import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
-import Input from './form/Input'
-import Textarea from './form/Textarea'
 
 function FormProject() {
     const [projects, setProjects] = useState([])

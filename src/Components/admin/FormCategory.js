@@ -1,9 +1,9 @@
 import styles from '../../assets/styles/Form.module.css'
 import EditCategory from './EditCategory'
+import Input from './form/Input'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions, deleteOptions } from '../../utils/request'
-import Input from './form/Input'
 
 function FormCategory() {
     const [data,setData] = useState({

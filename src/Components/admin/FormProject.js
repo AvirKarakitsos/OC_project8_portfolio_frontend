@@ -20,13 +20,25 @@ function FormProject() {
     const [image, setImage] = useState(null)
     const allLanguages = ["fr","en"]
     const classBtn = "flex align-center justify-center btn btn-3 no-border"
+    const [counter, setCoutner] = useState(0)
 
     const onChange = function(e) {
         setData({
             ...data,
             [e.target.name]: e.target.value
         })
+        if(e.target.name === "content") {
+            setCoutner(e.target.value.length)
+        }
     }
+
+    useEffect(() => {
+        if(counter <= 440) {
+            document.querySelector(".counter").style.color = "black"
+        } else {
+            document.querySelector(".counter").style.color = "red"
+        }
+    },[counter])
 
     const callbackProject = function(values) {
         setProjects(values)
@@ -54,6 +66,7 @@ function FormProject() {
             language: ''
         }))
         setImage(null)
+        setCoutner(0)
     }
     
     useEffect(() => getRequest("projects",callbackProject),[])
@@ -277,7 +290,7 @@ function FormProject() {
                     </label>
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
-                            <p>Contenu</p>
+                            <p>Contenu <span className='counter'>{counter}/440</span></p>
                             <textarea
                                 className={styles["area-size"]}
                                 name="content"

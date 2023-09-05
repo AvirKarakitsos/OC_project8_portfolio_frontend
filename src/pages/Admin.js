@@ -19,14 +19,14 @@ function Admin() {
 
     return (
         <>
-            <div className="section-2 flex direction-column align-center justify-center small-row-gap">
+            <div className={styles.section}>
                 <h1>Page Admin</h1>
                 <ul className="width-100 flex justify-space no-bullet small-column-gap">
                     <li><Link to="/">Page d'accueil</Link></li>
                     <li className="cursor-default" onClick={logout}>Déconnexion</li>
                 </ul>
                 <div className="flex">
-                    <ul className="flex medium-column-gap no-bullet cursor-default">
+                    <ul className={styles.list}>
                         <li onClick={() => setSelect("projet")}>Mes Projets</li>
                         <li onClick={() => setSelect("skill")}>Mes Compétences</li>
                         <li onClick={() => setSelect("video")}>Vidéos</li>

@@ -302,36 +302,37 @@ button{
     .section-1 {
         padding: 75px 0 0 0;
     }
-    
+    .flex-row-to-column {
+        flex-direction: column;
+    }
+    .display-dynamic {
+        display: flex;
+    }
+
+    /**** Gap ****/
     .medium-column-gap {
         column-gap: 15px;
+    }
+    .small-column-gap {
+        column-gap: 10px;
     }
     
     .larg-row-gap {
         row-gap: 50px;
     }
-    
+    .medium-row-gap {
+        row-gap: 25px;
+    }
+
+    /**** Fonte-size ****/
     .large-font-size {
         font-size: 100px;
     }
-    
     .medium-font-size {
         font-size: 20px;
         text-align: center;
     }
-
-    .small-column-gap {
-        column-gap: 10px;
-    }
-
-    .display-dynamic {
-        display: flex;
-    }
-
-    .flex-row-to-column {
-        flex-direction: column;
-    }
-
+    
     .btn {
         padding: 8px 12px;
         font-size: 15px;

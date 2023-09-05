@@ -91,14 +91,14 @@ function FormSkill() {
     return (
         <div className="flex direction-column justify-center align-center">
             <form onSubmit={handleAddSkill}>
-                <fieldset className={`border-black ${styles["form-container"]}`}>
+                <fieldset className={styles["form-container"]}>
                     <legend className={styles.title}>Compétences</legend>              
                     <div className={styles["grid-container"]}>
                         <div>
                             <p className={styles.subtitle}>Client</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {!isLoading && client?.map(value => 
-                                    <li className='flex justify-space' key={value._id}>
+                                    <li className='flex justify-space tiny-column-gap' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAllSkills={setAllSkills}/>
@@ -115,7 +115,7 @@ function FormSkill() {
                             <p className={styles.subtitle}>Serveur</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {!isLoading && server?.map(value => 
-                                    <li className='flex justify-space' key={value._id}>
+                                    <li className='flex justify-space tiny-column-gap' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAllSkills={setAllSkills}/>
@@ -132,7 +132,7 @@ function FormSkill() {
                             <p className={styles.subtitle}>Outils</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {!isLoading && tool?.map(value => 
-                                    <li className='flex justify-space' key={value._id}>
+                                    <li className='flex justify-space tiny-column-gap' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
                                             : <EditSkill skill={value} setAllSkills={setAllSkills}/>
@@ -146,7 +146,7 @@ function FormSkill() {
                             </ul>
                         </div>
                     </div>
-                    <div className='width-100 flex small-column-gap'>
+                    <div className='width-100 flex-row-to-column small-column-gap'>
                         <input 
                             type="text"
                             className={styles["input-style"]}

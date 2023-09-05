@@ -38,7 +38,7 @@ function EditCategory({ category, setAllCategories }) {
 
     return (
         <div className='flex align-center small-column-gap'>
-            <div className="flex">
+            <div className="flex-row-to-column">
                 <label className={styles["label-style"]} htmlFor="french">
                     <p>Français</p>
                     <input 

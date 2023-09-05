@@ -80,13 +80,13 @@ function FormContent() {
     return (
         <div className="flex direction-column justify-center align-center">
             <form onSubmit={handleAddContent}>
-                <fieldset className={`border-black ${styles["form-container"]}`}>
+                <fieldset className={styles["form-container"]}>
                     <legend className={styles.title}>A Propos</legend>
                     <ul className='width-100 flex direction-column medium-row-gap no-bullet'>
                         {!isLoading && allContents.map(value => 
                             <li className='flex justify-space small-column-gap' key={value._id}>
                                 {!value.edit
-                                    ? <div className='width-100 flex justify-space'>
+                                    ? <div className='width-100 flex-row-to-column justify-space medium-row-gap'>
                                         <p className={styles.paragraph}>{value?.french}</p>
                                         <p className={styles.paragraph}>{value?.english}</p>
                                     </div>
@@ -99,7 +99,7 @@ function FormContent() {
                             </li>
                         )}
                     </ul>
-                    <div className="width-100 flex justify-space medium-column-gap">
+                    <div className="width-100 flex-row-to-column justify-space medium-column-gap">
                         <label className={styles["label-style-column"]} htmlFor="french">
                             <p>Français</p>
                             <textarea

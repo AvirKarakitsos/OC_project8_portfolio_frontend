@@ -251,7 +251,7 @@ function FormProject() {
             </div>
 
             <form onSubmit={handleAddProject}>
-                <fieldset className={`border-black ${styles["form-container"]}`}>
+                <fieldset className={styles["form-container"]}>
                     <legend className={styles.title}>Projets</legend>
                     <label className={styles["label-style"]} htmlFor="title">
                         Titre
@@ -275,7 +275,7 @@ function FormProject() {
                             onChange={onChange}
                         />
                     </label>
-                    <div className="flex align-center small-column-gap">
+                    <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
                             <p>Contenu</p>
                             <textarea
@@ -290,7 +290,7 @@ function FormProject() {
                         <select 
                             name="language" 
                             id="language" 
-                            className={styles["input-size"]}
+                            className="size-32"
                             onChange={onChange}
                         >
                             <option value={data.language}>{data.language.toLocaleUpperCase()}</option>

@@ -80,14 +80,14 @@ function FormCategory() {
     return (
         <div className="flex direction-column justify-center align-center">
             <form onSubmit={handleAddCategory}>
-                <fieldset className={`border-black ${styles["form-container"]}`}>
+                <fieldset className={styles["form-container"]}>
                     <legend className={styles.title}>Catégories</legend>
 
-                    <ul className='width-100 flex direction-column tiny-row-gap no-bullet'>
+                    <ul className='width-100 flex direction-column small-row-gap no-bullet'>
                         {!isLoading && allCategories.map(value =>
                             <li className='width-100 flex justify-space medium-column-gap' key={value._id}>
                                 {!value.edit
-                                    ? <div className='width-100 flex justify-space'>
+                                    ? <div className='width-100 flex-row-to-column justify-space tiny-row-gap-2'>
                                         <p>{value?.french}</p>
                                         <p>{value?.english}</p>
                                         <p>{value?.color}</p>
@@ -102,7 +102,7 @@ function FormCategory() {
                         )}
                     </ul>
             
-                    <div className='width-100 flex small-column-gap'>
+                    <div className='width-100 flex-row-to-column small-column-gap'>
                         <label className={styles["label-style"]} htmlFor="french">
                             Français
                             <input 

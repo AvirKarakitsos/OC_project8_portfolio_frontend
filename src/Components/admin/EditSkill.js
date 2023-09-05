@@ -1,4 +1,5 @@
-import InputEditText from './form/InputEditText'
+import styles from '../../assets/styles/Form.module.css'
+import InputText from './form/InputText'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
 import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
@@ -35,7 +36,7 @@ function EditSkill({ skill, setAllSkills }) {
 
     return (
         <div className='flex align-center small-column-gap'>
-            <InputEditText string="skill" value={skillEdit} onChange={handleEdit}/>
+            <InputText style={styles["input-style-2"]} string="skill" value={skillEdit} onChange={handleEdit}/>
             <div className='color-green' onClick={() => handleValidate(skill._id)}>OK</div>
         </div>
     )

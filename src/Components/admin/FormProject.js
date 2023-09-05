@@ -271,11 +271,11 @@ function FormProject() {
                     <legend className={styles.title}>Projets</legend>
                     <label className={styles["label-style"]} htmlFor="title">
                         Titre
-                        <InputText string="title" value={data.title} onChange={onChange}/>
+                        <InputText style={styles["input-style"]} string="title" value={data.title} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="tags">
                         <p>Liste de tags</p>
-                        <InputText string="tags" value={data.tags} onChange={onChange}/>
+                        <InputText style={styles["input-style"]} string="tags" value={data.tags} onChange={onChange}/>
                     </label>
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
@@ -295,7 +295,7 @@ function FormProject() {
                     </div>
                     <label className={styles["label-style"]} htmlFor="link">
                         <p>Lien github</p>
-                        <InputText string="link" value={data.link} onChange={onChange}/>
+                        <InputText style={styles["input-style"]} string="link" value={data.link} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
                         <p>Ajouter une image</p>

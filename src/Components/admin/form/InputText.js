@@ -1,10 +1,8 @@
-import styles from '../../../assets/styles/Form.module.css'
-
-function InputText({string,value,onChange}) {
+function InputText({style,string,value,onChange}) {
     return (
         <input 
             type="text"
-            className={styles["input-style"]}
+            className={style}
             name={string}
             id={string}
             value={value}

@@ -106,15 +106,15 @@ function FormCategory() {
                     <div className='width-100 flex-row-to-column small-column-gap'>
                         <label className={styles["label-style"]} htmlFor="french">
                             Français
-                            <InputText string="french" value={data.french} onChange={onChange} />
+                            <InputText style={styles["input-style"]} string="french" value={data.french} onChange={onChange} />
                         </label>
                         <label className={styles["label-style"]} htmlFor="english">
                             Anglais
-                            <InputText string="english" value={data.english} onChange={onChange}/>
+                            <InputText style={styles["input-style"]} string="english" value={data.english} onChange={onChange}/>
                         </label>
                         <label className={styles["label-style"]} htmlFor="color">
                             Couleur
-                            <InputText string="color" value={data.color} onChange={onChange}/>
+                            <InputText style={styles["input-style"]} string="color" value={data.color} onChange={onChange}/>
                         </label>
                     </div>
                         <p className="form-message color-red btn"></p>

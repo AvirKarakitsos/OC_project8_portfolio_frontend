@@ -1,5 +1,5 @@
 import styles from '../../assets/styles/Form.module.css'
-import InputEditText from './form/InputEditText'
+import InputText from './form/InputText'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions } from '../../utils/request'
@@ -42,15 +42,15 @@ function EditCategory({ category, setAllCategories }) {
             <div className="flex-row-to-column">
                 <label className={styles["label-style"]} htmlFor="french">
                     <p>Français</p>
-                    <InputEditText string="french" value={editData.french} onChange={onEditChange}/>
+                    <InputText style={styles["input-style-2"]} string="french" value={editData.french} onChange={onEditChange}/>
                 </label>
                 <label className={styles["label-style"]} htmlFor="english">
                     <p>Anglais</p>
-                    <InputEditText string="english" value={editData.english} onChange={onEditChange}/>
+                    <InputText style={styles["input-style-2"]} string="english" value={editData.english} onChange={onEditChange}/>
                 </label>
                 <label className={styles["label-style"]} htmlFor="color">
                     <p>Couleur</p>
-                    <InputEditText string="color" value={editData.color} onChange={onEditChange}/>
+                    <InputText style={styles["input-style-2"]} string="color" value={editData.color} onChange={onEditChange}/>
                 </label>
             </div>
             <div className='color-green cursor-default' onClick={() => handleValidate(category._id)}>OK</div>

@@ -1,10 +1,11 @@
 import styles from '../../assets/styles/Form.module.css'
 import InputText from './form/InputText'
 import Textarea from './form/Textarea'
+import InputFile from './form/InputFile'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
 import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
-import InputFile from './form/InputFile'
+import Select from './form/Select'
 
 function FormProject() {
     const [projects, setProjects] = useState([])
@@ -33,6 +34,10 @@ function FormProject() {
         if(e.target.name === "content") {
             setCoutner(e.target.value.length)
         }
+    }
+
+    const handleProject = function(e) {
+        setSelect(e.target.value)
     }
 
     useEffect(() => {
@@ -248,15 +253,10 @@ function FormProject() {
         <div className="flex direction-column justify-center align-center">
             <div className="flex align-center small-column-gap">
                 {!isLoading.projectLoading
-                    && <select 
-                        name="select" 
-                        id="select" 
-                        className={styles["input-style"]}
-                        onChange={(e) => setSelect(e.target.value)}
-                    >
+                    && <Select string="select" onChange={handleProject}>
                         <option value=""></option>
                         {projects.map(input => <option value={input._id} key={input._id}>{input.title}</option>)}
-                    </select>
+                    </Select>
                 }
                 <button 
                     className={select !== "" ? classBtn+" bg-red" : classBtn+" bg-dark"}
@@ -310,12 +310,7 @@ function FormProject() {
                     </label>
                     <label className={styles["label-style"]} htmlFor="category">
                         <p>Catégorie</p>
-                        <select 
-                            name="category" 
-                            id="category" 
-                            className={styles["input-style"]}
-                            onChange={onChange}
-                        >
+                        <Select string="category" onChange={onChange}>
                             <option value={data.category}>{data.category}</option>
                             {allCategories.map((element) => {
                                 if (element !== data.category) {
@@ -324,7 +319,7 @@ function FormProject() {
                                 return ''
                             } 
                             )}
-                        </select>
+                        </Select>
                     </label>
                     <p className="form-message color-red btn"></p>
                     {select !== "" ?

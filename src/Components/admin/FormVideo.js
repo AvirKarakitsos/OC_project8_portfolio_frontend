@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
 import InputFile from './form/InputFile'
+import Select from './form/Select'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
@@ -109,17 +110,12 @@ function FormVideo() {
                     </label>
                     <label className={styles["label-style"]} htmlFor="projectId">
                         Choisir un projet
-                        <select 
-                            name="projectId"
-                            id="projectId" 
-                            className={styles["input-style"]}
-                            onChange={onChange}
-                        >
+                        <Select string="projectId" onChange={onChange}>
                         <option value=""></option>
                             {!isLoading &&
                                 allProjects?.map(input => <option value={input._id} key={input._id}>{input.title}</option>)
                             }
-                        </select>
+                        </Select>
                     </label>
                     <p className="form-message color-red btn"></p>
                     {project.length !== 0

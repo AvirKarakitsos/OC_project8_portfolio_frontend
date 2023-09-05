@@ -4,6 +4,7 @@ import InputText from './form/InputText'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
+import Select from './form/Select'
 
 function FormSkill() {
     const [data,setData] = useState({
@@ -149,12 +150,7 @@ function FormSkill() {
                     </div>
                     <div className='width-100 flex-row-to-column small-column-gap'>
                         <InputText string="name" value={data.name} onChange={onChange}/>
-                        <select 
-                            name="category" 
-                            id="category" 
-                            className={styles["input-style"]}
-                            onChange={onChange}
-                        >
+                        <Select string="category" onChange={onChange}>
                             <option value={data.category}>{data.category}</option>
                             {allCategories.map((element,index) => {
                                 if (element !== data.category) {
@@ -163,7 +159,7 @@ function FormSkill() {
                                 return ''
                             } 
                             )}
-                        </select>
+                        </Select>
                     </div>
                         <p className="form-message color-red btn"></p>
                         <button className='btn bg-blue no-border'>Ajouter</button>

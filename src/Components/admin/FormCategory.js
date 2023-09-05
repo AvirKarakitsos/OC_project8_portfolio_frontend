@@ -3,6 +3,7 @@ import EditCategory from './EditCategory'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions, deleteOptions } from '../../utils/request'
+import Input from './form/Input'
 
 function FormCategory() {
     const [data,setData] = useState({
@@ -105,39 +106,15 @@ function FormCategory() {
                     <div className='width-100 flex-row-to-column small-column-gap'>
                         <label className={styles["label-style"]} htmlFor="french">
                             Français
-                            <input 
-                                type="text"
-                                className={styles["input-style"]}
-                                name="french"
-                                id="french"
-                                value={data.french}
-                                onChange={onChange}
-                                autoComplete='off'
-                            />
+                            <Input string="french" value={data.french} onChange={onChange} />
                         </label>
                         <label className={styles["label-style"]} htmlFor="english">
                             Anglais
-                            <input 
-                                type="text"
-                                className={styles["input-style"]}
-                                name="english"
-                                id="english"
-                                value={data.english}
-                                onChange={onChange}
-                                autoComplete='off'
-                            />
+                            <Input string="english" value={data.english} onChange={onChange}/>
                         </label>
                         <label className={styles["label-style"]} htmlFor="color">
                             Couleur
-                            <input 
-                                type="text"
-                                className={styles["input-style"]}
-                                name="color"
-                                id="color"
-                                value={data.color}
-                                onChange={onChange}
-                                autoComplete='off'
-                            />
+                            <Input string="color" value={data.color} onChange={onChange}/>
                         </label>
                     </div>
                         <p className="form-message color-red btn"></p>

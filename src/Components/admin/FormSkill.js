@@ -3,6 +3,7 @@ import EditSkill from './EditSkill'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
+import Input from './form/Input'
 
 function FormSkill() {
     const [data,setData] = useState({
@@ -44,7 +45,7 @@ function FormSkill() {
             document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
         } else {
             let postOptions = requestOptions("POST",data)
-            fetchRequest("/api/skills",postOptions)
+            fetchRequest("skills",postOptions)
                 .then(response => {
                     if(response.ok) {
                         setData( {
@@ -147,15 +148,7 @@ function FormSkill() {
                         </div>
                     </div>
                     <div className='width-100 flex-row-to-column small-column-gap'>
-                        <input 
-                            type="text"
-                            className={styles["input-style"]}
-                            name="name"
-                            id="name"
-                            value={data.name}
-                            onChange={onChange}
-                            autoComplete='off'
-                        />
+                        <Input string="name" value={data.name} onChange={onChange}/>
                         <select 
                             name="category" 
                             id="category" 

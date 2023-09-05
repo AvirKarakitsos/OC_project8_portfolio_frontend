@@ -3,6 +3,7 @@ import EditContent from './EditContent'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
+import Textarea from './form/Textarea'
 
 function FormContent() {
     const [data,setData] = useState({
@@ -102,25 +103,11 @@ function FormContent() {
                     <div className="width-100 flex-row-to-column justify-space medium-column-gap">
                         <label className={styles["label-style-column"]} htmlFor="french">
                             <p>Français</p>
-                            <textarea
-                                className={styles["area-size"]}
-                                name="french"
-                                id="french"
-                                value={data.french}
-                                onChange={onChange}
-                            >
-                            </textarea>
+                            <Textarea string="french" value={data.french} onChange={onChange}/>
                         </label>
                          <label className={styles["label-style-column"]} htmlFor="english">
                             <p>Anglais</p>
-                            <textarea
-                                className={styles["area-size"]}
-                                name="english"
-                                id="english"
-                                value={data.english}
-                                onChange={onChange}
-                            >
-                            </textarea>
+                            <Textarea string="english" value={data.english} onChange={onChange}/>
                         </label>
                     </div>
                     <p className="form-message color-red btn"></p>

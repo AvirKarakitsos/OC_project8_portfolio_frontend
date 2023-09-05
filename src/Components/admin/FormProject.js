@@ -2,6 +2,8 @@ import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
 import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
+import Input from './form/Input'
+import Textarea from './form/Textarea'
 
 function FormProject() {
     const [projects, setProjects] = useState([])
@@ -268,37 +270,16 @@ function FormProject() {
                     <legend className={styles.title}>Projets</legend>
                     <label className={styles["label-style"]} htmlFor="title">
                         Titre
-                        <input
-                            className={styles["input-style"]}
-                            type="text"
-                            name="title"
-                            id="title"
-                            value={data.title}
-                            onChange={onChange}
-                        />
+                        <Input string="title" value={data.title} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="tags">
                         <p>Liste de tags</p>
-                        <input
-                            className={styles["input-style"]}
-                            type="text"
-                            name="tags"
-                            id="tags"
-                            value={data.tags}
-                            onChange={onChange}
-                        />
+                        <Input string="tags" value={data.tags} onChange={onChange}/>
                     </label>
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
                             <p>Contenu <span className='counter'>{counter}/440</span></p>
-                            <textarea
-                                className={styles["area-size"]}
-                                name="content"
-                                id="content"
-                                value={data.content}
-                                onChange={onChange} 
-                            >
-                            </textarea>
+                            <Textarea sting="content" value={data.content} onChange={onChange}/>
                         </label>
                         <select 
                             name="language" 
@@ -320,14 +301,7 @@ function FormProject() {
                     </div>
                     <label className={styles["label-style"]} htmlFor="link">
                         <p>Lien github</p>
-                        <input
-                            className={styles["input-style"]}
-                            type="text"
-                            name="link"
-                            id="link"
-                            value={data.link}
-                            onChange={onChange}
-                        />
+                        <Input string="link" value={data.link} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
                         <p>Ajouter une image</p>   

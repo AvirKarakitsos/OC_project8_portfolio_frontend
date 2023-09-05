@@ -4,6 +4,7 @@ import Textarea from './form/Textarea'
 import { useEffect, useState } from "react"
 import { notification } from "../../utils/common"
 import { deleteOptions, fetchRequest, getOptions, getRequest, requestOptions } from '../../utils/request'
+import InputFile from './form/InputFile'
 
 function FormProject() {
     const [projects, setProjects] = useState([])
@@ -304,15 +305,8 @@ function FormProject() {
                         <InputText string="link" value={data.link} onChange={onChange}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="image">
-                        <p>Ajouter une image</p>   
-                        <input
-                            className={styles["input-style"]}
-                            type="file"
-                            name="image"
-                            id="image"
-                            accept="image/*"
-                            onChange={(e) => setImage(e.target.files[0])}
-                        />
+                        <p>Ajouter une image</p>
+                        <InputFile string="image" onChange={setImage}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="category">
                         <p>Catégorie</p>

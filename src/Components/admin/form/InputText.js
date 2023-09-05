@@ -1,6 +1,6 @@
 import styles from '../../../assets/styles/Form.module.css'
 
-function Input({string,value,onChange}) {
+function InputText({string,value,onChange}) {
     return (
         <input 
             type="text"
@@ -14,4 +14,4 @@ function Input({string,value,onChange}) {
     )
 }
 
-export default Input
+export default InputText

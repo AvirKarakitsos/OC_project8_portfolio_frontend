@@ -2,6 +2,7 @@ import styles from '../../assets/styles/Form.module.css'
 import { useEffect, useState } from 'react'
 import { notification } from '../../utils/common'
 import { deleteOptions, fetchRequest, getRequest, requestOptions } from '../../utils/request'
+import InputFile from './form/InputFile'
 
 function FormVideo() {
     const [video, setVideo] = useState(null)
@@ -103,13 +104,8 @@ function FormVideo() {
                 <fieldset className={`border-black ${styles["form-container"]}`}>
                     <legend className={styles.title}>Vidéo</legend>
                     <label className={styles["label-style"]} htmlFor="video">
-                        <p>Ajouter une video</p>   
-                        <input
-                            className={styles["input-style"]}
-                            type="file"
-                            id="video"
-                            onChange={(e) => setVideo(e.target.files[0])}
-                        />
+                        <p>Ajouter une video</p>
+                        <InputFile string="video" onChange={setVideo}/>
                     </label>
                     <label className={styles["label-style"]} htmlFor="projectId">
                         Choisir un projet

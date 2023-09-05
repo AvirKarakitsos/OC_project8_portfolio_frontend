@@ -1,9 +1,7 @@
-import styles from '../../../assets/styles/Form.module.css'
-
-function Textarea({string,value,onChange}) {
+function Textarea({style,string,value,onChange}) {
     return (
         <textarea
-            className={styles["area-size"]}
+            className={style}
             name={string}
             id={string}
             value={value}

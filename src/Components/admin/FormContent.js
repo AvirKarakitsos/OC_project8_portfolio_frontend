@@ -103,11 +103,11 @@ function FormContent() {
                     <div className="width-100 flex-row-to-column justify-space medium-column-gap">
                         <label className={styles["label-style-column"]} htmlFor="french">
                             <p>Français</p>
-                            <Textarea string="french" value={data.french} onChange={onChange}/>
+                            <Textarea style={styles["area-size"]} string="french" value={data.french} onChange={onChange}/>
                         </label>
                          <label className={styles["label-style-column"]} htmlFor="english">
                             <p>Anglais</p>
-                            <Textarea string="english" value={data.english} onChange={onChange}/>
+                            <Textarea style={styles["area-size"]} string="english" value={data.english} onChange={onChange}/>
                         </label>
                     </div>
                     <p className="form-message color-red btn"></p>

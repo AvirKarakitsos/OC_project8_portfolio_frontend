@@ -280,7 +280,7 @@ function FormProject() {
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
                             <p>Contenu <span className='counter'>{counter}/440</span></p>
-                            <Textarea sting="content" value={data.content} onChange={onChange}/>
+                            <Textarea style={styles["area-size"]} sting="content" value={data.content} onChange={onChange}/>
                         </label>
                         <Select style={styles["input-size"]} string="language" onChange={onChange}>
                             <option value={data.language}>{data.language.toLocaleUpperCase()}</option>

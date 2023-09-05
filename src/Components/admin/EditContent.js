@@ -1,7 +1,8 @@
+import styles from '../../assets/styles/Form.module.css'
 import { useState } from 'react'
 import { notification } from '../../utils/common'
 import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
-import TextareaEdit from './form/TextareaEdit'
+import Textarea from './form/Textarea'
 
 function EditContent({ content, setAllContents }) {
     const [editData,setEditData] = useState({
@@ -38,8 +39,8 @@ function EditContent({ content, setAllContents }) {
     return (
         <div className='width-100 flex justify-space align-center small-column-gap'>
             <div className="width-100 flex-row-to-column justify-space medium-column-gap">
-                <TextareaEdit string="french" value={editData.french} onChange={onEditChange}/>
-                <TextareaEdit string="english" value={editData.english} onChange={onEditChange}/>
+                <Textarea style={styles["area-size-2"]} string="french" value={editData.french} onChange={onEditChange}/>
+                <Textarea style={styles["area-size-2"]} string="english" value={editData.english} onChange={onEditChange}/>
             </div>
             <div className='color-green cursor-default' onClick={() => handleValidate(content._id)}>OK</div>
         </div>

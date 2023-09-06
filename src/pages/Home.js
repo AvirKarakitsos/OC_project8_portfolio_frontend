@@ -1,7 +1,7 @@
 import styles from '../assets/styles/Home.module.css'
 import photo from '../assets/images/photo-baobab.png'
 import github from '../assets/images/github.png'
-import twitter from '../assets/images/twitter.png'
+import twitter from '../assets/images/x-logo.jpg'
 import instagram from '../assets/images/insta.png'
 import gmail from '../assets/images/gmail.png'
 

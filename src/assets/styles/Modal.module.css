@@ -14,7 +14,7 @@
     background-color: rgba(0, 0, 0,0.8);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1080px) {
     .modal {
         top: 20%;
     }

@@ -59,14 +59,10 @@ function Login() {
                 return response.json()
             })
             .then(response => {
-                if (!response?.token) {
-                    console.log("error connection")
-                } else {
-                    document.querySelector('.form-message').innerHTML = ""
-                    localStorage.setItem("token", response.token)
-                    localStorage.setItem("userId", response.userId)
-                    navigate('/admin')
-                }
+                document.querySelector('.form-message').innerHTML = ""
+                localStorage.setItem("token", response.token)
+                localStorage.setItem("userId", response.userId)
+                navigate('/admin')
             })
             .catch(err => console.log(err.message))
         }

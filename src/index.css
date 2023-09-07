@@ -230,7 +230,6 @@ button{
 /*********** Background-Color **********/
 .bg-light-1 {
     background-color: var(--white);
-    transition: background-color 200ms;
 }
 
 .bg-light-2 {
@@ -239,12 +238,10 @@ button{
 
 .bg-darker-1 {
     background-color: var(--background-dark-primary);
-    transition: background-color 200ms;
 }
 
 .bg-darker-2 {
     background-color: var(--background-dark-secondary);
-    transition: background-color 200ms;
 }
 
 .bg-dark {

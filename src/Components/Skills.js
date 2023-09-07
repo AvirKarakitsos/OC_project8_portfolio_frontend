@@ -46,7 +46,7 @@ function Skills() {
                 </div>
                 <div className="text-center">
                     <div className='flex direction-column tiny-row-gap-2'>
-                        <i className="fa-solid fa-gear font-size-medium color-grey"></i>
+                        <i className="fa-solid fa-database font-size-medium color-grey"></i>
                         <p>{translate(lang).main.skills.tools}</p>
                     </div>
                     <ul className={styles.list+" no-bullet"}>

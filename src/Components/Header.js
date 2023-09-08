@@ -3,7 +3,7 @@ import logo1 from '../assets/images/logo-light.png'
 import logo2 from '../assets/images/logo-dark.png'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
 
@@ -40,6 +40,7 @@ function Header() {
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#about-me'>{translate(lang).header.about}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#project'>{translate(lang).header.projects}</a></li>
 					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#footer'>Contact</a></li>
+					<li><Link className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} to={localStorage.getItem("userId") ? "/admin" : "/login"}>Se connecter</Link></li>
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>

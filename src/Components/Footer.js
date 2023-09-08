@@ -16,7 +16,7 @@ function Footer() {
 			<p className="footer-contact">{translate(lang).footer.contact} : arnocotso8@gmail.com</p>
 			<ul className="flex small-column-gap no-bullet">
 				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">github</a></li>
-				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">twitter</a></li>
+				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer">twitter/X</a></li>
 				<li><a className={theme === "light" ? "color-black" : "color-white"} href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer">instagram</a></li>
 			</ul>
 			<picture>

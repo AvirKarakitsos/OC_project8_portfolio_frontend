@@ -20,28 +20,22 @@ function Login() {
 
     // const handleConnect= function(e){
 	// 	e.preventDefault()
-    //     const newUser = {
-    //         email: email,
-    //         password: password
-    //     }
     //     const requestOptions = {
     //         method: 'POST',
     //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(newUser)
+    //         body: JSON.stringify(credentials)
     //     }
 
     //     fetch('http://localhost:4000/api/auth/signup', requestOptions)
     //         .then(response => {
     //             if(response.ok) {
-    //                 setEmail('')
-    //                 setPassword('')
+    //                 setCrendentials({email:'', password:''})
     //             } 
     //             return response.json()
     //         })
     //         .then(data=> console.log(data.message))
     //         .catch(err => console.log(err.message))
     // }
-
 
     const handleLogin = function(e){
 		e.preventDefault()

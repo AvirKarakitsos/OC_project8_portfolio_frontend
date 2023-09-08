@@ -131,7 +131,7 @@ function FormSkill() {
                             </ul>
                         </div>
                         <div>
-                            <p className={styles.subtitle}>Outils</p>
+                            <p className={styles.subtitle}>Base de données</p>
                             <ul className='flex direction-column tiny-row-gap no-bullet'>
                                 {!isLoading && tool?.map(value => 
                                     <li className='flex justify-space tiny-column-gap' key={value._id}>

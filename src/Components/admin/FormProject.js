@@ -55,6 +55,7 @@ function FormProject() {
             projectLoading: false
         }))
     }
+    
     const callbackCategory = function(values) {
         setAllCategories(values)
         setIsLoading(actualValues => ({

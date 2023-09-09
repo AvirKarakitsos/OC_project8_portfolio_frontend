@@ -5,7 +5,6 @@ import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { getRequest } from '../utils/request';
 
-
 function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
@@ -14,7 +13,7 @@ function Card({project, setModal}) {
     const [category, setCategory] = useState("")
     const [isLoading, setIsLoading] = useState(true)
 
-    const smallUrl = project.imageUrl.split("/images/")[0] + "/images/small/" + project.imageUrl.split("/images/")[1];
+    const smallUrl = project.imageUrl.split(".com/")[0] + ".com/small-" + project.imageUrl.split(".com/")[1];
     const callback = function(values) {
         setCategory(values)
         setIsLoading(false)
@@ -47,7 +46,7 @@ function Card({project, setModal}) {
             </div>
             <div>
                 <picture onClick={() => setModal(project._id)}>
-                    <source media="(max-width: 450px)" srcSet={smallUrl}/>
+                    <source media="(max-width: 315px)" srcSet={smallUrl}/>
                     <img className={styles.image} src={project.imageUrl} alt={`projet ${project.title}`}/>
                 </picture>
             </div>

@@ -71,7 +71,7 @@ function Home() {
 			    			<li className={`${styles["link-1"]} absolute`}><a href="https://github.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img height={30} width={30} className="border-cercle" src={github} alt="lien github"/></a></li>
 			    			<li className={`${styles["link-2"]} absolute`}><a href="https://www.instagram.com/avir.karakitsos" target="_blank" rel="noopener noreferrer"><img height={30} width={30} className="border-cercle" src={instagram} alt="lien instagram"/></a></li>
 			    			<li className={`${styles["link-3"]} absolute`}><a href="https://twitter.com/AvirKarakitsos" target="_blank" rel="noopener noreferrer"><img height={30} width={30} className="border-cercle" src={twitter} alt="lien twitter"/></a></li>
-			    			<li className={`${styles["link-4"]} absolute`}><img height={30} width={30} className="border-cercle" onClick={() => alert('avir.karakitsos@gmail.com')} src={gmail} alt="email"/></li>
+			    			<li className={`${styles["link-4"]} absolute`}><img height={30} width={30} className="border-cercle" onClick={() => alert('arnocotso8@gmail.com')} src={gmail} alt="email"/></li>
 			    		</ul>
 			    	</div>
 			    </section>

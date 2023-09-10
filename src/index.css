@@ -47,6 +47,10 @@ button{
     font-size: 17px;
 }
 
+a{
+    color: inherit;
+}
+
 .cursor-default {
     cursor: default;
 }

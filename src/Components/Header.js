@@ -37,10 +37,10 @@ function Header() {
 			}
 			<nav className="relative flex justify-space small-column-gap cursor-default">
 				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
-					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#about-me'>{translate(lang).header.about}</a></li>
-					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#project'>{translate(lang).header.projects}</a></li>
-					<li><a className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} href='#footer'>Contact</a></li>
-					<li><Link className={`no-decoration ${theme === "light" ? "color-black" : "color-white"}`} to={localStorage.getItem("userId") ? "/admin" : "/login"}>{translate(lang).header.login}</Link></li>
+					<li><a className="no-decoration" href='#about-me'>{translate(lang).header.about}</a></li>
+					<li><a className="no-decoration" href='#project'>{translate(lang).header.projects}</a></li>
+					<li><a className="no-decoration" href='#footer'>Contact</a></li>
+					<li><Link className="no-decoration" to={localStorage.getItem("userId") ? "/admin" : "/login"}>{translate(lang).header.login}</Link></li>
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>

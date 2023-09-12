@@ -130,11 +130,14 @@ function FormVideo() {
                         </Select>
                     </label>
                     <p className="form-message color-red btn"></p>
-                    {(!isLoading.oneProject) && (project.length !== 0)
+                    {project.length !== 0
                         ? <div className='flex justify-center small-column-gap'>
-                            <button type="submit" className="btn bg-green no-border">Modifier</button>
-                            <div className="btn bg-red no-border" onClick={handleDelete}>Supprimer</div>
-                        </div>
+                            { !isLoading.oneProject
+                                && <><button type="submit" className="btn bg-green no-border">Modifier</button>
+                            
+                                <div className="btn bg-red no-border" onClick={handleDelete}>Supprimer</div></>
+                            }
+                            </div>
                         : <button type="submit" className="btn bg-blue no-border">Ajouter</button>
                     }
                 </fieldset>

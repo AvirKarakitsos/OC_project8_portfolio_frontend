@@ -13,7 +13,7 @@ function FormVideo() {
         projectId: ""
     })
     const [allProjects, setAllProjects] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState({all: true, oneProject: true})
 
     const onChange = function(e) {
         setData({
@@ -21,14 +21,22 @@ function FormVideo() {
             [e.target.name]: e.target.value
         })
         getRequest(`projects/${e.target.value}/video`,setProject)
+        setIsLoading({
+            ...isLoading,
+            oneProject: false
+        })
     }
 
-    const callback = function(data) {
-        setAllProjects(data)
-        setIsLoading(false)
-    }
-    
-    useEffect(() => getRequest("projects",callback), [])
+    useEffect(() => {
+        const callback = function(values) {
+            setAllProjects(values)
+            setIsLoading({
+                ...isLoading,
+                all: false
+            })
+        }
+        getRequest("projects",callback)
+    },[isLoading]) 
     
     const handleAddVideo = function(e) {
         e.preventDefault()
@@ -49,6 +57,7 @@ function FormVideo() {
                             projectId: ""
                         })
                         setVideo(null)
+                        setIsLoading({all: true, oneProject: true})
                     } 
                     return response.json()
                 })
@@ -68,6 +77,7 @@ function FormVideo() {
                                 projectId: ""
                             })
                             setVideo(null)
+                            setIsLoading({all: true, oneProject: true})
                         } 
                         return response.json()
                     })
@@ -89,6 +99,8 @@ function FormVideo() {
                         ...data,
                         projectId:""
                     })
+                    setVideo(null)
+                    setIsLoading({all: true, oneProject: true})
                 } 
                 return response.json()
             })
@@ -112,13 +124,13 @@ function FormVideo() {
                         Choisir un projet
                         <Select style={styles["input-style"]} string="projectId" onChange={onChange}>
                         <option value=""></option>
-                            {!isLoading &&
+                            {!isLoading.all &&
                                 allProjects?.map(input => <option value={input._id} key={input._id}>{input.title}</option>)
                             }
                         </Select>
                     </label>
                     <p className="form-message color-red btn"></p>
-                    {project.length !== 0
+                    {(!isLoading.oneProject) && (project.length !== 0)
                         ? <div className='flex justify-center small-column-gap'>
                             <button type="submit" className="btn bg-green no-border">Modifier</button>
                             <div className="btn bg-red no-border" onClick={handleDelete}>Supprimer</div>

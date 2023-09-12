@@ -30,13 +30,13 @@ function FormVideo() {
     useEffect(() => {
         const callback = function(values) {
             setAllProjects(values)
-            setIsLoading({
-                ...isLoading,
+            setIsLoading((values) => ({
+                ...values,
                 all: false
-            })
+            }))
         }
         getRequest("projects",callback)
-    },[isLoading]) 
+    },[]) 
     
     const handleAddVideo = function(e) {
         e.preventDefault()

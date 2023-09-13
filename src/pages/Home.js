@@ -83,7 +83,7 @@ function Home() {
 				<Modal modal={modal} setModal={setModal}/>
 
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
-					<h2 className="text-center">Mes projets</h2>
+					<h2 className="text-center">{translate(lang).main.projects.subtitle}</h2>
 					<ul className={styles["project-filter"]}>
 						<li 
 							data-tag="all" 

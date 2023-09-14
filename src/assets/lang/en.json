@@ -20,7 +20,8 @@
         },
         "projects": {
             "subtitle": "My Projects",
-            "all": "All"
+            "all": "All",
+            "link": "Link to the code..."
         }
     },
     "footer" : {

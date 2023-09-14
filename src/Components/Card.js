@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../utils/context/ThemeContext';
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { getRequest } from '../utils/request';
+import { translate } from '../utils/common'
 
 function Card({project, setModal}) {
     const { theme } = useContext(ThemeContext)
@@ -56,7 +57,7 @@ function Card({project, setModal}) {
                     ? <Collapse project={project} content={content}/>
                     : <p className={styles["box-description"]}>{content[0]?.text}</p>
                 }
-                <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>Voir le code...</a></p>
+                <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>{translate(lang).main.projects.link}</a></p>
             </section>
         </article>    
     )

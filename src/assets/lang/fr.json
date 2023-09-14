@@ -20,7 +20,8 @@
         },
         "projects": {
             "subtitle": "Mes Projets",
-            "all": "Tous"
+            "all": "Tous",
+            "link": "Voir le code..."
         }
     },
     "footer" : {

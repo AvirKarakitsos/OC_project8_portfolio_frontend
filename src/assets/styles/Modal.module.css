@@ -1,18 +1,22 @@
-/* .modal {
+.modal {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
     border: 0;
     outline: 0;
-} */
+}
+.video{
+    width: 900px;
+}
 
 .modal::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
 }
 
-.icone {
-    background-color: rgba(0, 0, 0,0.8);
-}
+/* .icone {
+    background: rgba(0, 0, 0,0.8);
+} */
 
 @media screen and (max-width: 1080px) {
     .modal {

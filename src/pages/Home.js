@@ -81,7 +81,7 @@ function Home() {
 
 				<Skills/>
 				
-				<Modal modal={modal} setmodal={setModal} video={video}/>
+				<Modal modal={modal} setModal={setModal} video={video}/>
 
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">{translate(lang).main.projects.subtitle}</h2>

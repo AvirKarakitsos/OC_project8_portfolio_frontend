@@ -6,7 +6,7 @@ import { LanguageContext } from '../utils/context/LanguageContext'
 import { getRequest } from '../utils/request';
 import { translate } from '../utils/common'
 
-function Card({project, setModal}) {
+function Card({project, setModal, setVideo}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
     const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
@@ -38,6 +38,14 @@ function Card({project, setModal}) {
             else box.style.height = "550px"
         })
     },[windowWidth])
+
+    function option(param) {
+        setVideo(param)
+        setModal(true)
+    }
+    function handleModal(id) {
+        getRequest(`projects/${id}/video`,option)
+    }
   
     return (
         <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
@@ -46,7 +54,7 @@ function Card({project, setModal}) {
                 {!isLoading && <i className={styles.bookmark+" fa-solid fa-bookmark" } style={{color: category[0].color}}></i>}
             </div>
             <div>
-                <picture onClick={() => setModal(project._id)}>
+                <picture onClick={() => handleModal(project._id)}>
                     <source media="(max-width: 315px)" srcSet={smallUrl}/>
                     <img className={styles.image} src={project.imageUrl} alt={`projet ${project.title}`}/>
                 </picture>

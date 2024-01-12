@@ -23,9 +23,10 @@ function Home() {
 	const {lang, toggleLanguage} = useContext(LanguageContext)
 
 	const [projects, setProjects] = useState([])
-	const [modal, setModal] = useState("")
+	const [modal, setModal] = useState(false)
 	const [table, setTable] = useState([])
 	const [allCategories, setAllCategories] = useState(null)
+	const [video, setVideo] = useState([])
 
 	const callback = function(data) {
 		setProjects(data)
@@ -80,7 +81,7 @@ function Home() {
 
 				<Skills/>
 				
-				<Modal modal={modal} setModal={setModal}/>
+				<Modal modal={modal} setmodal={setModal} video={video}/>
 
 				<section id="project" className="section-1 flex direction-column medium-row-gap">
 					<h2 className="text-center">{translate(lang).main.projects.subtitle}</h2>
@@ -97,7 +98,7 @@ function Home() {
 				</section>
 
 				<div className={styles["box-container"]}>
-					{ table.map(project => <Card key={project._id} project={project} setModal={setModal}/>) }
+					{ table.map(project => <Card key={project._id} project={project} setModal={setModal} setVideo={setVideo}/>) }
 				</div>
             </main>
         </Layout>

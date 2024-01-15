@@ -16,9 +16,7 @@ function Router() {
 			<ThemeProvider>
 				<LanguageProvider>
 					<Routes>
-						<Route path="/" element={<Redirection/>} />
-						<Route path="/fr" element={<Home/>} />
-						<Route path="/en" element={<Home/>} />
+						<Route path="/" element={<Home/>} />
 						<Route path="/login" element={<Login/>} />
 						<Route element={<RequireAuth/>}>
 							<Route path="/admin" element={<Admin/>} />

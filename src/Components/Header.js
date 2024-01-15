@@ -27,7 +27,6 @@ function Header() {
 
 	const handleLanguage = function(input) {
 		toggleLanguage(input)
-		navigate(`/${input}`)
 	}
 
     return (

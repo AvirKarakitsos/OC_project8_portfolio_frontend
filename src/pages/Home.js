@@ -20,7 +20,7 @@ import { getRequest } from '../utils/request'
 
 function Home() {
 	const {theme} = useContext(ThemeContext)
-	const {lang, toggleLanguage} = useContext(LanguageContext)
+	const {lang} = useContext(LanguageContext)
 
 	const [projects, setProjects] = useState([])
 	const [modal, setModal] = useState(false)
@@ -40,10 +40,6 @@ function Home() {
 	 useEffect(() => {
 		getRequest("categories",setAllCategories)
 	 }, [])
-
-	useEffect(() => {
-		toggleLanguage(window.location.pathname.substring(1))
-	 }, [toggleLanguage])
 
 	 const handleFilter = function(tag) {
 		if(tag === "all") {

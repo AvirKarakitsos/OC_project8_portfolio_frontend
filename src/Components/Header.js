@@ -4,7 +4,7 @@ import logo2 from '../assets/images/logo-dark.png'
 import CV from "../assets/files/CV_Arno_Cotsoyannis.pdf"
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LanguageContext } from '../utils/context/LanguageContext'
 import { translate } from '../utils/common'
 
@@ -12,7 +12,6 @@ function Header() {
 	const {theme, toggleTheme} = useContext(ThemeContext)
 	const {lang, toggleLanguage} = useContext(LanguageContext)
 	const [open, setOpen] = useState(false)
-	const navigate = useNavigate()
 	
 	const handleSidebar = function () {
 		const sideBar = document.querySelector(`.${styles.anchor}`)
@@ -23,10 +22,6 @@ function Header() {
 			sideBar.classList.remove(`${styles.slide}`)
 			setOpen(false)
 		}
-	}
-
-	const handleLanguage = function(input) {
-		toggleLanguage(input)
 	}
 
     return (
@@ -45,8 +40,8 @@ function Header() {
 				</ul>
 				
 				<ul className={`flex align-center justify-center no-bullet`}>
-					<li className={`${styles["list-lang"]} ${lang === "fr" ? "border-blue" : ""}`} onClick={() => handleLanguage("fr")}><button className="no-border">FR</button></li>
-					<li className={`${styles["list-lang"]} ${lang === "en" ? "border-blue" : ""}`} onClick={() => handleLanguage("en")}><button className="no-border">EN</button></li>
+					<li className={`${styles["list-lang"]} ${lang === "fr" ? "border-blue" : ""}`} onClick={() => toggleLanguage("fr")}><button className="no-border">FR</button></li>
+					<li className={`${styles["list-lang"]} ${lang === "en" ? "border-blue" : ""}`} onClick={() => toggleLanguage("en")}><button className="no-border">EN</button></li>
 				</ul>
 				<ul className="flex align-center no-bullet small-column-gap">
 					{theme === "light"

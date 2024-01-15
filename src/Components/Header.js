@@ -1,6 +1,7 @@
 import styles from '../assets/styles/Header.module.css'
 import logo1 from '../assets/images/logo-light.png'
 import logo2 from '../assets/images/logo-dark.png'
+import CV from "../assets/files/CV_Arno_Cotsoyannis.pdf"
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { Link, useNavigate } from 'react-router-dom'
@@ -37,6 +38,7 @@ function Header() {
 			}
 			<nav className="relative flex justify-space small-column-gap cursor-default">
 				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
+					<li><a className='no-decoration' href={CV} target='_blank' rel="noreferrer">CV</a></li>
 					<li><a className="no-decoration" href='#about-me'>{translate(lang).header.about}</a></li>
 					<li><a className="no-decoration" href='#project'>{translate(lang).header.projects}</a></li>
 					<li><a className="no-decoration" href='#footer'>Contact</a></li>

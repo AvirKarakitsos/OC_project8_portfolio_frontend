@@ -23,22 +23,15 @@ function Card({project, setModal, setVideo}) {
     
     useEffect(() => getRequest(`projects/${project._id}/category`,callback),[project])
 
-    useEffect(() => {
-       setContent(project.content.filter(input => input.language === lang))
-    },[lang,project])
+    // useEffect(() => {
+    //    setContent(project.content.filter(input => input.language === lang))
+    // },[lang,project])
 
     useEffect(() => {
         window.addEventListener("resize",()=> {
             setWindowWidth(window.innerWidth)
         })
     },[])
-
-    // useEffect(() => {
-    //     document.querySelectorAll(`.${styles.box}`).forEach(box => {
-    //         if(windowWidth <= 750) box.style.height = "340px"
-    //         else box.style.height = "550px"
-    //     })
-    // },[windowWidth])
 
     function option(param) {
         setVideo(param)
@@ -67,7 +60,7 @@ function Card({project, setModal, setVideo}) {
                 <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
                     ? <Collapse isOpen={isOpen} setIsOpen={setIsOpen} content={content}/>
-                    : <p className={styles["box-description"]}>{content[0]?.text}</p>
+                    : <p className={styles["box-description"]}>{project.content.filter(input => input.language === lang)?.text}</p>
                 }
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>{translate(lang).main.projects.link}</a></p>
             </section>

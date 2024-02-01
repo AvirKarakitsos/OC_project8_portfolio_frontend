@@ -60,7 +60,7 @@ function Card({project, setModal, setVideo}) {
                 <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
                     ? <Collapse isOpen={isOpen} setIsOpen={setIsOpen} content={content}/>
-                    : <p className={styles["box-description"]}>{project.content.filter(input => input.language === "fr")?.text}</p>
+                    : project.content.map((input) => (input.language === lang) && <p className={styles["box-description"]}>{input?.text}</p>)
                 }
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>{translate(lang).main.projects.link}</a></p>
             </section>

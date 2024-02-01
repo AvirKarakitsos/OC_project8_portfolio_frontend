@@ -16,6 +16,16 @@
         z-index: 15;  
     }
 
+    i {
+        display: block;
+        transform: rotate(0deg);
+        transition: transform 1250ms;
+    }
+
+    .iconeOpen {
+        transform: rotate(180deg);
+    }  
+
     .content {
         height: 0;
         position: relative;
@@ -25,6 +35,12 @@
         transform: translateY(-150px);
         transition: all 1250ms;
     }
+
+    .collapseOpen {
+        height: 160px;
+        transform: translateY(0px);
+    }
+
     .text {
         padding: 5px 10px 0 10px;
     }

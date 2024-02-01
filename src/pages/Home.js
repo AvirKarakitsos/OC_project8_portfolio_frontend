@@ -27,6 +27,7 @@ function Home() {
 	const [table, setTable] = useState([])
 	const [allCategories, setAllCategories] = useState(null)
 	const [video, setVideo] = useState([])
+	const [tag, setTag] = useState("all")
 
 	const callback = function(data) {
 		setProjects(data)
@@ -50,7 +51,8 @@ function Home() {
 			let filter = copy?.filter(element => element.category === tag)
 			setTable(filter)
 		}
-		changeColor(tag)
+		setTag(tag)
+		//changeColor(tag)
 	}
 	
     return (
@@ -87,9 +89,9 @@ function Home() {
 							className="list-filter" 
 							onClick={() => handleFilter("all")}
 							>
-							<button className="btn-filter btn bg-green no-border">{translate(lang).main.projects.all}</button>
+							<button className={tag==="all" ? "btn-filter btn bg-green no-border" : "btn-filter btn bg-green-opacity no-border"}>{translate(lang).main.projects.all}</button>
 						</li>
-						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} key={category._id}/>) }
+						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} tag={tag} key={category._id}/>) }
 					</ul>
 				</section>
 

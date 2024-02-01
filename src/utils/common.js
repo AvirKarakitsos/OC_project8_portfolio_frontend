@@ -37,14 +37,3 @@ export function notification(value,method){
         displayMessage.style.display = "none"
     },3000)
 }
-
-export function changeColor(tag) {
-    document.querySelectorAll(".list-filter").forEach(btn => {
-        btn.children[0].classList = ""
-        if(btn.dataset.tag === tag) {
-            btn.children[0].classList.add("btn-filter", "btn", "no-border", "bg-green")
-        } else {
-            btn.children[0].classList.add("btn-filter", "btn", "no-border", "bg-green-opacity")
-        }
-    })
-}

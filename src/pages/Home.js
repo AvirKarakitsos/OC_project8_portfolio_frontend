@@ -15,7 +15,7 @@ import Category from '../Components/Category'
 import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from '../utils/context/ThemeContext'
 import { LanguageContext } from '../utils/context/LanguageContext'
-import { changeColor, translate } from '../utils/common'
+import { translate } from '../utils/common'
 import { getRequest } from '../utils/request'
 
 function Home() {
@@ -52,7 +52,6 @@ function Home() {
 			setTable(filter)
 		}
 		setTag(tag)
-		//changeColor(tag)
 	}
 	
     return (
@@ -89,7 +88,7 @@ function Home() {
 							className="list-filter" 
 							onClick={() => handleFilter("all")}
 							>
-							<button className={tag==="all" ? "btn-filter btn bg-green no-border" : "btn-filter btn bg-green-opacity no-border"}>{translate(lang).main.projects.all}</button>
+							<button className={tag === "all" ? "btn-filter btn bg-green no-border" : "btn-filter btn bg-green-opacity no-border"}>{translate(lang).main.projects.all}</button>
 						</li>
 						{ allCategories?.map( category => <Category category={category} handleFilter={handleFilter} tag={tag} key={category._id}/>) }
 					</ul>

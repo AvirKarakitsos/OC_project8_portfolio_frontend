@@ -13,16 +13,16 @@ function Header() {
 	const {lang, toggleLanguage} = useContext(LanguageContext)
 	const [open, setOpen] = useState(false)
 	
-	const handleSidebar = function () {
-		const sideBar = document.querySelector(`.${styles.anchor}`)
-		if(!open) {
-			sideBar.classList.add(`${styles.slide}`)
-			setOpen(true)
-		} else {
-			sideBar.classList.remove(`${styles.slide}`)
-			setOpen(false)
-		}
-	}
+	// const handleSidebar = function () {
+	// 	const sideBar = document.querySelector(`.${styles.anchor}`)
+	// 	if(!open) {
+	// 		sideBar.classList.add(`${styles.slide}`)
+	// 		setOpen(true)
+	// 	} else {
+	// 		sideBar.classList.remove(`${styles.slide}`)
+	// 		setOpen(false)
+	// 	}
+	// }
 
     return (
         <header className={`${styles.header} ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
@@ -31,7 +31,9 @@ function Header() {
 				: <img className="size-50" src={logo2} alt="logo"/>
 			}
 			<nav className="relative flex justify-space small-column-gap cursor-default">
-				<ul className={`${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
+				<ul className={open 
+					? `${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`
+					: `${styles.anchor} ${styles.slide} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}> 
 					<li><a className='no-decoration' href={CV} target='_blank' rel="noreferrer">CV</a></li>
 					<li><a className="no-decoration" href='#about-me'>{translate(lang).header.about}</a></li>
 					<li><a className="no-decoration" href='#project'>{translate(lang).header.projects}</a></li>
@@ -51,7 +53,7 @@ function Header() {
 					<li>
 						<button
 							className='no-border display-dynamic size-32 flex justify-center align-center border-cercle bg-dark'
-							onClick={handleSidebar}
+							onClick={() => setOpen((value) => !value)}
 						>
 							<i className="fa-solid fa-bars"></i>
 						</button>

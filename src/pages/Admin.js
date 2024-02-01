@@ -7,10 +7,19 @@ import FormCategory from '../Components/admin/FormCategory'
 import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 
+const Display = {
+    projet: FormProject,
+    skill: FormSkill,
+    video: FormVideo,
+    about: FormContent,
+    category: FormCategory
+}
+
 function Admin() {
     const [select, setSelect] = useState("project")
     const navigate = useNavigate()
-    
+    let CurrentView = Display[select]
+
     const logout = function() {
         localStorage.removeItem("userId")
         localStorage.removeItem("token")
@@ -36,16 +45,7 @@ function Admin() {
                 </div>
             </div>
             <p className={`message ${styles["message-style"]}`}></p>
-                {select === 'project' 
-                    ? <FormProject/> 
-                    : select === 'skill' 
-                        ? <FormSkill/> 
-                        : select === "video" 
-                            ? <FormVideo/> 
-                            : select === "about" 
-                                ? <FormContent/> 
-                                : select=== "category"
-                                    ? <FormCategory/> : <FormProject/>}
+            <CurrentView/>
         </>
     )
 }

@@ -25,6 +25,7 @@ function FormProject() {
     const allLanguages = ["fr","en"]
     const classBtn = "flex align-center justify-center btn btn-3 no-border"
     const [counter, setCoutner] = useState(0)
+    const [isValid, setIsValid] = useState(true)
 
     const onChange = function(e) {
         setData({
@@ -39,14 +40,6 @@ function FormProject() {
     const handleProject = function(e) {
         setSelect(e.target.value)
     }
-
-    useEffect(() => {
-        if(counter <= 440) {
-            document.querySelector(".counter").style.color = "black"
-        } else {
-            document.querySelector(".counter").style.color = "red"
-        }
-    },[counter])
 
     const callbackProject = function(values) {
         setProjects(values)
@@ -140,10 +133,11 @@ function FormProject() {
         let test = [data.title,data.tags,data.content,data.link,image,data.language,data.category]
         
         if (test.some(field => field === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+           setIsValid(false)
         } else {
             // Insise modify a project loop
             if(select !== "") {
+                setIsValid(true)
                 let newProject = {
                     userId: localStorage.getItem("token"),
                     title: data.title,
@@ -174,7 +168,6 @@ function FormProject() {
                             return response.json()
                         })
                         .then(response => {
-                            document.querySelector('.form-message').innerHTML = ""
                             console.log(response.message)
                             notification(response.message,"put")
                             getRequest("projects",callbackProject)
@@ -198,7 +191,6 @@ function FormProject() {
                             return response.json()
                         })
                         .then(response => {
-                            document.querySelector('.form-message').innerHTML = ""
                             console.log(response.message)
                             notification(response.message,"put")
                             getRequest("projects",callbackProject)
@@ -208,8 +200,9 @@ function FormProject() {
             } else {
                 //Inside a post request
                 if (test.some(field => field === null)) {
-                    document.querySelector('.form-message').innerHTML = "Veuillez ajouter une image"
+                    setIsValid(false)
                 } else {
+                    setIsValid(true)
                     let newProject = {
                         userId: localStorage.getItem("token"),
                         title: data.title,
@@ -239,7 +232,6 @@ function FormProject() {
                             return response.json()
                         })
                         .then(response => {
-                            document.querySelector('.form-message').innerHTML = ""
                             console.log(response.message)
                             notification(response.message,"post")
                             getRequest("projects",callbackProject)
@@ -280,7 +272,7 @@ function FormProject() {
                     </label>
                     <div className="flex align-center small-column-gap small-row-gap">
                         <label className={styles["label-style"]} htmlFor="content">
-                            <p>Contenu <span className='counter'>{counter}/440</span></p>
+                            <p>Contenu <span className={counter <=440 ? 'color-black' : 'color-red'}>{counter}/440</span></p>
                             <Textarea style={styles["area-size"]} string="content" value={data.content} onChange={onChange}/>
                         </label>
                         <Select style={styles["input-size"]} string="language" onChange={onChange}>
@@ -315,7 +307,7 @@ function FormProject() {
                             )}
                         </Select>
                     </label>
-                    <p className="form-message color-red btn"></p>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
                     {select !== "" ?
                     <button type="submit" className= "btn bg-green no-border">Modifier</button>
                     : <button type="submit" className= "btn bg-blue no-border">Ajouter</button>

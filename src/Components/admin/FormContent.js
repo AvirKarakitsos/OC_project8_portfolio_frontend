@@ -13,6 +13,7 @@ function FormContent() {
     })
     const [allContents, setAllContents] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isValid, setIsValid] = useState(true)
 
     const onChange = function(e) {
         setData({
@@ -33,8 +34,9 @@ function FormContent() {
     const handleAddContent = function(e) {
         e.preventDefault()
         if((data.french === "") || (data.english === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let options = requestOptions("POST",data)
             fetchRequest("contents",options)
                 .then(response => {
@@ -48,7 +50,6 @@ function FormContent() {
                     return response.json()
                 })
                 .then(data => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"post")
                     getRequest("contents",setAllContents)
@@ -91,7 +92,7 @@ function FormContent() {
                                         <p className={styles.paragraph}>{value?.french}</p>
                                         <p className={styles.paragraph}>{value?.english}</p>
                                     </div>
-                                    : <EditContent content={value} setAllContents={setAllContents}/>
+                                    : <EditContent content={value} setAllContents={setAllContents} setIsValid={setIsValid}/>
                                 }
                                 <div className='flex aling-center tiny-column-gap'>
                                     <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -110,7 +111,7 @@ function FormContent() {
                             <Textarea style={styles["area-size"]} string="english" value={data.english} onChange={onChange}/>
                         </label>
                     </div>
-                    <p className="form-message color-red btn"></p>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
                     <button className='btn bg-blue no-border'>Ajouter</button>
                 </fieldset>
             </form>

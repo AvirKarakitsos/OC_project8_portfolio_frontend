@@ -8,6 +8,8 @@ function Login() {
         email: '',
         password: ''
     })
+    const [isValid, setIsValid] = useState(true)
+    
     const navigate = useNavigate()
 
     const onChange = function(e) {
@@ -40,9 +42,9 @@ function Login() {
     const handleLogin = function(e){
 		e.preventDefault()
         if((credentials.email === "") || (credentials.password === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+            setIsValid(false)
         } else {
-        
+        setIsValid(true)
         let postOption = requestOptions("POST",credentials) 
 
         fetchRequest("auth/login",postOption)
@@ -53,7 +55,6 @@ function Login() {
                 return response.json()
             })
             .then(response => {
-                document.querySelector('.form-message').innerHTML = ""
                 localStorage.setItem("token", response.token)
                 localStorage.setItem("userId", response.userId)
                 navigate('/admin')
@@ -89,7 +90,7 @@ function Login() {
                             onChange={onChange}
                         />
                     </label>
-                    <p className="form-message color-red btn"></p>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
                     <button type="submit" className="btn bg-dark no-border">
                         Se connecter
                     </button>

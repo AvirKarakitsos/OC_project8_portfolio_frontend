@@ -19,6 +19,7 @@ function FormSkill() {
     const [client, setClient] = useState(null)
     const [server, setServer] = useState(null)
     const [tool, setTool] = useState(null)
+    const [isValid, setIsValid] = useState(true)
 
     const onChange = function(e) {
         setData({
@@ -43,8 +44,9 @@ function FormSkill() {
     const handleAddSkill = function(e) {
         e.preventDefault()
         if((data.name === "") || (data.category === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let postOptions = requestOptions("POST",data)
             fetchRequest("skills",postOptions)
                 .then(response => {
@@ -59,7 +61,6 @@ function FormSkill() {
                     return response.json()
                 })
                 .then(response => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(response.message)
                     notification(response.message,"post")
                     getRequest("skills",callback)
@@ -120,7 +121,7 @@ function FormSkill() {
                                     <li className='flex justify-space tiny-column-gap' key={value._id}>
                                         {!value.edit
                                             ? <p>{value?.name}</p>
-                                            : <EditSkill skill={value} setAllSkills={setAllSkills}/>
+                                            : <EditSkill skill={value} setAllSkills={setAllSkills} setIsValid={setIsValid}/>
                                         }
                                         <div className='flex aling-center tiny-column-gap'>
                                             <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -161,8 +162,8 @@ function FormSkill() {
                             )}
                         </Select>
                     </div>
-                        <p className="form-message color-red btn"></p>
-                        <button className='btn bg-blue no-border'>Ajouter</button>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
+                    <button className='btn bg-blue no-border'>Ajouter</button>
                 </fieldset>
             </form>
         </div>

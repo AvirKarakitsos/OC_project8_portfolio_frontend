@@ -13,17 +13,6 @@ function Header() {
 	const {lang, toggleLanguage} = useContext(LanguageContext)
 	const [open, setOpen] = useState(false)
 	
-	// const handleSidebar = function () {
-	// 	const sideBar = document.querySelector(`.${styles.anchor}`)
-	// 	if(!open) {
-	// 		sideBar.classList.add(`${styles.slide}`)
-	// 		setOpen(true)
-	// 	} else {
-	// 		sideBar.classList.remove(`${styles.slide}`)
-	// 		setOpen(false)
-	// 	}
-	// }
-
     return (
         <header className={`${styles.header} ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}>
 			{theme === "light"
@@ -31,7 +20,7 @@ function Header() {
 				: <img className="size-50" src={logo2} alt="logo"/>
 			}
 			<nav className="relative flex justify-space small-column-gap cursor-default">
-				<ul className={open 
+				<ul className={!open 
 					? `${styles.anchor} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`
 					: `${styles.anchor} ${styles.slide} flex-row-to-column align-center justify-center small-column-gap no-bullet ${theme === "light" ? "bg-light-1" : "bg-darker-2"}`}> 
 					<li><a className='no-decoration' href={CV} target='_blank' rel="noreferrer">CV</a></li>

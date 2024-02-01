@@ -4,7 +4,7 @@ import { notification } from '../../utils/common'
 import { fetchRequest, getRequest, requestOptions } from '../../utils/request'
 import Textarea from './form/Textarea'
 
-function EditContent({ content, setAllContents }) {
+function EditContent({ content, setAllContents, setIsValid }) {
     const [editData,setEditData] = useState({
         userId: localStorage.getItem('token'),
         french: content.french,
@@ -20,14 +20,14 @@ function EditContent({ content, setAllContents }) {
    
     const handleValidate = function() {
         if((editData.french === "") && (editData.english === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter au moins l'un des deux champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let putOption = requestOptions('PUT',editData)
 
             fetchRequest(`contents/${content._id}`,putOption)
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put")
                     getRequest("contents",setAllContents)

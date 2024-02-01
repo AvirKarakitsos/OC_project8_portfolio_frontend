@@ -14,6 +14,7 @@ function FormVideo() {
     })
     const [allProjects, setAllProjects] = useState(null)
     const [isLoading, setIsLoading] = useState({all: true, oneProject: true})
+    const [isValid, setIsValid] = useState(true)
 
     const onChange = function(e) {
         setData({
@@ -41,8 +42,9 @@ function FormVideo() {
     const handleAddVideo = function(e) {
         e.preventDefault()
         if(data.projectId === ""  || !video ) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter les champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let formData = new FormData()
             formData.append("content",JSON.stringify(data))
             formData.append("video",video)
@@ -62,7 +64,6 @@ function FormVideo() {
                     return response.json()
                 })
                 .then(data => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put") 
                 })
@@ -82,7 +83,6 @@ function FormVideo() {
                         return response.json()
                     })
                     .then(response => {
-                        document.querySelector('.form-message').innerHTML = ""
                         console.log(response.message)
                         notification(response.message,"post")
                     })
@@ -129,7 +129,7 @@ function FormVideo() {
                             }
                         </Select>
                     </label>
-                    <p className="form-message color-red btn"></p>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
                     {project.length !== 0
                         ? <div className='flex justify-center small-column-gap'>
                             { !isLoading.oneProject

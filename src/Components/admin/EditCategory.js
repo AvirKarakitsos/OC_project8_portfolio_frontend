@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { notification } from '../../utils/common'
 import { getRequest, fetchRequest, requestOptions } from '../../utils/request'
 
-function EditCategory({ category, setAllCategories }) {
+function EditCategory({ category, setAllCategories, setIsValid }) {
     const [editData,setEditData] = useState({
         userId: localStorage.getItem("token"),
         french: category.french,
@@ -21,14 +21,14 @@ function EditCategory({ category, setAllCategories }) {
 
     const handleValidate = function() {
         if((editData.french === "") || (editData.english === "") || (editData.color === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let putOption = requestOptions("PUT",editData)
 
             fetchRequest(`categories/${category._id}`,putOption)
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(data.message)
                     notification(data.message,"put")
                     getRequest("categories",setAllCategories)

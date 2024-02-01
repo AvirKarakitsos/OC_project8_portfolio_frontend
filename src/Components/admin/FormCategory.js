@@ -14,6 +14,7 @@ function FormCategory() {
     })
     const [allCategories, setAllCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isValid, setIsValid] = useState(true)
 
     const onChange = function(e) {
         setData({
@@ -32,8 +33,9 @@ function FormCategory() {
     const handleAddCategory = function(e) {
         e.preventDefault()
         if((data.french === "") || (data.english === "") || (data.color === "")) {
-            document.querySelector('.form-message').innerHTML = "Veuillez compléter tous les champs"
+            setIsValid(false)
         } else {
+            setIsValid(true)
             let options = requestOptions("POST", data) 
             fetchRequest("categories",options)
                 .then(response => {
@@ -48,7 +50,6 @@ function FormCategory() {
                     return response.json()
                 })
                 .then(response => {
-                    document.querySelector('.form-message').innerHTML = ""
                     console.log(response.message)
                     notification(response.message,"post")
                     getRequest("categories",setAllCategories)
@@ -93,7 +94,7 @@ function FormCategory() {
                                         <p>{value?.english}</p>
                                         <p>{value?.color}</p>
                                     </div>
-                                    : <EditCategory category={value} setAllCategories={setAllCategories}/>
+                                    : <EditCategory category={value} setAllCategories={setAllCategories} setIsValid={setIsValid}/>
                                 }
                                 <div className='flex aling-center tiny-column-gap'>
                                     <i className="fa-solid fa-pen-to-square color-blue" onClick={() => handleEdit(value._id)}></i>
@@ -117,8 +118,8 @@ function FormCategory() {
                             <InputText style={styles["input-style"]} string="color" value={data.color} onChange={onChange}/>
                         </label>
                     </div>
-                        <p className="form-message color-red btn"></p>
-                        <button className='btn bg-blue no-border'>Ajouter</button>
+                    {!isValid && <p className="form-message color-red btn">"Veuillez compléter tous les champs"</p> }
+                    <button className='btn bg-blue no-border'>Ajouter</button>
                 </fieldset>
             </form>
         </div>

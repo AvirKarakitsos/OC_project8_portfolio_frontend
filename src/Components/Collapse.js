@@ -1,6 +1,7 @@
 import styles from "../assets/styles/Collapse.module.css"
 import { useContext } from "react"
-import { ThemeContext, LanguageContext } from "../utils/context/ThemeContext"
+import { ThemeContext } from "../utils/context/ThemeContext"
+import { LanguageContext } from '../utils/context/LanguageContext'
 
 function Collapse({isOpen, setIsOpen, project}) {
     const { theme } = useContext(ThemeContext)

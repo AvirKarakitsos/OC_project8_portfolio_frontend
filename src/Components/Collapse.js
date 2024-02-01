@@ -1,9 +1,10 @@
 import styles from "../assets/styles/Collapse.module.css"
 import { useContext } from "react"
-import { ThemeContext } from "../utils/context/ThemeContext"
+import { ThemeContext, LanguageContext } from "../utils/context/ThemeContext"
 
-function Collapse({isOpen, setIsOpen, content}) {
+function Collapse({isOpen, setIsOpen, project}) {
     const { theme } = useContext(ThemeContext)
+    const { lang } = useContext(LanguageContext)
     
     return (
         <div className={styles.bar}>
@@ -18,7 +19,8 @@ function Collapse({isOpen, setIsOpen, content}) {
                 className={isOpen
                     ? `${styles.collapseOpen} ${styles.content} ${theme === "light" ? "" : "color-white"}`
                     : `${styles.content} ${theme === "light" ? "" : "color-white"}`}>
-                <p className={`${styles.text}`}>{content[0]?.text}</p>
+                {project.content.map((input) => 
+                    (input.language === lang) && <p className={styles["box-description"]}>{input?.text}</p>)}
             </div>
         </div>
         )

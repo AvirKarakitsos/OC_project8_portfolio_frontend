@@ -9,7 +9,6 @@ import { translate } from '../utils/common'
 function Card({project, setModal, setVideo}) {
     const { theme } = useContext(ThemeContext)
     const { lang } = useContext(LanguageContext)
-    const [content, setContent] = useState(project.content.filter(input => input.lang === lang))
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [category, setCategory] = useState("")
     const [isLoading, setIsLoading] = useState(true)
@@ -23,10 +22,6 @@ function Card({project, setModal, setVideo}) {
     
     useEffect(() => getRequest(`projects/${project._id}/category`,callback),[project])
 
-    // useEffect(() => {
-    //    setContent(project.content.filter(input => input.language === lang))
-    // },[lang,project])
-
     useEffect(() => {
         window.addEventListener("resize",()=> {
             setWindowWidth(window.innerWidth)
@@ -37,6 +32,7 @@ function Card({project, setModal, setVideo}) {
         setVideo(param)
         setModal(true)
     }
+
     function handleModal(id) {
         getRequest(`projects/${id}/video`,option)
     }
@@ -59,8 +55,8 @@ function Card({project, setModal, setVideo}) {
             <section className={styles["box-section"]}>
                 <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
-                    ? <Collapse isOpen={isOpen} setIsOpen={setIsOpen} content={content}/>
-                    : project.content.map((input) => <p className={styles["box-description"]}>{input?.text}</p>)
+                    ? <Collapse isOpen={isOpen} setIsOpen={setIsOpen} project={project}/>
+                    : project.content.map((input) => (input.language === lang) && <p className={styles["box-description"]}>{input?.text}</p>)
                 }
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>{translate(lang).main.projects.link}</a></p>
             </section>

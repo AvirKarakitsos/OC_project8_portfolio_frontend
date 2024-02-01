@@ -1,10 +1,9 @@
 import styles from "../assets/styles/Collapse.module.css"
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { ThemeContext } from "../utils/context/ThemeContext"
 
-function Collapse({project, content}) {
+function Collapse({isOpen, setIsOpen, content}) {
     const { theme } = useContext(ThemeContext)
-    const [isOpen, setIsOpen] = useState(false)
     
     return (
         <div className={styles.bar}>

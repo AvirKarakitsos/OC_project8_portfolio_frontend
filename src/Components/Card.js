@@ -13,6 +13,7 @@ function Card({project, setModal, setVideo}) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [category, setCategory] = useState("")
     const [isLoading, setIsLoading] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     const smallUrl = project.imageUrl.split(".com/")[0] + ".com/small-" + project.imageUrl.split(".com/")[1];
     const callback = function(values) {
@@ -32,12 +33,12 @@ function Card({project, setModal, setVideo}) {
         })
     },[])
 
-    useEffect(() => {
-        document.querySelectorAll(`.${styles.box}`).forEach(box => {
-            if(windowWidth <= 750) box.style.height = "340px"
-            else box.style.height = "550px"
-        })
-    },[windowWidth])
+    // useEffect(() => {
+    //     document.querySelectorAll(`.${styles.box}`).forEach(box => {
+    //         if(windowWidth <= 750) box.style.height = "340px"
+    //         else box.style.height = "550px"
+    //     })
+    // },[windowWidth])
 
     function option(param) {
         setVideo(param)
@@ -48,7 +49,10 @@ function Card({project, setModal, setVideo}) {
     }
   
     return (
-        <article id={"article"+project._id} className={`${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
+        <article 
+            className={isOpen 
+                ? `${styles.collapseOpen} ${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`
+                : `${styles.box} ${theme === "light" ? "" : "bg-darker-2"}`}>
             <div className="relative">
                 <h3 className="text-center">{project.title}</h3>
                 {!isLoading && <i className={styles.bookmark+" fa-solid fa-bookmark" } style={{color: category[0].color}}></i>}
@@ -62,7 +66,7 @@ function Card({project, setModal, setVideo}) {
             <section className={styles["box-section"]}>
                 <p>{windowWidth > 750 && <b>Tags: </b>}<span>{project.tags}</span></p>
                 {windowWidth <= 750 
-                    ? <Collapse project={project} content={content}/>
+                    ? <Collapse isOpen={isOpen} setIsOpen={setIsOpen} content={content}/>
                     : <p className={styles["box-description"]}>{content[0]?.text}</p>
                 }
                 <p><a href={project.link} target="_blank" rel="noreferrer" className={theme === "light" ? "color-grey" : "color-white"}>{translate(lang).main.projects.link}</a></p>

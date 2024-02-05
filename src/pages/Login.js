@@ -63,7 +63,7 @@ function Login() {
                     navigate('/admin')
                 }
             })
-            .catch(err => console.log(err.message))
+            .catch(err => console.log(err))
         }
     }
 

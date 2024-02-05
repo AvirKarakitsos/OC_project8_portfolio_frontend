@@ -8,7 +8,7 @@ import { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 
 const Display = {
-    projet: FormProject,
+    project: FormProject,
     skill: FormSkill,
     video: FormVideo,
     about: FormContent,
@@ -36,7 +36,7 @@ function Admin() {
                 </ul>
                 <div className="flex">
                     <ul className={styles.list}>
-                        <li onClick={() => setSelect("projet")}>Mes Projets</li>
+                        <li onClick={() => setSelect("project")}>Mes Projets</li>
                         <li onClick={() => setSelect("skill")}>Mes Compétences</li>
                         <li onClick={() => setSelect("video")}>Vidéos</li>
                         <li onClick={() => setSelect("about")}>A Propos</li>

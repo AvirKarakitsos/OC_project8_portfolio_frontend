@@ -55,12 +55,12 @@ function Login() {
                 return response.json()
             })
             .then(response => {
-                if(response.userId) {
+                if(!response.userId) {
+                    console.log(response.message)
+                } else {
                     localStorage.setItem("token", response.token)
                     localStorage.setItem("userId", response.userId)
                     navigate('/admin')
-                } else {
-                    console.log("Error: password or email incorrect")
                 }
             })
             .catch(err => console.log(err.message))

@@ -49,9 +49,15 @@ function Login() {
 
         fetchRequest("auth/login",postOption)
             .then(response => {
-                if(response.ok) {
-                    setCrendentials({email:'', password:''})
-                } 
+                if (!response.ok) {
+                    // Si la réponse n'est pas réussie, vérifiez si c'est une erreur 429 (trop de requêtes)
+                    if (response.status === 429) {
+                      return response.text(); // Récupérez le texte de l'erreur
+                    } else {
+                      throw new Error('Erreur de requête: ' + response.status);
+                    }
+                } else  setCrendentials({email:'', password:''})
+        
                 return response.json()
             })
             .then(response => {
@@ -63,7 +69,9 @@ function Login() {
                     navigate('/admin')
                 }
             })
-            .catch(err => console.log(err))
+            .catch(error => {
+                console.error('Erreur lors de la requête:', error);
+            })
         }
     }
 

@@ -1,7 +1,7 @@
-import { API_URL } from "./constants";
+import { SERVER_URL } from "./constants";
 
 export function getRequest(route, callback) { 
-    fetch(`${API_URL}/api/${route}`)
+    fetch(`${SERVER_URL}/api/${route}`)
         .then((response) => response.json())
         .then((response) => {
             callback(response)
@@ -10,7 +10,7 @@ export function getRequest(route, callback) {
 }
 
 export function fetchRequest(route,requestOptions) {
-    return fetch(`${API_URL}/api/${route}`, requestOptions)
+    return fetch(`${SERVER_URL}/api/${route}`, requestOptions)
 }
 
 export const getOptions = {

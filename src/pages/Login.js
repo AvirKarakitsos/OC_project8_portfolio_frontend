@@ -61,9 +61,7 @@ function Login() {
                 return response.json()
             })
             .then(response => {
-                if(!response.userId) {
-                    console.log(response.message)
-                } else {
+                if(response.userId) {
                     localStorage.setItem("token", response.token)
                     localStorage.setItem("userId", response.userId)
                     navigate('/admin')

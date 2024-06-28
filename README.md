@@ -10,7 +10,7 @@ Le lien du site se trouve [ici](https://arnocotsoyannis-portfolio.onrender.com/)
   <img src="./public/portfolio_image.png" alt="portfolio image">
 </p>
 
-### Insatallation
+### Installation
 
 ```
 npm install
